@@ -24,6 +24,8 @@ function Step({ day, title, desc, icon }) {
 }
 
 export default function TryBeforeYouBuySection() {
+  const telegramUrl = "https://t.me/tradingmonsterpro";
+
   return (
     <section className="relative overflow-hidden py-16 sm:py-20" id="try-before-you-buy">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -77,6 +79,8 @@ export default function TryBeforeYouBuySection() {
                 variant="amber"
                 size="sm"
                 className="h-11 rounded-md px-7 text-sm font-extrabold"
+                type="button"
+                onClick={() => window.open(telegramUrl, "_blank", "noopener,noreferrer")}
               >
                 Yes, I Want To Trade Smarter &gt;
               </Button>

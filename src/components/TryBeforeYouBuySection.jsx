@@ -1,27 +1,5 @@
 import Button from "./ui/Button.jsx";
-import tb1 from "../assets/icons/tb1.png";
-import tb2 from "../assets/icons/tb2.png";
-import tb3 from "../assets/icons/tb3.png";
 import tbr from "../assets/icons/tbr.png";
-
-function Step({ day, title, desc, icon }) {
-  return (
-    <div className="mx-auto w-full max-w-[520px] shrink-0 snap-center text-center sm:max-w-none sm:snap-start">
-      <div className="relative z-10 mx-auto grid h-14 w-14 place-items-center rounded-xl bg-black/85 ring-1 ring-white/10">
-        <img src={icon} alt="" className="h-7 w-7" draggable="false" />
-      </div>
-      <div className="mt-3 text-[10px] font-semibold tracking-wider text-white/70">
-        DAY {day}
-      </div>
-      <div className="mt-1 text-[11px] font-semibold tracking-wide text-amber-450">
-        {title}
-      </div>
-      <p className="mx-auto mt-2 max-w-[260px] text-[10px] leading-4 text-white/55">
-        {desc}
-      </p>
-    </div>
-  );
-}
 
 export default function TryBeforeYouBuySection() {
   const telegramUrl = "https://t.me/tradingmonsterpro";
@@ -43,38 +21,11 @@ export default function TryBeforeYouBuySection() {
 
           <div className="relative">
             <h2 className="text-center text-2xl font-bold leading-snug tracking-normal sm:text-4xl">
-              Try Before You Buy
+              Join Telegram &amp; Start Your{" "}
+              <span className="text-amber-450">3-Day Free Trial</span>
             </h2>
 
-            <div className="relative mt-8 sm:mt-12">
-              {/* connector line behind icons */}
-              <div className="pointer-events-none absolute left-6 right-6 top-6 z-0 hidden h-px bg-white/10 sm:block" />
-
-              <div
-                className="grid gap-4 sm:grid-cols-3 sm:gap-6"
-              >
-                <Step
-                  day="1"
-                  title="TEST SIGNALS"
-                  desc="See how the indicator works in real market conditions on live chart flow."
-                  icon={tb1}
-                />
-                <Step
-                  day="2"
-                  title="UNDERSTAND LOGIC"
-                  desc="Learn how the trend and bias filters block low‑probability trades."
-                  icon={tb2}
-                />
-                <Step
-                  day="3"
-                  title="JOIN THE ELITE"
-                  desc="Upgrade to the full suite and copy the rules, not emotions."
-                  icon={tb3}
-                />
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-col items-center gap-3 sm:mt-9">
+            <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10">
               <Button
                 variant="amber"
                 size="sm"

@@ -90,8 +90,8 @@ export default function UnlockFullAccessSection() {
               </div>
 
               <div className="mt-4 flex items-end justify-center gap-2">
-                <div className="text-4xl font-extrabold text-white">$599</div>
-                <div className="pb-1 text-[10px] font-semibold text-white/60">USD / LIFETIME</div>
+                <div className="text-4xl font-extrabold text-white">$55</div>
+                <div className="pb-1 text-[10px] font-semibold text-white/60">USD / Month</div>
               </div>
 
               <div className="mt-3 text-center text-[10px] text-white/55">
@@ -103,7 +103,9 @@ export default function UnlockFullAccessSection() {
                   type="button"
                   className="h-9 rounded-md bg-white px-6 text-[11px] font-extrabold text-black shadow-[0_12px_36px_rgba(255,255,255,0.12)] ring-1 ring-white/25 transition hover:bg-white/90 active:translate-y-px"
                 >
-                  Unlock Trading Monster AI
+                  Join Telegram &amp; Start Your{" "}
+                  <span className="sm:hidden">3 Day Free Trial</span>
+                  <span className="hidden sm:inline">3-Day Free Trial</span>
                 </button>
               </div>
             </div>

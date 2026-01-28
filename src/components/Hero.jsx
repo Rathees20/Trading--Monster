@@ -57,15 +57,15 @@ export default function Hero() {
               <ul className="space-y-3 text-sm font-semibold text-amber-450/90">
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
-                  15-Minute Optimized
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
                   MTT Indicator
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
                   Telegram Support
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
+                  15-Minute Optimized 
                 </li>
               </ul>
               <ul className="space-y-3 text-sm font-semibold text-amber-450/90">

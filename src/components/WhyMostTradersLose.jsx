@@ -63,7 +63,9 @@ function ModePanel({ title, description, tone = "buy" }) {
       />
       <div className="max-w-[360px]">
         <div className={`text-2xl font-bold ${titleColor}`}>{title}</div>
-        <p className="mt-4 text-xs leading-5 text-white/70">{description}</p>
+        <p className="mt-4 text-[11px] leading-5 text-white/70 sm:text-xs">
+          {description}
+        </p>
       </div>
     </div>
   );
@@ -109,7 +111,7 @@ export default function WhyMostTradersLose() {
                 description={
                   <>
                     Green bars indicate Buy-only conditions.
-                    <br />
+                    
                     Trades are allowed only in the direction of the trend.
                   </>
                 }

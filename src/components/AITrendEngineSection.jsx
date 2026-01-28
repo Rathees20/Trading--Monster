@@ -1,16 +1,5 @@
-import dynamicTradeDensity from "../assets/Dynamic trade density.png";
 import targetIcon from "../assets/icons/target.png";
-
-function MiniPill({ label, value }) {
-  return (
-    <div className="text-center">
-      <div className="text-[10px] font-semibold tracking-wide text-slate-600">{label}</div>
-      <div className="mt-0.5 inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-extrabold text-[#2BFF00] shadow-[0_0_0_1px_rgba(43,255,0,0.35)] sm:mt-1">
-        {value}
-      </div>
-    </div>
-  );
-}
+import tiImg from "../assets/ti.jpeg";
 
 function BiasCard({ title, subtitle, tone = "green" }) {
   const isGreen = tone === "green";
@@ -59,34 +48,21 @@ export default function AITrendEngineSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="p-0 sm:p-2">
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
-            {/* LEFT: Illustration */}
+            {/* LEFT: Indicators Integration */}
             <div>
-              <div className="-mt-5 text-center text-[11px] font-semibold text-slate-700 sm:mt-0">
-                Dynamic Trend Density
+              <div className="text-center text-2xl font-bold text-black">
+                Indicators Integration
               </div>
 
-              <div className="mt-0 sm:mt-4">
-                {/* background glow ONLY behind the image */}
-                <div className="relative isolate">
-                  {/* soft glow blob (no rectangle) */}
-                  <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[320px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C07A10]/55 blur-3xl" />
-                  <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[240px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8A4E00]/30 blur-3xl" />
-                  <div className="relative z-10 flex justify-center px-6 py-6">
-                    <img
-                      src={dynamicTradeDensity}
-                      alt="Dynamic trend density illustration"
-                      className="h-[260px] w-auto select-none"
-                      draggable={false}
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                {/* pills below (no background glow) */}
-                <div className="mt-3 grid grid-cols-3 gap-4 sm:mt-6">
-                  <MiniPill label="T1 REACHED" value="+45Pips" />
-                  <MiniPill label="T2 REACHED" value="+45Pips" />
-                  <MiniPill label="T3 REACHED" value="+45Pips" />
+              <div className="mt-4 flex justify-center">
+                <div className="w-full max-w-[280px] overflow-hidden rounded-2xl border border-black bg-white shadow-[0_18px_55px_rgba(0,0,0,0.10)]">
+                  <img
+                    src={tiImg}
+                    alt="Indicators integration"
+                    className="block w-full select-none object-cover"
+                    draggable={false}
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -96,7 +72,7 @@ export default function AITrendEngineSection() {
               <h3 className="text-2xl font-bold leading-snug tracking-normal text-slate-900 sm:text-3xl">
                 AI Trend Engine
               </h3>
-              <p className="mx-auto mt-3 max-w-md text-xs leading-5 text-slate-600 sm:text-sm lg:mx-0">
+              <p className="mx-auto mt-3 max-w-md text-center text-xs leading-5 text-slate-600 sm:text-sm lg:mx-0 lg:text-left">
                 The Core Engine Clearly Shows The Dominant Market Trend, Allowing You To Filter Out Noise Efficiently.
               </p>
 

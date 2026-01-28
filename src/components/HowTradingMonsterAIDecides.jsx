@@ -29,7 +29,7 @@ function IconImg({ src, alt }) {
 
 export default function HowTradingMonsterAIDecides() {
   return (
-    <section className="relative overflow-hidden py-10 sm:py-16" id="how-it-decides">
+    <section className="relative overflow-hidden py-6 sm:py-16" id="how-it-decides">
       {/* subtle section glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_50%_25%,rgba(255,176,32,0.12),transparent_62%),radial-gradient(760px_380px_at_15%_55%,rgba(255,255,255,0.06),transparent_60%)]" />

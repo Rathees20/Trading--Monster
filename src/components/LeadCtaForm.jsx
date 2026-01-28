@@ -74,7 +74,7 @@ export default function LeadCtaForm() {
   const telegramUrl = "https://t.me/tradingmonsterpro";
 
   return (
-    <section className="relative overflow-hidden py-14 sm:py-16" id="cta-form">
+    <section className="relative overflow-hidden py-10 sm:py-16" id="cta-form">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_50%_20%,rgba(255,176,32,0.16),transparent_60%),radial-gradient(760px_420px_at_20%_55%,rgba(59,130,246,0.10),transparent_60%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/35" />

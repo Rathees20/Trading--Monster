@@ -53,7 +53,7 @@ function FeatureCard() {
 export default function AITrendEngineSection() {
   return (
     <section
-      className="relative overflow-hidden bg-[#F6F3EC] py-12 text-slate-900 sm:py-16"
+      className="relative overflow-hidden bg-[#F6F3EC] py-10 text-slate-900 sm:py-16"
       id="ai-trend-engine"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

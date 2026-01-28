@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import Button from "./ui/Button.jsx";
 import logoImg from "../assets/logo.png";
 
-const navItems = ["Home", "About", "Pricing", "Services", "Contact"];
-
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -30,18 +28,6 @@ export default function Navbar() {
               TRADING <span className="text-amber-450">MONSTER</span>
             </span>
           </div>
-
-          <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
-            {navItems.map((label) => (
-              <a
-                key={label}
-                href="#"
-                className="text-sm font-semibold text-white/85 transition hover:text-white"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
 
           <div className="flex flex-1 items-center justify-end gap-2 sm:gap-3">
             <a
@@ -83,19 +69,6 @@ export default function Navbar() {
         <div className="md:hidden">
           <div className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
             <div className="mt-2 rounded-2xl border border-white/10 bg-black/40 p-3 backdrop-blur">
-              <nav className="flex flex-col gap-1">
-                {navItems.map((label) => (
-                  <a
-                    key={label}
-                    href="#"
-                    onClick={() => setMobileOpen(false)}
-                    className="rounded-xl px-3 py-2 text-sm font-semibold text-white/85 transition hover:bg-white/5 hover:text-white"
-                  >
-                    {label}
-                  </a>
-                ))}
-              </nav>
-
               <div className="mt-3 grid gap-2">
                 <a
                   href="#"

@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import Button from "./ui/Button.jsx";
 import tb1 from "../assets/icons/tb1.png";
 import tb2 from "../assets/icons/tb2.png";
@@ -25,92 +24,6 @@ function Step({ day, title, desc, icon }) {
 }
 
 export default function TryBeforeYouBuySection() {
-  const scrollerRef = useRef(null);
-
-  useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-
-    const isDesktop =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(min-width: 640px)").matches;
-    if (isDesktop) return;
-
-    let intervalId = null;
-    let resumeTimeoutId = null;
-
-    const getSlides = () => Array.from(el.children);
-
-    const getCurrentIndex = (slides) => {
-      const viewportCenter = el.scrollLeft + el.clientWidth / 2;
-      let bestIdx = 0;
-      let bestDist = Number.POSITIVE_INFINITY;
-      for (let i = 0; i < slides.length; i += 1) {
-        const s = slides[i];
-        const slideCenter = s.offsetLeft + s.clientWidth / 2;
-        const dist = Math.abs(slideCenter - viewportCenter);
-        if (dist < bestDist) {
-          bestDist = dist;
-          bestIdx = i;
-        }
-      }
-      return bestIdx;
-    };
-
-    const scrollToIndex = (idx) => {
-      const slides = getSlides();
-      if (!slides.length) return;
-      const slide = slides[idx % slides.length];
-      const left = slide.offsetLeft + slide.clientWidth / 2 - el.clientWidth / 2;
-      el.scrollTo({ left, behavior: "smooth" });
-    };
-
-    const start = () => {
-      if (intervalId) return;
-      intervalId = window.setInterval(() => {
-        const slides = getSlides();
-        if (slides.length <= 1) return;
-        const current = getCurrentIndex(slides);
-        scrollToIndex(current + 1);
-      }, 3800);
-    };
-
-    const stop = () => {
-      if (intervalId) {
-        window.clearInterval(intervalId);
-        intervalId = null;
-      }
-      if (resumeTimeoutId) {
-        window.clearTimeout(resumeTimeoutId);
-        resumeTimeoutId = null;
-      }
-    };
-
-    const pauseThenResume = () => {
-      stop();
-      resumeTimeoutId = window.setTimeout(() => start(), 5500);
-    };
-
-    start();
-    el.addEventListener("pointerdown", pauseThenResume, { passive: true });
-    el.addEventListener("touchstart", pauseThenResume, { passive: true });
-    el.addEventListener("wheel", pauseThenResume, { passive: true });
-
-    return () => {
-      stop();
-      el.removeEventListener("pointerdown", pauseThenResume);
-      el.removeEventListener("touchstart", pauseThenResume);
-      el.removeEventListener("wheel", pauseThenResume);
-    };
-  }, []);
-
   return (
     <section className="relative overflow-hidden py-16 sm:py-20" id="try-before-you-buy">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -136,8 +49,7 @@ export default function TryBeforeYouBuySection() {
               <div className="pointer-events-none absolute left-6 right-6 top-6 z-0 hidden h-px bg-white/10 sm:block" />
 
               <div
-                ref={scrollerRef}
-                className="-mx-4 flex snap-x snap-proximity gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0"
+                className="grid gap-6 sm:grid-cols-3 sm:gap-6"
               >
                 <Step
                   day="1"

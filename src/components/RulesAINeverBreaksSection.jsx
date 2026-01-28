@@ -1,14 +1,16 @@
-import { useRef } from "react";
-
 function RuleCard({ icon, title, body }) {
   return (
-    <div className="w-full shrink-0 snap-center sm:w-auto sm:shrink sm:snap-start">
-      <div className="mx-auto w-full max-w-[520px] rounded-[28px] bg-[#142238] px-7 py-8 text-center shadow-[0_18px_60px_rgba(0,0,0,0.25)] ring-1 ring-white/5 sm:mx-0 sm:max-w-none sm:text-left">
-        <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(46,107,255,0.12)] sm:mx-0">
+    <div className="h-full w-full">
+      <div className="mx-auto h-full w-full max-w-[520px] rounded-[22px] bg-[#142238] px-5 py-6 text-center shadow-[0_18px_60px_rgba(0,0,0,0.25)] ring-1 ring-white/5 sm:mx-0 sm:max-w-none sm:rounded-[28px] sm:px-7 sm:py-8 sm:text-left">
+        <div className="mx-auto grid h-10 w-10 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(46,107,255,0.12)] sm:mx-0 sm:h-12 sm:w-12">
           {icon}
         </div>
-        <div className="mt-6 text-base font-semibold tracking-normal text-white">{title}</div>
-        <p className="mt-3 text-xs leading-5 text-white/55">{body}</p>
+        <div className="mt-4 text-[13px] font-semibold tracking-normal text-white sm:mt-6 sm:text-base">
+          {title}
+        </div>
+        <p className="mt-2 text-[10.5px] leading-4 text-white/55 sm:mt-3 sm:text-xs sm:leading-5">
+          {body}
+        </p>
       </div>
     </div>
   );
@@ -123,66 +125,21 @@ function IconMinusCircle() {
 }
 
 export default function RulesAINeverBreaksSection() {
-  const scrollerRef = useRef(null);
-
-  function scrollByPage(direction) {
-    const el = scrollerRef.current;
-    if (!el) return;
-    el.scrollBy({ left: direction * el.clientWidth, behavior: "smooth" });
-  }
-
   return (
-    <section className="relative overflow-hidden py-16 sm:py-20" id="rules">
+    <section className="relative overflow-hidden py-12 sm:py-20" id="rules">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center">
-          <h2 className="text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
+          <h2 className="text-2xl font-bold leading-snug tracking-normal sm:text-4xl">
             The Rules AI Never Breaks
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-white/60 sm:text-base">
+          <p className="mx-auto mt-3 max-w-3xl text-xs leading-5 text-white/60 sm:mt-4 sm:text-base sm:leading-6">
             Discipline is the only bridge between good ideas and real accomplishment.
           </p>
         </div>
 
-        <div className="relative mt-12">
-          {/* Mobile slider arrows */}
-          <button
-            type="button"
-            aria-label="Previous"
-            onClick={() => scrollByPage(-1)}
-            className="absolute left-2 top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-black/55 text-white/85 ring-1 ring-white/15 backdrop-blur transition hover:bg-black/65 active:scale-95 sm:hidden"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            type="button"
-            aria-label="Next"
-            onClick={() => scrollByPage(1)}
-            className="absolute right-2 top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-black/55 text-white/85 ring-1 ring-white/15 backdrop-blur transition hover:bg-black/65 active:scale-95 sm:hidden"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M9 6l6 6-6 6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-
+        <div className="relative mt-8 sm:mt-12">
           <div
-            ref={scrollerRef}
-            className="-mx-4 flex snap-x snap-proximity gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-7 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
+            className="grid auto-rows-fr grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-7 lg:grid-cols-4"
           >
             <RuleCard
               icon={<IconClock />}

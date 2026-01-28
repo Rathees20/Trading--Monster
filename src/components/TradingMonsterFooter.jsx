@@ -24,11 +24,7 @@ export default function TradingMonsterFooter() {
           RISK DISCLAIMER
         </div>
         <p className="mx-auto mt-3 max-w-4xl text-[10px] leading-5 text-white/35">
-          Trading Forex on margin carries a high level of risk and may not be suitable for all investors. High
-          leverage can work against you as well as for you. Before deciding to trade Forex, you should carefully
-          consider your investment objectives, level of experience, and risk appetite. Trading Monster AI is a
-          decision-support system, not a guaranteed profit generator. Past performance is not indicative of future
-          results.
+        Trading Monster provides market analysis tools and educational content only. We are not a financial advisor, broker, or investment service provider. Trading Monster does not execute trades or handle client funds. Trading involves risk and may result in loss of capital. Past performance is not indicative of future results.
         </p>
       </div>
 

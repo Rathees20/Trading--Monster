@@ -123,7 +123,7 @@ export default function UnlockFullAccessSection() {
                 <div className="mt-4 space-y-2 text-center">
                   <CheckRow>Experience the Full Features</CheckRow>
                   <CheckRow>Unlock All Premium Tools</CheckRow>
-                  <CheckRow>And Expert Support for 72 Hours</CheckRow>
+                  <CheckRow>And Expert Support for 24/7</CheckRow>
                 </div>
 
                 <div className="mt-6 flex justify-center">

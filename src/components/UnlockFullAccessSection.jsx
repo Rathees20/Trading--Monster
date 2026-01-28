@@ -95,7 +95,7 @@ export default function UnlockFullAccessSection() {
               </div>
 
               <div className="mt-3 text-center text-[10px] text-white/55">
-                No Monthly Fees. No Recurring Billing.
+                
               </div>
 
               <div className="mt-6 flex justify-center">

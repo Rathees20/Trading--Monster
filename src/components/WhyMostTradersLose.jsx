@@ -10,7 +10,7 @@ function MiniSignalChart({ variant = "buy" }) {
   const chartSrc = isBuy ? buyChartImg : sellChartImg;
 
   return (
-    <div className="relative h-[190px] w-[190px] overflow-hidden rounded-2xl border border-white/10 bg-[#070B12] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)]">
+    <div className="relative h-[150px] w-full max-w-[320px] overflow-hidden rounded-md border border-white/10 bg-[#070B12] shadow-[0_0_0_1px_rgba(255,255,255,0.06)] sm:h-[160px] sm:max-w-[360px]">
       {/* top labels (like screenshot) */}
       <div className="absolute left-3 top-3 z-10 flex items-center gap-2 text-[10px] font-semibold">
         <span className="rounded bg-white/90 px-2 py-0.5 text-black">
@@ -32,7 +32,7 @@ function MiniSignalChart({ variant = "buy" }) {
       <img
         src={chartSrc}
         alt={isBuy ? "Buy chart" : "Sell chart"}
-        className="block h-full w-full object-cover"
+        className="block h-full w-full object-contain"
         loading="lazy"
         draggable={false}
       />
@@ -43,16 +43,13 @@ function MiniSignalChart({ variant = "buy" }) {
 function ModePanel({ title, description, tone = "buy" }) {
   const isBuy = tone === "buy";
   const border = isBuy ? "border-emerald-500/35" : "border-red-500/35";
-  const glow = isBuy
-    ? "shadow-[0_0_0_1px_rgba(34,197,94,0.12),0_0_60px_rgba(34,197,94,0.10)]"
-    : "shadow-[0_0_0_1px_rgba(239,68,68,0.12),0_0_60px_rgba(239,68,68,0.10)]";
   const titleColor = isBuy ? "text-emerald-400" : "text-red-500";
   const bg =
     "bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.05),transparent_55%)]";
 
   return (
     <div
-      className={`relative flex h-[190px] w-full max-w-[426px] items-center justify-center rounded-3xl border ${border} ${glow} ${bg} px-6 py-10 text-center`}
+      className={`relative flex h-[160px] w-full max-w-[426px] items-center justify-center rounded-md border ${border} bg-black/20 ${bg} px-6 py-6 text-center shadow-[0_0_0_1px_rgba(255,255,255,0.06)] sm:h-[170px]`}
     >
       {/* watermark logo */}
       <div
@@ -74,7 +71,7 @@ function ModePanel({ title, description, tone = "buy" }) {
 
 export default function WhyMostTradersLose() {
   return (
-    <section className="relative isolate overflow-hidden py-10 sm:py-16" id="why">
+    <section className="relative isolate overflow-hidden py-8 sm:py-16" id="why">
       {/* Section background image: `src/assets/background whychase trade.jpg` */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div
@@ -101,9 +98,9 @@ export default function WhyMostTradersLose() {
           ---&quot;Trading Monster AI forces discipline&quot;---
         </div>
 
-        <div className="mt-8 grid gap-6">
+        <div className="mt-6 grid gap-4">
           {/* Card 1 (Buy) */}
-          <div className="mx-auto w-full max-w-[800px] rounded-[2.25rem] border border-white/10 bg-black/20 p-4 backdrop-blur sm:p-6">
+          <div className="mx-auto w-full max-w-[800px] rounded-md border border-white/10 bg-black/20 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.06)] backdrop-blur sm:p-6">
             <div className="flex flex-col-reverse items-center justify-center gap-8 md:flex-row md:gap-10">
               <MiniSignalChart variant="buy" />
               <ModePanel
@@ -121,7 +118,7 @@ export default function WhyMostTradersLose() {
           </div>
 
           {/* Card 2 (Sell) */}
-          <div className="mx-auto w-full max-w-[800px] rounded-[2.25rem] border border-white/10 bg-black/20 p-4 backdrop-blur sm:p-6">
+          <div className="mx-auto w-full max-w-[800px] rounded-md border border-white/10 bg-black/20 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.06)] backdrop-blur sm:p-6">
             <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:gap-10">
               <ModePanel
                 tone="sell"

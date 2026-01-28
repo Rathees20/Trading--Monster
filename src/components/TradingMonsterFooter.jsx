@@ -4,8 +4,8 @@ export default function TradingMonsterFooter() {
   return (
     <footer className="relative border-t border-white/10 bg-black/10 py-7 sm:py-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:items-start sm:gap-6">
-          <div className="flex w-full flex-col items-center gap-2 sm:w-auto sm:items-start sm:gap-3">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:items-start sm:gap-6 lg:justify-center">
+          <div className="flex w-full flex-col items-center gap-2 sm:w-auto sm:items-start sm:gap-3 lg:items-center">
             <div className="flex items-center gap-3">
               <img src={logoImg} alt="Trading Monster" className="h-10 w-10" draggable="false" />
               <div className="text-xs font-semibold tracking-wide text-white/90">

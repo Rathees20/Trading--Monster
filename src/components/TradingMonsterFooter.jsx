@@ -41,14 +41,14 @@ export default function TradingMonsterFooter() {
             </div>
           </div>
 
-          <div className="flex items-center gap-6 text-xs font-semibold text-white/70">
-            <a href="#" className="underline underline-offset-4 decoration-white/25 hover:text-white hover:decoration-white/50">
+          <div className="flex items-center gap-6 text-xs font-semibold text-white">
+            <a href="#" className="underline underline-offset-4 decoration-white hover:decoration-white">
               Terms of Service
             </a>
-            <a href="#" className="underline underline-offset-4 decoration-white/25 hover:text-white hover:decoration-white/50">
+            <a href="#" className="underline underline-offset-4 decoration-white hover:decoration-white">
               Privacy Policy
             </a>
-            <a href="#" className="underline underline-offset-4 decoration-white/25 hover:text-white hover:decoration-white/50">
+            <a href="#" className="underline underline-offset-4 decoration-white hover:decoration-white">
               Telegram Demo
             </a>
           </div>

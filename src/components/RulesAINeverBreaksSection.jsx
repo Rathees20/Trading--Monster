@@ -1,111 +1,118 @@
 function RuleCard({ icon, title, body }) {
   return (
-    <div className="rounded-[26px] bg-[#142238] px-6 py-7 shadow-[0_18px_60px_rgba(0,0,0,0.25)] ring-1 ring-white/5">
-      <div className="grid h-11 w-11 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10">
+    <div className="rounded-[28px] bg-[#142238] px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.25)] ring-1 ring-white/5">
+      <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(46,107,255,0.12)]">
         {icon}
       </div>
-      <div className="mt-5 text-sm font-extrabold tracking-tight text-white">{title}</div>
-      <p className="mt-2 text-[11px] leading-5 text-white/55">{body}</p>
+      <div className="mt-6 text-base font-extrabold tracking-tight text-white">{title}</div>
+      <p className="mt-3 text-xs leading-5 text-white/55">{body}</p>
     </div>
   );
 }
 
 function IconClock() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" className="text-[#3B82F6]">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="text-[#2E6BFF] drop-shadow-[0_10px_24px_rgba(46,107,255,0.20)]"
+    >
+      {/* stopwatch style to match reference */}
       <path
-        d="M12 22a10 10 0 1 1 10-10 10.01 10.01 0 0 1-10 10Z"
+        d="M10 2h4"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.8"
-        opacity="0.95"
-      />
-      <path
-        d="M12 7v5l3 2"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
+        strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.95"
       />
-    </svg>
-  );
-}
-
-function IconArrowTrend() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" className="text-[#3B82F6]">
       <path
-        d="M4 16l6-6 4 4 6-8"
+        d="M12 5.5a8.5 8.5 0 1 0 8.5 8.5"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity="0.95"
       />
       <path
-        d="M20 6v6h-6"
+        d="M16.2 6.2l1.4-1.4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.9"
+      />
+      <path
+        d="M12 9v4.4l2.4 1.6"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity="0.95"
       />
     </svg>
   );
 }
 
-function IconNoChop() {
+function IconPlane() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" className="text-[#3B82F6]">
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" className="text-[#2E6BFF] drop-shadow-[0_10px_24px_rgba(46,107,255,0.20)]">
       <path
-        d="M4 15c2 0 2-6 4-6s2 6 4 6 2-6 4-6 2 6 4 6"
+        d="M21 5 3.8 11.2c-1.1.4-1.1 1.1-.2 1.4l5 1.6 1.7 5.1c.2.6.5.6.9.2l2.6-2.5 4.8 3.5c.9.5 1.6.2 1.8-.8L22 6.4c.2-1-.4-1.6-1-1.4Z"
+        fill="currentColor"
+        opacity="0.95"
+      />
+      <path
+        d="M8.5 14.1 18.8 7.7"
+        fill="none"
+        stroke="rgba(0,0,0,0.35)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.55"
+      />
+    </svg>
+  );
+}
+
+function IconCloudSlash() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" className="text-[#2E6BFF] drop-shadow-[0_10px_24px_rgba(46,107,255,0.20)]">
+      <path
+        d="M7.5 18.5H17a4 4 0 0 0 .8-7.9 5.5 5.5 0 0 0-10.7 1.6A3.5 3.5 0 0 0 7.5 18.5Z"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.8"
+        strokeWidth="2"
         strokeLinecap="round"
-        opacity="0.95"
+        strokeLinejoin="round"
       />
       <path
         d="M6 6l12 12"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="2.2"
         strokeLinecap="round"
-        opacity="0.85"
+        opacity="0.9"
       />
     </svg>
   );
 }
 
-function IconIgnore() {
+function IconMinusCircle() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" className="text-[#3B82F6]">
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" className="text-[#2E6BFF] drop-shadow-[0_10px_24px_rgba(46,107,255,0.20)]">
       <path
-        d="M7 7h10v10H7z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        opacity="0.95"
-      />
-      <path
-        d="M9 12h6"
+        d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10Z"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
-        strokeLinecap="round"
-        opacity="0.95"
       />
       <path
-        d="M6 6l12 12"
+        d="M8.5 12h7"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="2.4"
         strokeLinecap="round"
-        opacity="0.85"
       />
     </svg>
   );
@@ -113,35 +120,35 @@ function IconIgnore() {
 
 export default function RulesAINeverBreaksSection() {
   return (
-    <section className="relative overflow-hidden py-14 sm:py-16" id="rules">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section className="relative overflow-hidden py-16 sm:py-20" id="rules">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center">
-          <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
             The Rules AI Never Breaks
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-xs leading-5 text-white/60 sm:text-sm">
+          <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-white/60 sm:text-base">
             Discipline is the only bridge between good ideas and real accomplishment.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
           <RuleCard
             icon={<IconClock />}
             title="Wait For Candle Close"
             body="Signals only validate after the candle closes. No jumping in, no guessing."
           />
           <RuleCard
-            icon={<IconArrowTrend />}
+            icon={<IconPlane />}
             title="Trend Direction Only"
             body="We trade in the direction of the trend only. No counter‑trend entries."
           />
           <RuleCard
-            icon={<IconNoChop />}
+            icon={<IconCloudSlash />}
             title="Avoid Choppy Market"
             body="If volatility is sideways, the AI stays neutral. No cash is position."
           />
           <RuleCard
-            icon={<IconIgnore />}
+            icon={<IconMinusCircle />}
             title="Ignore Late Signals"
             body="No chasing. If the trade has already moved, the AI won’t follow."
           />

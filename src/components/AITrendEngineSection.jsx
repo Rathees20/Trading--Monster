@@ -93,7 +93,7 @@ export default function AITrendEngineSection() {
 
             {/* RIGHT: Copy + cards */}
             <div className="text-center lg:text-left">
-              <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+              <h3 className="text-2xl font-bold leading-snug tracking-normal text-slate-900 sm:text-3xl">
                 AI Trend Engine
               </h3>
               <p className="mx-auto mt-3 max-w-md text-xs leading-5 text-slate-600 sm:text-sm lg:mx-0">

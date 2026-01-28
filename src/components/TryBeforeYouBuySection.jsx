@@ -13,7 +13,7 @@ function Step({ day, title, desc, icon }) {
       <div className="mt-3 text-[10px] font-semibold tracking-wider text-white/70">
         DAY {day}
       </div>
-      <div className="mt-1 text-[11px] font-extrabold tracking-wide text-amber-450">
+      <div className="mt-1 text-[11px] font-semibold tracking-wide text-amber-450">
         {title}
       </div>
       <p className="mx-auto mt-2 max-w-[260px] text-[10px] leading-4 text-white/55">
@@ -40,7 +40,7 @@ export default function TryBeforeYouBuySection() {
           </div>
 
           <div className="relative">
-            <h2 className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 className="text-center text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
               Try Before You Buy
             </h2>
 

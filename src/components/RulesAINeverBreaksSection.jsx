@@ -4,7 +4,7 @@ function RuleCard({ icon, title, body }) {
       <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(46,107,255,0.12)]">
         {icon}
       </div>
-      <div className="mt-6 text-base font-extrabold tracking-tight text-white">{title}</div>
+      <div className="mt-6 text-base font-semibold tracking-normal text-white">{title}</div>
       <p className="mt-3 text-xs leading-5 text-white/55">{body}</p>
     </div>
   );
@@ -123,7 +123,7 @@ export default function RulesAINeverBreaksSection() {
     <section className="relative overflow-hidden py-16 sm:py-20" id="rules">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
             The Rules AI Never Breaks
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-white/60 sm:text-base">

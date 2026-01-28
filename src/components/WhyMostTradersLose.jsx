@@ -128,7 +128,7 @@ function ModePanel({ title, description, tone = "buy" }) {
         }}
       />
       <div className="max-w-[360px]">
-        <div className={`text-2xl font-extrabold ${titleColor}`}>{title}</div>
+        <div className={`text-2xl font-bold ${titleColor}`}>{title}</div>
         <p className="mt-4 text-xs leading-5 text-white/70">{description}</p>
       </div>
     </div>
@@ -153,7 +153,7 @@ export default function WhyMostTradersLose() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+        <h2 className="text-2xl font-bold leading-snug tracking-normal sm:text-3xl">
           Why Most 15-Minute Traders Lose
         </h2>
         <p className="mt-3 max-w-3xl text-xs leading-5 text-white/60 sm:text-sm">

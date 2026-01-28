@@ -46,7 +46,9 @@ export default function UnlockFullAccessSection() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Unlock Full Access</h2>
+          <h2 className="text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
+            Unlock Full Access
+          </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-white/60 sm:text-base">
             Transition from testing to high-conviction professional trading.
           </p>
@@ -66,7 +68,7 @@ export default function UnlockFullAccessSection() {
           </div>
 
           <div className="text-center">
-            <div className="text-lg font-extrabold leading-tight text-white sm:text-2xl">
+            <div className="text-lg font-semibold leading-snug text-white sm:text-2xl">
               Trading Monster
               <br />
               <span className="text-white/90">Professional Indicator</span>
@@ -141,7 +143,7 @@ export default function UnlockFullAccessSection() {
 
         {/* Bottom CTA strip */}
         <div className="mx-auto mt-14 max-w-6xl text-center">
-          <div className="mx-auto max-w-5xl text-xl font-extrabold tracking-tight text-white sm:text-3xl">
+          <div className="mx-auto max-w-5xl text-xl font-bold leading-snug tracking-normal text-white sm:text-3xl">
             Trade with Confirmation, Not Hope
           </div>
           <div className="mt-7 flex justify-center">

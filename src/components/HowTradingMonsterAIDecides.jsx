@@ -7,7 +7,7 @@ function StepCard({ icon, title, body }) {
   return (
     <div className="relative flex h-[175px] w-[185px] flex-col items-center justify-center gap-3 rounded-[26px] border border-[#FFB41480] bg-[#FFB4141A] px-5 py-5 text-center shadow-[0_0_0_1px_rgba(255,180,20,0.18),0_0_60px_rgba(255,180,20,0.06)] backdrop-blur">
       <div className="grid h-11 w-11 place-items-center">{icon}</div>
-      <div className="text-[13px] font-extrabold tracking-wide text-white">{title}</div>
+      <div className="text-[13px] font-semibold tracking-normal text-white">{title}</div>
       <p className="text-[10.5px] leading-4 text-white/65">{body}</p>
     </div>
   );
@@ -36,7 +36,7 @@ export default function HowTradingMonsterAIDecides() {
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
-          <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="text-2xl font-bold leading-snug tracking-normal sm:text-3xl">
             How Trading Monster AI Decides
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-xs leading-5 text-white/60 sm:text-sm">

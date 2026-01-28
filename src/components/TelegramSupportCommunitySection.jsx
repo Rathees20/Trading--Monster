@@ -67,13 +67,13 @@ export default function TelegramSupportCommunitySection() {
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col items-start">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            <div className="inline-flex items-center gap-3 text-2xl font-bold tracking-normal sm:text-3xl">
               <img src={teleIcon} alt="" className="h-9 w-9" draggable="false" />
               <span className="text-[#2E6BFF]">Telegram</span>
               <span className="text-white/70">Support &amp; Community</span>
             </div>
 
-            <h2 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+            <h2 className="mt-5 text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
               <span className="text-amber-450">Expert Guidance For Every Market</span>
               <br />
               <span className="text-amber-450">Move</span>

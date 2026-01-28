@@ -21,7 +21,7 @@ export default function Hero() {
           <div>
             <Badge>PROFESSIONAL AI TRADING SYSTEM</Badge>
 
-            <h1 className="mt-6 text-balance text-4xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.05] tracking-normal sm:text-6xl lg:text-7xl">
               <span className="block text-white">TRADING</span>
               <span className="block text-amber-450">MONSTER AI</span>
             </h1>
@@ -32,7 +32,7 @@ export default function Hero() {
               Built for 15-Minute Forex Traders.
             </p>
 
-            <p className="mt-4 max-w-xl text-xs font-bold tracking-wider text-amber-450/95">
+            <p className="mt-4 max-w-xl text-xs font-semibold tracking-wide text-amber-450/95 sm:text-sm">
               AI THAT THINKS IN TRENDS, NOT EMOTIONS.
             </p>
 

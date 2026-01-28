@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import iconMarket from "../assets/icons/Mark icon.png";
 import iconAITrade from "../assets/icons/Ai trade Icon.png";
 import iconMTF from "../assets/icons/MTF icon.png";
@@ -26,6 +27,14 @@ function IconImg({ src, alt }) {
 }
 
 export default function HowTradingMonsterAIDecides() {
+  const scrollerRef = useRef(null);
+
+  function scrollByPage(direction) {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * el.clientWidth, behavior: "smooth" });
+  }
+
   return (
     <section className="relative overflow-hidden py-14 sm:py-16" id="how-it-decides">
       {/* subtle section glow */}
@@ -44,27 +53,68 @@ export default function HowTradingMonsterAIDecides() {
           </p>
         </div>
 
-        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0">
-          <StepCard
-            icon={<IconImg src={iconMarket} alt="Market data icon" />}
-            title="Market Data"
-            body="Real-Time Intake Of Price, Volume, And Volatility Metrics."
-          />
-          <StepCard
-            icon={<IconImg src={iconAITrade} alt="AI trend engine icon" />}
-            title="AI Trend Engine"
-            body="Algorithms Filter Noise To Define The Dominant Institutional Flow."
-          />
-          <StepCard
-            icon={<IconImg src={iconMTF} alt="MTF validator icon" />}
-            title="MTF Validator"
-            body="Triple-Confirmation Across Higher Timeframes For Maximum Safety."
-          />
-          <StepCard
-            icon={<IconImg src={iconTradeOnOff} alt="Trade or no trade icon" />}
-            title="TRADE OR NO TRADE."
-            body="The System Decides Based On Confirmation. No Emotions Involved."
-          />
+        <div className="relative mt-10">
+          {/* Mobile slider arrows */}
+          <button
+            type="button"
+            aria-label="Previous"
+            onClick={() => scrollByPage(-1)}
+            className="absolute left-2 top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-black/55 text-white/85 ring-1 ring-white/15 backdrop-blur transition hover:bg-black/65 active:scale-95 sm:hidden"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M15 18l-6-6 6-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            aria-label="Next"
+            onClick={() => scrollByPage(1)}
+            className="absolute right-2 top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-black/55 text-white/85 ring-1 ring-white/15 backdrop-blur transition hover:bg-black/65 active:scale-95 sm:hidden"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div
+            ref={scrollerRef}
+            className=" -mx-4 flex snap-x snap-proximity gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:justify-center sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0"
+          >
+            <StepCard
+              icon={<IconImg src={iconMarket} alt="Market data icon" />}
+              title="Market Data"
+              body="Real-Time Intake Of Price, Volume, And Volatility Metrics."
+            />
+            <StepCard
+              icon={<IconImg src={iconAITrade} alt="AI trend engine icon" />}
+              title="AI Trend Engine"
+              body="Algorithms Filter Noise To Define The Dominant Institutional Flow."
+            />
+            <StepCard
+              icon={<IconImg src={iconMTF} alt="MTF validator icon" />}
+              title="MTF Validator"
+              body="Triple-Confirmation Across Higher Timeframes For Maximum Safety."
+            />
+            <StepCard
+              icon={<IconImg src={iconTradeOnOff} alt="Trade or no trade icon" />}
+              title="TRADE OR NO TRADE."
+              body="The System Decides Based On Confirmation. No Emotions Involved."
+            />
+          </div>
         </div>
 
         <div className="mt-8 flex justify-center">

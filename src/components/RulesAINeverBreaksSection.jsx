@@ -1,11 +1,15 @@
+import { useRef } from "react";
+
 function RuleCard({ icon, title, body }) {
   return (
-    <div className="rounded-[28px] bg-[#142238] px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.25)] ring-1 ring-white/5">
-      <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(46,107,255,0.12)]">
-        {icon}
+    <div className="w-full shrink-0 snap-center sm:w-auto sm:shrink sm:snap-start">
+      <div className="mx-auto w-full max-w-[520px] rounded-[28px] bg-[#142238] px-7 py-8 text-center shadow-[0_18px_60px_rgba(0,0,0,0.25)] ring-1 ring-white/5 sm:mx-0 sm:max-w-none sm:text-left">
+        <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(46,107,255,0.12)] sm:mx-0">
+          {icon}
+        </div>
+        <div className="mt-6 text-base font-semibold tracking-normal text-white">{title}</div>
+        <p className="mt-3 text-xs leading-5 text-white/55">{body}</p>
       </div>
-      <div className="mt-6 text-base font-semibold tracking-normal text-white">{title}</div>
-      <p className="mt-3 text-xs leading-5 text-white/55">{body}</p>
     </div>
   );
 }
@@ -119,6 +123,14 @@ function IconMinusCircle() {
 }
 
 export default function RulesAINeverBreaksSection() {
+  const scrollerRef = useRef(null);
+
+  function scrollByPage(direction) {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * el.clientWidth, behavior: "smooth" });
+  }
+
   return (
     <section className="relative overflow-hidden py-16 sm:py-20" id="rules">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -131,27 +143,68 @@ export default function RulesAINeverBreaksSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
-          <RuleCard
-            icon={<IconClock />}
-            title="Wait For Candle Close"
-            body="Signals only validate after the candle closes. No jumping in, no guessing."
-          />
-          <RuleCard
-            icon={<IconPlane />}
-            title="Trend Direction Only"
-            body="We trade in the direction of the trend only. No counter‑trend entries."
-          />
-          <RuleCard
-            icon={<IconCloudSlash />}
-            title="Avoid Choppy Market"
-            body="If volatility is sideways, the AI stays neutral. No cash is position."
-          />
-          <RuleCard
-            icon={<IconMinusCircle />}
-            title="Ignore Late Signals"
-            body="No chasing. If the trade has already moved, the AI won’t follow."
-          />
+        <div className="relative mt-12">
+          {/* Mobile slider arrows */}
+          <button
+            type="button"
+            aria-label="Previous"
+            onClick={() => scrollByPage(-1)}
+            className="absolute left-2 top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-black/55 text-white/85 ring-1 ring-white/15 backdrop-blur transition hover:bg-black/65 active:scale-95 sm:hidden"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M15 18l-6-6 6-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            aria-label="Next"
+            onClick={() => scrollByPage(1)}
+            className="absolute right-2 top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-black/55 text-white/85 ring-1 ring-white/15 backdrop-blur transition hover:bg-black/65 active:scale-95 sm:hidden"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div
+            ref={scrollerRef}
+            className="-mx-4 flex snap-x snap-proximity gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-7 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
+          >
+            <RuleCard
+              icon={<IconClock />}
+              title="Wait For Candle Close"
+              body="Signals only validate after the candle closes. No jumping in, no guessing."
+            />
+            <RuleCard
+              icon={<IconPlane />}
+              title="Trend Direction Only"
+              body="We trade in the direction of the trend only. No counter‑trend entries."
+            />
+            <RuleCard
+              icon={<IconCloudSlash />}
+              title="Avoid Choppy Market"
+              body="If volatility is sideways, the AI stays neutral. No cash is position."
+            />
+            <RuleCard
+              icon={<IconMinusCircle />}
+              title="Ignore Late Signals"
+              body="No chasing. If the trade has already moved, the AI won’t follow."
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -1,19 +1,4 @@
 import logoImg from "../assets/logo.png";
-import instaIcon from "../assets/icons/ficon.png";
-import linkedinIcon from "../assets/icons/ficon2.png";
-import telegramIcon from "../assets/icons/ficon1.png";
-
-function SocialIcon({ children, href = "#", label = "Social link" }) {
-  return (
-    <a
-      href={href}
-      className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-amber-450/10 text-amber-450 ring-1 ring-amber-450/20 transition hover:bg-amber-450/15"
-      aria-label={label}
-    >
-      {children}
-    </a>
-  );
-}
 
 export default function TradingMonsterFooter() {
   return (
@@ -27,30 +12,6 @@ export default function TradingMonsterFooter() {
                 TRADING <span className="text-amber-450">MONSTER</span>
               </div>
             </div>
-
-            <div className="flex items-center gap-2">
-              <SocialIcon label="Instagram">
-                <img src={instaIcon} alt="" className="h-4 w-4" draggable="false" />
-              </SocialIcon>
-              <SocialIcon label="LinkedIn">
-                <img src={linkedinIcon} alt="" className="h-4 w-4" draggable="false" />
-              </SocialIcon>
-              <SocialIcon label="Telegram">
-                <img src={telegramIcon} alt="" className="h-4 w-4" draggable="false" />
-              </SocialIcon>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-6 text-xs font-semibold text-white">
-            <a href="#" className="underline underline-offset-4 decoration-white hover:decoration-white">
-              Terms of Service
-            </a>
-            <a href="#" className="underline underline-offset-4 decoration-white hover:decoration-white">
-              Privacy Policy
-            </a>
-            <a href="#" className="underline underline-offset-4 decoration-white hover:decoration-white">
-              Telegram Demo
-            </a>
           </div>
         </div>
       </div>

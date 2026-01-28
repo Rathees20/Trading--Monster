@@ -4,9 +4,9 @@ export default function VideoCard({ src }) {
       <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-amber-450/10 blur-2xl" />
 
       <div className="tm-card overflow-hidden rounded-[2.25rem] p-4">
-        <div className="relative overflow-hidden rounded-[1.85rem] bg-black/40">
+        <div className="relative aspect-video w-full overflow-hidden rounded-[1.85rem] bg-black/40">
           <video
-            className="block h-[340px] w-full object-cover sm:h-[380px] lg:h-[420px]"
+            className="absolute inset-0 block h-full w-full object-cover"
             src={src}
             autoPlay
             muted

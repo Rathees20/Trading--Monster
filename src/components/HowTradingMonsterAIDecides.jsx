@@ -5,7 +5,7 @@ import iconTradeOnOff from "../assets/icons/Trade on Trade Icon.png";
 
 function StepCard({ icon, title, body }) {
   return (
-    <div className="relative flex h-[175px] w-[185px] flex-col items-center justify-center gap-3 rounded-[26px] border border-[#FFB41480] bg-[#FFB4141A] px-5 py-5 text-center shadow-[0_0_0_1px_rgba(255,180,20,0.18),0_0_60px_rgba(255,180,20,0.06)] backdrop-blur">
+    <div className="relative flex h-[190px] w-full shrink-0 snap-center flex-col items-center justify-center gap-3 rounded-[26px] border border-[#FFB41480] bg-[#FFB4141A] px-5 py-5 text-center shadow-[0_0_0_1px_rgba(255,180,20,0.18),0_0_60px_rgba(255,180,20,0.06)] backdrop-blur sm:h-[175px] sm:w-[185px]">
       <div className="grid h-11 w-11 place-items-center">{icon}</div>
       <div className="text-[13px] font-semibold tracking-normal text-white">{title}</div>
       <p className="text-[10.5px] leading-4 text-white/65">{body}</p>
@@ -44,7 +44,7 @@ export default function HowTradingMonsterAIDecides() {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-8">
+        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0">
           <StepCard
             icon={<IconImg src={iconMarket} alt="Market data icon" />}
             title="Market Data"

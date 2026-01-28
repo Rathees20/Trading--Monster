@@ -125,12 +125,14 @@ export default function UnlockFullAccessSection() {
                 </div>
 
                 <div className="mt-6 flex justify-center">
-                  <button
-                    className="h-8 rounded-md bg-[#2E6BFF] px-6 text-[11px] font-extrabold text-white shadow-[0_14px_40px_rgba(46,107,255,0.30)] transition hover:bg-[#2E6BFF]/90 active:translate-y-px"
-                    type="button"
+                  <a
+                    className="inline-flex h-8 items-center justify-center rounded-md bg-[#2E6BFF] px-6 text-center text-[11px] font-extrabold text-white shadow-[0_14px_40px_rgba(46,107,255,0.30)] transition hover:bg-[#2E6BFF]/90 active:translate-y-px"
+                    href="https://t.me/tradingmonsterpro"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Start Now
-                  </button>
+                  </a>
                 </div>
               </div>
 
@@ -147,12 +149,14 @@ export default function UnlockFullAccessSection() {
             Trade with Confirmation, Not Hope
           </div>
           <div className="mt-7 flex justify-center">
-            <button
-              className="h-14 w-full max-w-3xl rounded-md bg-[#2E6BFF] px-10 text-base font-extrabold text-white shadow-[0_14px_40px_rgba(46,107,255,0.30)] transition hover:bg-[#2E6BFF]/90 active:translate-y-px sm:h-16 sm:px-14 sm:text-lg"
-              type="button"
+            <a
+              className="inline-flex h-14 w-full max-w-3xl items-center justify-center rounded-md bg-[#2E6BFF] px-10 text-center text-base font-extrabold text-white shadow-[0_14px_40px_rgba(46,107,255,0.30)] transition hover:bg-[#2E6BFF]/90 active:translate-y-px sm:h-16 sm:px-14 sm:text-lg"
+              href="https://t.me/tradingmonsterpro"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Start Your Trading Monster AI Indicator Now
-            </button>
+            </a>
           </div>
         </div>
 

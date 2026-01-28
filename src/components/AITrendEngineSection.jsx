@@ -57,15 +57,15 @@ export default function AITrendEngineSection() {
       id="ai-trend-engine"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="p-1 sm:p-2">
+        <div className="p-0 sm:p-2">
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
             {/* LEFT: Illustration */}
             <div>
-              <div className="text-center text-[11px] font-semibold text-slate-700">
+              <div className="-mt-5 text-center text-[11px] font-semibold text-slate-700 sm:mt-0">
                 Dynamic Trend Density
               </div>
 
-              <div className="mt-4">
+              <div className="mt-0 sm:mt-4">
                 {/* background glow ONLY behind the image */}
                 <div className="relative isolate">
                   {/* soft glow blob (no rectangle) */}

@@ -1,6 +1,5 @@
 import Button from "./ui/Button.jsx";
 import tst1 from "../assets/tst1.jpeg";
-import tst2 from "../assets/tst2.jpeg";
 import tst3 from "../assets/tst3.jpeg";
 import tst4 from "../assets/tst4.jpeg";
 import tst5 from "../assets/tst5.jpeg";
@@ -22,7 +21,7 @@ function TestimonialImageCard({ src, alt }) {
 
 export default function LeadCtaForm() {
   const telegramUrl = "https://t.me/tradingmonsterpro";
-  const testimonialImages = [tst1, tst2, tst3, tst4, tst5];
+  const testimonialImages = [tst1, tst3, tst4, tst5];
 
   return (
     <section className="relative overflow-hidden py-10 sm:py-16" id="cta-form">

@@ -1,4 +1,4 @@
-import acImg from "../assets/ac.png";
+import acImg from "../assets/ac.jpeg";
 import mbImg from "../assets/mb.png";
 import tdImg from "../assets/td.png";
 

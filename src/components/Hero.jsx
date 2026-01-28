@@ -2,6 +2,7 @@ import Badge from "./ui/Badge.jsx";
 import Button from "./ui/Button.jsx";
 import VideoCard from "./ui/VideoCard.jsx";
 import heroBg from "../assets/bacground hero.jpg";
+import heroVideo from "../assets/hero video.mp4";
 
 export default function Hero() {
   return (
@@ -81,7 +82,7 @@ export default function Hero() {
           </div>
 
           <div className="mt-6 lg:mt-0 lg:pl-6">
-            <VideoCard />
+            <VideoCard src={heroVideo} />
           </div>
         </div>
       </div>

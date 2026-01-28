@@ -1,4 +1,5 @@
 import whyBg from "../assets/background whychase trade.jpg";
+import logoMark from "../assets/logo.png";
 
 function MiniSignalChart({ variant = "buy" }) {
   const isBuy = variant === "buy";
@@ -6,7 +7,7 @@ function MiniSignalChart({ variant = "buy" }) {
   const label = isBuy ? "Buy Signal" : "Sell Signal";
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-ink-900">
+    <div className="relative h-[190px] w-[190px] overflow-hidden rounded-2xl border border-white/10 bg-[#070B12] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)]">
       {/* top labels (like screenshot) */}
       <div className="absolute left-3 top-3 z-10 flex items-center gap-2 text-[10px] font-semibold">
         <span className="rounded bg-white/90 px-2 py-0.5 text-black">
@@ -26,7 +27,7 @@ function MiniSignalChart({ variant = "buy" }) {
 
       {/* faux chart */}
       <svg
-        className="block h-[210px] w-[210px] sm:h-[230px] sm:w-[230px]"
+        className="block h-full w-full"
         viewBox="0 0 240 240"
         preserveAspectRatio="none"
         aria-hidden="true"
@@ -37,7 +38,14 @@ function MiniSignalChart({ variant = "buy" }) {
             <stop offset="1" stopColor="rgba(0,0,0,0.0)" />
           </linearGradient>
         </defs>
-        <rect x="0" y="0" width="240" height="240" fill="url(#buy-bg)" opacity="0.6" />
+        <rect
+          x="0"
+          y="0"
+          width="240"
+          height="240"
+          fill={`url(#${variant}-bg)`}
+          opacity="0.6"
+        />
         {/* grid */}
         {Array.from({ length: 10 }).map((_, i) => (
           <g key={i} opacity="0.16">
@@ -106,7 +114,19 @@ function ModePanel({ title, description, tone = "buy" }) {
     "bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.05),transparent_55%)]";
 
   return (
-    <div className={`relative flex min-h-[230px] items-center justify-center rounded-3xl border ${border} ${glow} ${bg} px-6 py-10 text-center`}>
+    <div
+      className={`relative flex h-[190px] w-full max-w-[426px] items-center justify-center rounded-3xl border ${border} ${glow} ${bg} px-6 py-10 text-center`}
+    >
+      {/* watermark logo */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage: `url(${logoMark})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "220px auto",
+        }}
+      />
       <div className="max-w-[360px]">
         <div className={`text-2xl font-extrabold ${titleColor}`}>{title}</div>
         <p className="mt-4 text-xs leading-5 text-white/70">{description}</p>
@@ -117,17 +137,22 @@ function ModePanel({ title, description, tone = "buy" }) {
 
 export default function WhyMostTradersLose() {
   return (
-    <section className="relative overflow-hidden py-14 sm:py-16" id="why">
+    <section className="relative isolate overflow-hidden py-14 sm:py-16" id="why">
       {/* Section background image: `src/assets/background whychase trade.jpg` */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none absolute inset-0 z-0">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: `url(${whyBg})` }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${whyBg})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
           Why Most 15-Minute Traders Lose
         </h2>
@@ -139,13 +164,11 @@ export default function WhyMostTradersLose() {
           ---&quot;Trading Monster AI forces discipline&quot;---
         </div>
 
-        <div className="mt-8 rounded-[2.25rem] border border-white/10 bg-black/20 p-4 backdrop-blur sm:p-6">
-          <div className="grid gap-6">
-            {/* Row 1 */}
-            <div className="grid items-center gap-6 md:grid-cols-[260px_1fr]">
-              <div className="flex justify-center md:justify-start">
-                <MiniSignalChart variant="buy" />
-              </div>
+        <div className="mt-8 grid gap-6">
+          {/* Card 1 (Buy) */}
+          <div className="mx-auto w-full max-w-[800px] rounded-[2.25rem] border border-white/10 bg-black/20 p-4 backdrop-blur sm:p-6">
+            <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:gap-10">
+              <MiniSignalChart variant="buy" />
               <ModePanel
                 tone="buy"
                 title="Buy Mode"
@@ -158,9 +181,11 @@ export default function WhyMostTradersLose() {
                 }
               />
             </div>
+          </div>
 
-            {/* Row 2 */}
-            <div className="grid items-center gap-6 md:grid-cols-[1fr_260px]">
+          {/* Card 2 (Sell) */}
+          <div className="mx-auto w-full max-w-[800px] rounded-[2.25rem] border border-white/10 bg-black/20 p-4 backdrop-blur sm:p-6">
+            <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:gap-10">
               <ModePanel
                 tone="sell"
                 title="Sell Mode"
@@ -172,9 +197,7 @@ export default function WhyMostTradersLose() {
                   </>
                 }
               />
-              <div className="flex justify-center md:justify-end">
-                <MiniSignalChart variant="sell" />
-              </div>
+              <MiniSignalChart variant="sell" />
             </div>
           </div>
         </div>

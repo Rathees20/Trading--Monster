@@ -1,104 +1,27 @@
+import iconMarket from "../assets/icons/Mark icon.png";
+import iconAITrade from "../assets/icons/Ai trade Icon.png";
+import iconMTF from "../assets/icons/MTF icon.png";
+import iconTradeOnOff from "../assets/icons/Trade on Trade Icon.png";
+
 function StepCard({ icon, title, body }) {
   return (
-    <div className="tm-card relative rounded-[26px] border border-amber-450/18 bg-black/20 px-6 py-6 shadow-[0_0_0_1px_rgba(255,176,32,0.10),0_0_50px_rgba(255,176,32,0.06)] backdrop-blur">
-      <div className="flex items-start gap-4">
-        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-amber-450/25 bg-black/30 shadow-[0_0_0_1px_rgba(255,176,32,0.10)]">
-          {icon}
-        </div>
-        <div>
-          <div className="text-sm font-extrabold tracking-wide text-white">{title}</div>
-          <p className="mt-2 text-xs leading-5 text-white/60">{body}</p>
-        </div>
-      </div>
+    <div className="relative flex h-[175px] w-[185px] flex-col items-center justify-center gap-3 rounded-[26px] border border-[#FFB41480] bg-[#FFB4141A] px-5 py-5 text-center shadow-[0_0_0_1px_rgba(255,180,20,0.18),0_0_60px_rgba(255,180,20,0.06)] backdrop-blur">
+      <div className="grid h-11 w-11 place-items-center">{icon}</div>
+      <div className="text-[13px] font-extrabold tracking-wide text-white">{title}</div>
+      <p className="text-[10.5px] leading-4 text-white/65">{body}</p>
     </div>
   );
 }
 
-function IconCoin() {
+function IconImg({ src, alt }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" className="text-amber-450">
-      <path
-        d="M12 4c-4.418 0-8 1.79-8 4s3.582 4 8 4 8-1.79 8-4-3.582-4-8-4Z"
-        fill="currentColor"
-        opacity="0.85"
-      />
-      <path
-        d="M4 8v4c0 2.21 3.582 4 8 4s8-1.79 8-4V8"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        fill="none"
-        opacity="0.75"
-      />
-      <path
-        d="M4 12v4c0 2.21 3.582 4 8 4s8-1.79 8-4v-4"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        fill="none"
-        opacity="0.55"
-      />
-    </svg>
-  );
-}
-
-function IconSpark() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" className="text-amber-450">
-      <path
-        d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2Z"
-        fill="currentColor"
-        opacity="0.85"
-      />
-      <path
-        d="M5 14l.9 2.8L9 18l-3.1 1.2L5 22l-.9-2.8L1 18l3.1-1.2L5 14Z"
-        fill="currentColor"
-        opacity="0.45"
-      />
-    </svg>
-  );
-}
-
-function IconShieldCheck() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" className="text-amber-450">
-      <path
-        d="M12 2l7 4v6c0 5-3.2 9.4-7 10-3.8-.6-7-5-7-10V6l7-4Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        fill="none"
-        opacity="0.85"
-      />
-      <path
-        d="M8.5 12.2l2.2 2.2 4.8-5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.85"
-      />
-    </svg>
-  );
-}
-
-function IconWave() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" className="text-amber-450">
-      <path
-        d="M3 15c3 0 3-6 6-6s3 6 6 6 3-6 6-6"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.85"
-      />
-      <path
-        d="M3 19c3 0 3-6 6-6s3 6 6 6 3-6 6-6"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.45"
-      />
-    </svg>
+    <img
+      src={src}
+      alt={alt}
+      className="h-6 w-6 object-contain"
+      loading="lazy"
+      draggable={false}
+    />
   );
 }
 
@@ -121,32 +44,32 @@ export default function HowTradingMonsterAIDecides() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 flex flex-wrap justify-center gap-8">
           <StepCard
-            icon={<IconCoin />}
+            icon={<IconImg src={iconMarket} alt="Market data icon" />}
             title="Market Data"
-            body="Real-time market data (open, volume, and volatility metrics)."
+            body="Real-Time Intake Of Price, Volume, And Volatility Metrics."
           />
           <StepCard
-            icon={<IconSpark />}
+            icon={<IconImg src={iconAITrade} alt="AI trend engine icon" />}
             title="AI Trend Engine"
-            body="Algorithm filters noise to define the dominant institutional flow."
+            body="Algorithms Filter Noise To Define The Dominant Institutional Flow."
           />
           <StepCard
-            icon={<IconShieldCheck />}
+            icon={<IconImg src={iconMTF} alt="MTF validator icon" />}
             title="MTF Validator"
-            body="Confirms alignment across higher timeframes for maximum safety."
+            body="Triple-Confirmation Across Higher Timeframes For Maximum Safety."
           />
           <StepCard
-            icon={<IconWave />}
+            icon={<IconImg src={iconTradeOnOff} alt="Trade or no trade icon" />}
             title="TRADE OR NO TRADE."
-            body="The system decides based on confirmation. No emotions involved."
+            body="The System Decides Based On Confirmation. No Emotions Involved."
           />
         </div>
 
         <div className="mt-8 flex justify-center">
-          <div className="rounded-full border border-amber-450/20 bg-black/30 px-5 py-2 text-[11px] font-semibold text-white/70 shadow-[0_0_0_1px_rgba(255,176,32,0.08)]">
-            <span className="text-amber-450/90">Highlight:</span> 3+ confirmation filters, this trade is blocked
+          <div className="rounded-full border border-[#FFB41480] bg-[#FFB4141A] px-5 py-2 text-[10px] font-semibold text-white/75 shadow-[0_0_0_1px_rgba(255,180,20,0.10)] backdrop-blur">
+            Highlight Rule: &quot;If Confirmation Fails, The Trade Is Blocked.&quot;
           </div>
         </div>
 

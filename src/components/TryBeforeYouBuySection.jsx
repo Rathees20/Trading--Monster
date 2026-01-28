@@ -27,9 +27,9 @@ export default function TryBeforeYouBuySection() {
   const telegramUrl = "https://t.me/tradingmonsterpro";
 
   return (
-    <section className="relative overflow-hidden py-12 sm:py-20" id="try-before-you-buy">
+    <section className="relative overflow-hidden py-10 sm:py-20" id="try-before-you-buy">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[28px] bg-[#252525] p-8 ring-1 ring-white/10 sm:rounded-[38px] sm:p-12">
+        <div className="relative overflow-hidden rounded-[28px] bg-[#252525] p-6 ring-1 ring-white/10 sm:rounded-[38px] sm:p-12">
           {/* inner glow + top-right corner graphic */}
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(820px_320px_at_50%_0%,rgba(255,255,255,0.06),transparent_62%),radial-gradient(700px_300px_at_50%_85%,rgba(255,176,32,0.10),transparent_62%)]" />
@@ -42,16 +42,16 @@ export default function TryBeforeYouBuySection() {
           </div>
 
           <div className="relative">
-            <h2 className="text-center text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
+            <h2 className="text-center text-2xl font-bold leading-snug tracking-normal sm:text-4xl">
               Try Before You Buy
             </h2>
 
-            <div className="relative mt-12">
+            <div className="relative mt-8 sm:mt-12">
               {/* connector line behind icons */}
               <div className="pointer-events-none absolute left-6 right-6 top-6 z-0 hidden h-px bg-white/10 sm:block" />
 
               <div
-                className="grid gap-6 sm:grid-cols-3 sm:gap-6"
+                className="grid gap-4 sm:grid-cols-3 sm:gap-6"
               >
                 <Step
                   day="1"
@@ -74,7 +74,7 @@ export default function TryBeforeYouBuySection() {
               </div>
             </div>
 
-            <div className="mt-9 flex flex-col items-center gap-3">
+            <div className="mt-6 flex flex-col items-center gap-3 sm:mt-9">
               <Button
                 variant="amber"
                 size="sm"

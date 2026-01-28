@@ -5,7 +5,7 @@ function MiniPill({ label, value }) {
   return (
     <div className="text-center">
       <div className="text-[10px] font-semibold tracking-wide text-slate-600">{label}</div>
-      <div className="mt-1 inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-extrabold text-[#2BFF00] shadow-[0_0_0_1px_rgba(43,255,0,0.35)]">
+      <div className="mt-0.5 inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-extrabold text-[#2BFF00] shadow-[0_0_0_1px_rgba(43,255,0,0.35)] sm:mt-1">
         {value}
       </div>
     </div>
@@ -83,7 +83,7 @@ export default function AITrendEngineSection() {
                 </div>
 
                 {/* pills below (no background glow) */}
-                <div className="mt-6 grid grid-cols-3 gap-4">
+                <div className="mt-3 grid grid-cols-3 gap-4 sm:mt-6">
                   <MiniPill label="T1 REACHED" value="+45Pips" />
                   <MiniPill label="T2 REACHED" value="+45Pips" />
                   <MiniPill label="T3 REACHED" value="+45Pips" />

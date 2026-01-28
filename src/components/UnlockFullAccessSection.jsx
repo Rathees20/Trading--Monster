@@ -75,7 +75,7 @@ export default function UnlockFullAccessSection() {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center">
             <Pill active>Full AI Trend Indicator Suite</Pill>
             <Pill>Private Telegram Community</Pill>
             <Pill>Priority Technical Support</Pill>
@@ -144,7 +144,7 @@ export default function UnlockFullAccessSection() {
         </div>
 
         {/* Bottom CTA strip */}
-        <div className="mx-auto mt-14 max-w-6xl text-center">
+        <div className="mx-auto mt-9 max-w-6xl text-center sm:mt-14">
           <div className="mx-auto max-w-5xl text-xl font-bold leading-snug tracking-normal text-white sm:text-3xl">
             Trade with Confirmation, Not Hope
           </div>

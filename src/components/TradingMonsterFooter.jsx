@@ -2,10 +2,10 @@ import logoImg from "../assets/logo.png";
 
 export default function TradingMonsterFooter() {
   return (
-    <footer className="relative border-t border-white/10 bg-black/10 py-10">
+    <footer className="relative border-t border-white/10 bg-black/10 py-7 sm:py-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-start">
-          <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:items-start">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:items-start sm:gap-6">
+          <div className="flex w-full flex-col items-center gap-2 sm:w-auto sm:items-start sm:gap-3">
             <div className="flex items-center gap-3">
               <img src={logoImg} alt="Trading Monster" className="h-10 w-10" draggable="false" />
               <div className="text-xs font-semibold tracking-wide text-white/90">
@@ -17,7 +17,7 @@ export default function TradingMonsterFooter() {
       </div>
 
       {/* full-width divider (end-to-end) */}
-      <div className="mt-10 border-t border-white/10" />
+      <div className="mt-6 border-t border-white/10 sm:mt-10" />
 
       <div className="mx-auto max-w-6xl px-4 pt-8 text-center sm:px-6">
         <div className="text-[10px] font-semibold tracking-widest text-white/35">

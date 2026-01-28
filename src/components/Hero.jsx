@@ -20,13 +20,25 @@ export default function Hero() {
         <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
           {/* Video first on mobile so it shows above-the-fold */}
           <div className="order-1 mt-2 lg:order-2 lg:mt-0 lg:pl-6">
+            {/* Mobile-only heading above the video */}
+            <h1 className="mb-5 text-center text-4xl font-bold leading-[1.05] tracking-normal text-white sm:text-6xl lg:hidden">
+              TRADING <span className="text-amber-450">MONSTER AI</span>
+            </h1>
+            {/* Mobile-only badge below the heading */}
+            <div className="mb-4 flex justify-center lg:hidden">
+              <Badge>Professional AI Trend Trading System</Badge>
+            </div>
             <VideoCard src={heroVideo} />
           </div>
 
           <div className="order-2 lg:order-1">
-            <Badge>PROFESSIONAL AI TRADING SYSTEM</Badge>
+            {/* Desktop badge (hidden on mobile) */}
+            <div className="hidden lg:block">
+              <Badge>PROFESSIONAL AI TRADING SYSTEM</Badge>
+            </div>
 
-            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.05] tracking-normal sm:text-6xl lg:text-6xl xl:text-7xl">
+            {/* Desktop heading (hidden on mobile) */}
+            <h1 className="mt-5 hidden text-balance text-4xl font-bold leading-[1.05] tracking-normal sm:text-6xl lg:block lg:text-6xl xl:text-7xl">
               <span className="block text-white">TRADING</span>
               <span className="block text-amber-450">MONSTER AI</span>
             </h1>
@@ -41,7 +53,7 @@ export default function Hero() {
               AI THAT THINKS IN TRENDS, NOT EMOTIONS.
             </p>
 
-            <div className="mt-7 grid max-w-xl gap-5 sm:grid-cols-2">
+            <div className="mt-7 grid max-w-xl grid-cols-2 gap-5">
               <ul className="space-y-3 text-sm font-semibold text-amber-450/90">
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
@@ -73,12 +85,19 @@ export default function Hero() {
             </div>
 
             <div className="mt-8 sm:mt-9">
-              <Button
-                variant="amber"
-                className="h-10 w-full rounded-xl px-5 text-sm font-semibold tracking-wide sm:w-auto"
+              <a
+                href="https://t.me/tradingmonsterpro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full sm:w-auto"
               >
-                Yes, I Want To Trade Smarter &gt;
-              </Button>
+                <Button
+                  variant="amber"
+                  className="h-10 w-full rounded-xl px-5 text-sm font-semibold tracking-wide sm:w-auto"
+                >
+                  Yes, I Want To Trade Smarter &gt;
+                </Button>
+              </a>
               <div className="mt-3 flex items-center gap-2 text-xs text-white/60">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_24px_rgba(52,211,153,0.35)]" />
                 <span>- Start 3-Day Demo Now</span>

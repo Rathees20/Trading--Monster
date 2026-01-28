@@ -74,7 +74,7 @@ function ModePanel({ title, description, tone = "buy" }) {
 
 export default function WhyMostTradersLose() {
   return (
-    <section className="relative isolate overflow-hidden py-14 sm:py-16" id="why">
+    <section className="relative isolate overflow-hidden py-10 sm:py-16" id="why">
       {/* Section background image: `src/assets/background whychase trade.jpg` */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div

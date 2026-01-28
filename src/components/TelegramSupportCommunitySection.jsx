@@ -11,7 +11,7 @@ function Callout({ tone = "blue", children, className = "" }) {
   return (
     <div
       className={[
-        "inline-flex items-center justify-center rounded-full px-4 py-2 text-[11px] font-semibold shadow-[0_14px_40px_rgba(0,0,0,0.25)] ring-1",
+        "inline-flex max-w-[170px] items-center justify-center rounded-full px-3 py-1.5 text-center text-[10px] font-semibold shadow-[0_14px_40px_rgba(0,0,0,0.25)] ring-1 sm:max-w-none sm:px-4 sm:py-2 sm:text-[11px]",
         base,
         className
       ].join(" ")}
@@ -32,16 +32,16 @@ function PhoneMock() {
       />
 
       {/* callouts */}
-      <Callout tone="blue" className="absolute left-0 top-10 z-20 -translate-x-1/3">
+      <Callout tone="blue" className="absolute left-2 top-10 z-20 translate-x-0 sm:left-0 sm:-translate-x-1/3">
         Priority Direct Support
       </Callout>
-      <Callout tone="blue" className="absolute left-0 top-[150px] z-20 -translate-x-1/3">
+      <Callout tone="blue" className="absolute left-2 top-[150px] z-20 translate-x-0 sm:left-0 sm:-translate-x-1/3">
         Paid Member Access
       </Callout>
-      <Callout tone="green" className="absolute right-0 top-12 z-20 translate-x-1/3">
+      <Callout tone="green" className="absolute right-2 top-12 z-20 translate-x-0 sm:right-0 sm:translate-x-1/3">
         Demo User Perks
       </Callout>
-      <Callout tone="green" className="absolute right-0 top-[210px] z-20 translate-x-1/3">
+      <Callout tone="green" className="absolute right-2 top-[210px] z-20 translate-x-0 sm:right-0 sm:translate-x-1/3">
         Private Telegram Group
       </Callout>
     </div>
@@ -50,7 +50,7 @@ function PhoneMock() {
 
 export default function TelegramSupportCommunitySection() {
   return (
-    <section className="relative isolate overflow-hidden pt-14 pb-0 sm:pt-16 sm:pb-0" id="telegram-support">
+    <section className="relative isolate overflow-hidden pt-10 pb-8 sm:pt-16 sm:pb-0" id="telegram-support">
       {/* warm background glow */}
       <div className="pointer-events-none absolute inset-0 z-0">
         {/* full-width yellow oval background */}
@@ -65,22 +65,20 @@ export default function TelegramSupportCommunitySection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col items-start">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-3 text-2xl font-bold tracking-normal sm:text-3xl">
+        <div className="flex flex-col items-center sm:items-start">
+          <div className="max-w-2xl text-center sm:text-left">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 text-2xl font-bold tracking-normal sm:justify-start sm:text-3xl">
               <img src={teleIcon} alt="" className="h-9 w-9" draggable="false" />
               <span className="text-[#2E6BFF]">Telegram</span>
               <span className="text-white/70">Support &amp; Community</span>
             </div>
 
             <h2 className="mt-5 text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
-              <span className="text-amber-450">Expert Guidance For Every Market</span>
-              <br />
-              <span className="text-amber-450">Move</span>
+              <span className="text-amber-450">Expert Guidance For Every Market Move</span>
             </h2>
           </div>
 
-          <div className="mt-12 w-full sm:mt-14">
+          <div className="mt-10 w-full sm:mt-14">
             <div className="flex justify-center">
               <PhoneMock />
             </div>

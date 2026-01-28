@@ -126,7 +126,7 @@ function IconMinusCircle() {
 
 export default function RulesAINeverBreaksSection() {
   return (
-    <section className="relative overflow-hidden py-12 sm:py-20" id="rules">
+    <section className="relative overflow-hidden py-8 sm:py-20" id="rules">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center">
           <h2 className="text-2xl font-bold leading-snug tracking-normal sm:text-4xl">

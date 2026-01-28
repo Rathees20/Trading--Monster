@@ -37,7 +37,7 @@ function CheckRow({ children }) {
 
 export default function UnlockFullAccessSection() {
   return (
-    <section className="relative overflow-hidden py-16 sm:py-24" id="unlock-full-access">
+    <section className="relative overflow-hidden py-12 sm:py-24" id="unlock-full-access">
       {/* subtle spotlight like the screenshot */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_50%_10%,rgba(255,176,32,0.18),transparent_60%),radial-gradient(760px_420px_at_20%_50%,rgba(59,130,246,0.10),transparent_60%)]" />

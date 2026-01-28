@@ -58,7 +58,7 @@ function TradeDecisionCard() {
 
 export default function MultiTimeframeTrendValidatorSection() {
   return (
-    <section className="relative overflow-hidden py-14 sm:py-16" id="mtf-validator">
+    <section className="relative overflow-hidden py-10 sm:py-16" id="mtf-validator">
       {/* keep it consistent with the dark theme */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/35" />

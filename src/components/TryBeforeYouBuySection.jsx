@@ -25,7 +25,7 @@ function Step({ day, title, desc, icon }) {
 
 export default function TryBeforeYouBuySection() {
   return (
-    <section className="relative overflow-hidden py-16 sm:py-20" id="try-before-you-buy">
+    <section className="relative overflow-hidden py-12 sm:py-20" id="try-before-you-buy">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="relative overflow-hidden rounded-[28px] bg-[#252525] p-8 ring-1 ring-white/10 sm:rounded-[38px] sm:p-12">
           {/* inner glow + top-right corner graphic */}

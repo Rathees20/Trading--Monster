@@ -8,6 +8,9 @@ export default function VideoCard({ src }) {
           <video
             className="block h-[340px] w-full object-cover sm:h-[380px] lg:h-[420px]"
             src={src}
+            autoPlay
+            muted
+            loop
             controls
             playsInline
             preload="metadata"

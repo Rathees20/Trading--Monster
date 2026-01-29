@@ -245,14 +245,18 @@ export default function UnlockFullAccessSection() {
 
               <div className="mt-6 flex justify-center">
                 <a
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-white px-6 text-[12px] font-extrabold text-black shadow-[0_12px_36px_rgba(255,255,255,0.12)] ring-1 ring-white/25 transition hover:bg-white/90 active:translate-y-px sm:h-11 sm:px-7 sm:text-[13px] lg:h-12 lg:px-8 lg:text-sm"
+                  className="inline-flex h-10 items-center justify-center rounded-md bg-white px-6 text-center text-[12px] font-extrabold leading-tight text-black shadow-[0_12px_36px_rgba(255,255,255,0.12)] ring-1 ring-white/25 transition hover:bg-white/90 active:translate-y-px sm:h-11 sm:px-7 sm:text-[13px] lg:h-12 lg:px-8 lg:text-sm"
                   href="https://t.me/tradingmonsterpro"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Join Telegram &amp; Start Your{" "}
-                  <span className="sm:hidden">3 Day Free Trial</span>
-                  <span className="hidden sm:inline">3-Day Free Trial</span>
+                  <span className="sm:hidden">
+                    <span className="block">Join Telegram &amp; Start Your</span>
+                    <span className="block">3 Day Free Trial</span>
+                  </span>
+                  <span className="hidden sm:inline">
+                    Join Telegram &amp; Start Your 3-Day Free Trial
+                  </span>
                 </a>
               </div>
             </div>
@@ -263,7 +267,7 @@ export default function UnlockFullAccessSection() {
             {/* Right: Trial box */}
             <div className="flex flex-col">
               <div className="rounded-[20px] border border-white/10 bg-black/70 p-7 shadow-[0_18px_70px_rgba(0,0,0,0.28)]">
-                <div className="mx-auto w-fit rounded-md bg-white px-5 py-2.5 text-[13px] font-extrabold text-black">
+                <div className="mx-auto w-fit rounded-md bg-amber-450 px-5 py-2.5 text-[13px] font-extrabold text-black shadow-[0_14px_40px_rgba(255,180,20,0.20)] ring-1 ring-black/10">
                   Start Your 3-Day Free Trial
                 </div>
 

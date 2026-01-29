@@ -51,7 +51,7 @@ export default function AITrendEngineSection() {
             {/* LEFT: Indicators Integration */}
             <div>
               <div className="text-center text-2xl font-bold text-black">
-                Indicators Integration
+                Indicator Integration
               </div>
 
               <div className="mt-4 flex justify-center">

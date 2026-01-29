@@ -90,7 +90,7 @@ export default function WhyMostTradersLose() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         <h2 className="text-2xl font-bold leading-snug tracking-normal sm:text-3xl">
-          Why Most 15-Minute Traders Lose
+          Why Most Day Traders Lose
         </h2>
         <p className="mt-3 max-w-3xl text-xs leading-5 text-white/60 sm:text-sm">
           Most 15-minute traders lose because they trade without confirmation.

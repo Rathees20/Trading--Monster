@@ -57,7 +57,7 @@ export default function Hero() {
               <ul className="space-y-3 text-sm font-semibold text-amber-450/90">
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
-                  MTT Indicator
+                  MTF Validator
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />

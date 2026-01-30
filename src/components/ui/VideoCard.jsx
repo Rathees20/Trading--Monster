@@ -33,7 +33,6 @@ export default function VideoCard({ src }) {
           autoPlay
           muted
           loop
-          controls
           playsInline
           webkitPlaysInline
           preload="metadata"

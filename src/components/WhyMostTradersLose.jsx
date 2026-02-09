@@ -24,9 +24,7 @@ function MiniSignalChart({ variant = "buy" }) {
       <div className="relative aspect-[16/9] w-full bg-black sm:aspect-[16/8] lg:aspect-[16/7]">
         {/* top labels (like screenshot) */}
         <div className="absolute left-3 top-3 z-10 flex items-center gap-2 text-[10px] font-semibold">
-          <span className="rounded bg-white/90 px-2 py-0.5 text-black">
-            TM Indicator
-          </span>
+          
           <span
             className="rounded px-2 py-0.5 text-black"
             style={{ backgroundColor: accent }}
@@ -34,13 +32,7 @@ function MiniSignalChart({ variant = "buy" }) {
             {label}
           </span>
         </div>
-        <div className="absolute left-3 top-8 z-10 flex items-center gap-2 text-[10px] text-white/70">
-          <span
-            className="inline-block h-1.5 w-1.5 rounded-full"
-            style={{ backgroundColor: accent }}
-          />
-          Dominant Market Trend
-        </div>
+        
 
         {/* chart image from assets */}
         <img
@@ -135,25 +127,18 @@ export default function WhyMostTradersLose() {
                   Buy Mode
                 </span>
                 <h3 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
-                  The{" "}
+                Buy{" "} 
                   <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                    Ultimate
-                  </span>{" "}
-                  Trading Toolkit
+                  Entry is active now
+                  </span>
+                  
                 </h3>
-                <p className="mt-4 text-xs leading-5 text-white/70 sm:text-sm">
-                  Experience the next level of market analysis with our
-                  revolutionary toolkit, seamlessly integrated into your
-                  TradingView charts. Our trend‑focused signals are designed to
-                  accurately identify market shifts early, giving you a clear
-                  advantage in finding winning trades.
-                </p>
-                <button
-                  type="button"
+                <a
+                  href="#trial-form"
                   className="mt-5 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 px-6 py-2 text-xs font-semibold text-white shadow-[0_10px_40px_rgba(0,0,0,0.7)] transition hover:brightness-110"
                 >
                   Get Trading Monster AI
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -166,25 +151,17 @@ export default function WhyMostTradersLose() {
                   Sell Mode
                 </span>
                 <h3 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
-                  The{" "}
+                Sell {" "}
                   <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                    Ultimate
-                  </span>{" "}
-                  Trading Toolkit
+                  Entry condition triggered
+                  </span>
                 </h3>
-                <p className="mt-4 text-xs leading-5 text-white/70 sm:text-sm">
-                  Experience the next level of market analysis with our
-                  revolutionary toolkit, seamlessly integrated into your
-                  TradingView charts. Our trend‑focused signals are designed to
-                  accurately identify market shifts early, giving you a clear
-                  advantage in finding winning trades.
-                </p>
-                <button
-                  type="button"
+                <a
+                  href="#trial-form"
                   className="mt-5 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 px-6 py-2 text-xs font-semibold text-white shadow-[0_10px_40px_rgba(0,0,0,0.7)] transition hover:brightness-110"
                 >
                   Get Trading Monster AI
-                </button>
+                </a>
               </div>
               <MiniSignalChart variant="sell" />
             </div>
@@ -199,25 +176,17 @@ export default function WhyMostTradersLose() {
                   Hold Mode
                 </span>
                 <h3 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
-                  The{" "}
+                Choppy Market,{" "}
                   <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                    Ultimate
-                  </span>{" "}
-                  Trading Toolkit
+                  Hold your Entry
+                  </span>
                 </h3>
-                <p className="mt-4 text-xs leading-5 text-white/70 sm:text-sm">
-                  Experience the next level of market analysis with our
-                  revolutionary toolkit, seamlessly integrated into your
-                  TradingView charts. Our trend‑focused signals are designed to
-                  accurately identify market shifts early, giving you a clear
-                  advantage in finding winning trades.
-                </p>
-                <button
-                  type="button"
+                <a
+                  href="#trial-form"
                   className="mt-5 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 px-6 py-2 text-xs font-semibold text-white shadow-[0_10px_40px_rgba(0,0,0,0.7)] transition hover:brightness-110"
                 >
                   Get Trading Monster AI
-                </button>
+                </a>
               </div>
             </div>
           </div>

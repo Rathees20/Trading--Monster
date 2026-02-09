@@ -273,7 +273,10 @@ export default function UnlockFullAccessSection() {
           </div>
 
           {/* Trial form below pricing cards */}
-          <div className="mt-10 rounded-[20px] border border-white/10 bg-black/70 p-7 shadow-[0_18px_70px_rgba(0,0,0,0.28)]">
+          <div
+            id="trial-form"
+            className="mt-10 rounded-[20px] border border-white/10 bg-black/70 p-7 shadow-[0_18px_70px_rgba(0,0,0,0.28)]"
+          >
             <div className="mx-auto w-fit rounded-md bg-amber-450 px-5 py-2.5 text-[13px] font-extrabold text-black shadow-[0_14px_40px_rgba(255,180,20,0.20)] ring-1 ring-black/10">
               Start Your 3-Day Free Trial
             </div>

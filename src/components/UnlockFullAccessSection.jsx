@@ -223,66 +223,65 @@ export default function UnlockFullAccessSection() {
             <Pill>Free Lifetime Updates</Pill>
           </div>
 
-          <div className="mt-9 grid gap-7 lg:grid-cols-[1fr_auto_1fr] lg:items-stretch lg:gap-8">
-            {/* Left: Pricing box */}
-            <div className="rounded-[20px] border border-red-500/45 bg-black/70 p-7 shadow-[0_0_0_1px_rgba(239,68,68,0.10),0_0_70px_rgba(239,68,68,0.10)]">
-              <div className="text-center text-sm font-semibold text-white/70 lg:text-base">
-                Institutional Pricing
-              </div>
-
-              <div className="mt-4 flex items-end justify-center gap-3 lg:mt-6">
-                <div className="text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
-                  $55
+          {/* Pricing cards */}
+          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: "Monthly", price: 55, term: "Month" },
+              { label: "Quarterly", price: 149, term: "3 Months" },
+              { label: "Half-yearly", price: 289, term: "6 Months" },
+              { label: "Yearly", price: 559, term: "Year" },
+            ].map((plan) => (
+              <div
+                key={plan.label}
+                className="relative flex flex-col justify-between overflow-hidden rounded-[22px] border border-red-500/25 bg-gradient-to-b from-black/75 via-black/90 to-black/95 p-6 shadow-[0_26px_90px_rgba(0,0,0,0.65)]"
+              >
+                {/* subtle red glow */}
+                <div className="pointer-events-none absolute inset-0">
+                  <div className="absolute -inset-10 bg-[radial-gradient(55%_55%_at_50%_0%,rgba(239,68,68,0.22),transparent_70%)]" />
+                  <div className="absolute inset-0 rounded-[22px] ring-1 ring-red-500/15" />
                 </div>
-                <div className="pb-1 text-[11px] font-semibold text-white/70 sm:text-xs lg:pb-2 lg:text-sm">
-                  USD / Month
+
+                <div className="relative text-center">
+                  <div className="text-[13px] font-semibold text-white/70">
+                    Institutional Pricing
+                  </div>
+                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-white/55">
+                    {plan.label}
+                  </div>
+
+                  <div className="mt-6 flex items-end justify-center gap-2">
+                    <span className="text-5xl font-extrabold tracking-tight text-white">
+                      ${plan.price}
+                    </span>
+                    <span className="pb-2 text-[12px] font-semibold text-white/65">
+                      USD / {plan.term}
+                    </span>
+                  </div>
                 </div>
-              </div>
-
-              <div className="mt-3 text-center text-[10px] text-white/55">
-                
-              </div>
-
-              <div className="mt-6 flex justify-center">
-                <a
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-white px-6 text-center text-[12px] font-extrabold leading-tight text-black shadow-[0_12px_36px_rgba(255,255,255,0.12)] ring-1 ring-white/25 transition hover:bg-white/90 active:translate-y-px sm:h-11 sm:px-7 sm:text-[13px] lg:h-12 lg:px-8 lg:text-sm"
-                  href="https://t.me/tradingmonsterpro"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sm:hidden">
-                    <span className="block">Join Telegram &amp; Start Your</span>
-                    <span className="block">3 Day Free Trial</span>
-                  </span>
-                  <span className="hidden sm:inline">
+                <div className="mt-5">
+                  <a
+                    className="relative inline-flex h-11 w-full items-center justify-center rounded-xl bg-white text-center text-[12px] font-extrabold leading-tight text-black shadow-[0_16px_40px_rgba(255,255,255,0.10)] ring-1 ring-white/20 transition hover:bg-white/90 active:translate-y-px"
+                    href="https://t.me/tradingmonsterpro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Join Telegram &amp; Start Your 3-Day Free Trial
-                  </span>
-                </a>
+                  </a>
+                </div>
               </div>
+            ))}
+          </div>
+
+          {/* Trial form below pricing cards */}
+          <div className="mt-10 rounded-[20px] border border-white/10 bg-black/70 p-7 shadow-[0_18px_70px_rgba(0,0,0,0.28)]">
+            <div className="mx-auto w-fit rounded-md bg-amber-450 px-5 py-2.5 text-[13px] font-extrabold text-black shadow-[0_14px_40px_rgba(255,180,20,0.20)] ring-1 ring-black/10">
+              Start Your 3-Day Free Trial
             </div>
 
-            {/* Center divider */}
-            <div className="hidden w-px bg-white/10 lg:block" />
-
-            {/* Right: Trial box */}
-            <div className="flex flex-col">
-              <div className="rounded-[20px] border border-white/10 bg-black/70 p-7 shadow-[0_18px_70px_rgba(0,0,0,0.28)]">
-                <div className="mx-auto w-fit rounded-md bg-amber-450 px-5 py-2.5 text-[13px] font-extrabold text-black shadow-[0_14px_40px_rgba(255,180,20,0.20)] ring-1 ring-black/10">
-                  Start Your 3-Day Free Trial
-                </div>
-
-                <form
-                  className="mt-6 grid gap-3 sm:grid-cols-2"
-
-                  onSubmit={async (e) => {
+            <form
+              className="mt-6 grid gap-3 sm:grid-cols-2"
+              onSubmit={async (e) => {
                     e.preventDefault();
-                  
-                    const payload = {
-                      name,
-                      email,
-                      country,
-                      phone,
-                    };
                   
                     try {
                       const res = await fetch(
@@ -314,9 +313,7 @@ export default function UnlockFullAccessSection() {
                       alert("Submission failed");
                     }
                   }}
-                  
-                  
-                >
+            >
                   <label className="grid gap-1">
                     <span className="text-[10px] font-semibold tracking-wide text-white/70">
                       Name
@@ -615,8 +612,6 @@ export default function UnlockFullAccessSection() {
                     Submit
                   </button>
                 </form>
-              </div>
-            </div>
           </div>
         </div>
 

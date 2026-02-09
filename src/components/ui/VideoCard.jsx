@@ -56,7 +56,7 @@ export default function VideoCard({ src }) {
           onTouchStart={() => videoRef.current?.play?.()}
           onClick={() => videoRef.current?.play?.()}
         >
-          <source src={src} type="video/mp4" />
+          <source src={src} type="video/mov" />
         </video>
 
         {/* Sound is blocked on iPhone unless user interacts */}

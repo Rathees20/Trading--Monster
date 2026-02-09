@@ -78,10 +78,7 @@ export default function MultiTimeframeTrendValidatorSection() {
           <AlignmentCheckCard />
         </div>
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 sm:gap-10">
-          <MarketBiasCard />
-          <TradeDecisionCard />
-        </div>
+        {/* Market Bias and Trade Decision cards removed as requested */}
       </div>
     </section>
   );

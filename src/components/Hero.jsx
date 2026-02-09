@@ -2,11 +2,11 @@ import Badge from "./ui/Badge.jsx";
 import Button from "./ui/Button.jsx";
 import VideoCard from "./ui/VideoCard.jsx";
 import heroBg from "../assets/bacground hero.jpg";
-import heroVideo from "../assets/hero video.mp4";
+import heroVideo from "../assets/hero video.mov";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section id="top" className="relative overflow-hidden">
       {/* Hero background image: `src/assets/bacground hero.jpg` */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div
@@ -17,7 +17,7 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-6xl px-4 pt-5 pb-10 sm:px-6 sm:pt-8 sm:pb-14 lg:pt-8 lg:pb-12">
-        <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
+        <div className="grid items-center gap-6 lg:grid-cols-[1.15fr,0.85fr] lg:gap-10">
           {/* Video first on mobile so it shows above-the-fold */}
           <div className="order-1 mt-2 lg:order-2 lg:mt-0 lg:pl-6">
             {/* Mobile-only heading above the video */}
@@ -75,7 +75,7 @@ export default function Hero() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
-                  3-Day Demo
+                  Access in Trading View
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
@@ -95,12 +95,12 @@ export default function Hero() {
                   variant="amber"
                   className="h-10 w-full rounded-xl px-5 text-sm font-semibold tracking-wide sm:w-auto"
                 >
-                  Yes, I Want To Trade Smarter &gt;
+                  Get 3 Days Free Demo &gt;
                 </Button>
               </a>
               <div className="mt-3 flex items-center gap-2 text-xs text-white/60">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_24px_rgba(52,211,153,0.35)]" />
-                <span>- Start 3-Day Demo Now</span>
+                <span>No Credit Card Required</span>
               </div>
             </div>
           </div>

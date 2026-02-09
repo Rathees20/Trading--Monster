@@ -33,11 +33,11 @@ export default function TryBeforeYouBuySection() {
                 type="button"
                 onClick={() => window.open(telegramUrl, "_blank", "noopener,noreferrer")}
               >
-                Yes, I Want To Trade Smarter &gt;
+              Get 3 Days Free Demo &gt;
               </Button>
               <div className="flex items-center gap-2 text-[11px] text-white/60">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_22px_rgba(52,211,153,0.35)]" />
-                <span>- Start 3-Day Demo Now</span>
+                <span>No Credit Card Required</span>
               </div>
             </div>
           </div>

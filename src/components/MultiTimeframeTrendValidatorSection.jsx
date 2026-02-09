@@ -23,8 +23,7 @@ function AlignmentCheckCard() {
           draggable="false"
         />
       </CardShell>
-      <div className="mt-3 text-center text-sm font-extrabold text-white">Alignment Check</div>
-    </div>
+          </div>
   );
 }
 

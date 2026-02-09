@@ -71,11 +71,7 @@ export default function HowTradingMonsterAIDecides() {
           </div>
         </div>
 
-        <div className="mt-6 flex justify-center sm:mt-8">
-          <div className="rounded-full border border-[#FFB41480] bg-[#FFB4141A] px-4 py-1.5 text-[9.5px] font-semibold text-white/75 shadow-[0_0_0_1px_rgba(255,180,20,0.10)] backdrop-blur sm:px-5 sm:py-2 sm:text-[10px]">
-            Highlight Rule: &quot;If Confirmation Fails, The Trade Is Blocked.&quot;
-          </div>
-        </div>
+        
 
         <div className="mt-10 border-t border-white/10 sm:mt-12" />
       </div>

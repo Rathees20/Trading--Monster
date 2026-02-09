@@ -85,12 +85,7 @@ export default function Hero() {
             </div>
 
             <div className="mt-8 sm:mt-9">
-              <a
-                href="https://t.me/tradingmonsterpro"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block w-full sm:w-auto"
-              >
+              <a href="#unlock-full-access" className="inline-block w-full sm:w-auto">
                 <Button
                   variant="amber"
                   className="h-10 w-full rounded-xl px-5 text-sm font-semibold tracking-wide sm:w-auto"

@@ -211,7 +211,7 @@ export default function TradingMonsterFooter() {
       {/* Full-width copyright + risk text */}
       <div className="mt-4 pt-3 text-[12px] text-white/40 flex flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
         <div className="text-left">
-          © {new Date().getFullYear()} Trading Monster FX. All rights reserved.
+          © {new Date().getFullYear()} Trading Monster AI. All rights reserved.
         </div>
         <div className="text-[11px] leading-4 text-white/40 text-left sm:text-right">
           Disclaimer: Trading involves risk. Results not guaranteed. Past performance is not

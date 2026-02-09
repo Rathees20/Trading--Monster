@@ -599,7 +599,7 @@ export default function UnlockFullAccessSection() {
                     />
                     {phoneTouched && !isPhoneValid && (
                       <div className="text-[10px] font-semibold text-red-400">
-                        Enter a valid phone number for {country || "your country"}.
+                        Enter your phone number in the format +{country || "your country"}.
                       </div>
                     )}
                   </label>

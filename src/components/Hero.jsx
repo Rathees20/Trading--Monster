@@ -16,8 +16,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/65" />
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 pt-5 pb-10 sm:px-6 sm:pt-8 sm:pb-14 lg:pt-8 lg:pb-12">
-        <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
+      <div className="mx-auto max-w-7xl px-4 pt-5 pb-10 sm:px-6 sm:pt-8 sm:pb-14 lg:pt-8 lg:pb-12">
+        <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-10">
           {/* Video first on mobile so it shows above-the-fold */}
           <div className="order-1 mt-2 lg:order-2 lg:mt-0">
             {/* Mobile-only heading above the video */}

@@ -88,8 +88,8 @@ export default function VideoCard({ src }) {
   };
 
   return (
-    <div className="w-full max-w-[640px] sm:max-w-[720px] mx-auto lg:scale-[1.08] lg:origin-center">
-      <div className="relative w-full h-[230px] sm:h-[280px] lg:h-[340px] overflow-hidden bg-black">
+    <div className="w-full max-w-[720px] sm:max-w-[880px] lg:max-w-[960px] mx-auto lg:scale-[1.08] lg:origin-center">
+      <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[400px] overflow-hidden bg-black">
         {videoError ? (
           <div className="absolute inset-0 flex items-center justify-center bg-black text-white">
             <div className="text-center px-4">

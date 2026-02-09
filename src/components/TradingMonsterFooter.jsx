@@ -2,7 +2,8 @@ import logoImg from "../assets/logo.png";
 
 export default function TradingMonsterFooter() {
   return (
-    <footer className="relative border-t border-[#1F1F1F] bg-black py-10 text-white sm:py-12">
+    <footer className="relative border-t border-[#1F1F1F] bg-black py-10 text-white sm:py-18">
+      {/* Top constrained content */}
       <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
         {/* Top 4-column layout */}
         <div className="grid gap-10 border-b-2 border-white/20 pb-10 sm:grid-cols-2 lg:grid-cols-[1.4fr,1fr,1fr,1.1fr]">
@@ -184,25 +185,37 @@ export default function TradingMonsterFooter() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Middle link row */}
-        <div className="mt-6  pt-4 text-[12px] text-white/55">
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">Disclaimer</a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">Privacy Policy</a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">T&amp;C</a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">Refund Policy</a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">Cookie Policy</a>
-          </div>
+      {/* Full-width legal links row */}
+      <div className="mt-6 pt-4 text-[12px] text-white/55">
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+            Disclaimer
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+            Privacy Policy
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+            T&amp;C
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+            Refund Policy
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+            Cookie Policy
+          </a>
         </div>
+      </div>
 
-        {/* Bottom copyright + risk text */}
-        <div className="mt-4 pt-3 text-[12px] text-white/40 flex items-center justify-between">
-          <div className="text-left">© {new Date().getFullYear()} Trading Monster FX. All rights reserved.</div>
-          <div className="text-[11px] leading-4 text-white/40 text-right">
-            Disclaimer: Trading involves risk. Results not guaranteed. Past performance is not
-            indicative of future results.
-          </div>
+      {/* Full-width copyright + risk text */}
+      <div className="mt-4 pt-3 text-[12px] text-white/40 flex flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+        <div className="text-left">
+          © {new Date().getFullYear()} Trading Monster FX. All rights reserved.
+        </div>
+        <div className="text-[11px] leading-4 text-white/40 text-left sm:text-right">
+          Disclaimer: Trading involves risk. Results not guaranteed. Past performance is not
+          indicative of future results.
         </div>
       </div>
     </footer>

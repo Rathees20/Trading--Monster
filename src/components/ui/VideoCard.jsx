@@ -41,8 +41,8 @@ export default function VideoCard({ src }) {
   };
 
   return (
-    <div className="w-full">
-      <div className="relative aspect-video w-full overflow-hidden bg-black">
+    <div className="w-full max-w-[640px] sm:max-w-[720px] mx-auto lg:scale-[1.08] lg:origin-center">
+      <div className="relative w-full h-[230px] sm:h-[280px] lg:h-[340px] overflow-hidden bg-black">
         <video
           ref={videoRef}
           className="absolute inset-0 block h-full w-full object-cover"

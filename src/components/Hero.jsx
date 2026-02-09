@@ -17,9 +17,9 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-6xl px-4 pt-5 pb-10 sm:px-6 sm:pt-8 sm:pb-14 lg:pt-8 lg:pb-12">
-        <div className="grid items-center gap-6 lg:grid-cols-[1.15fr,0.85fr] lg:gap-10">
+        <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
           {/* Video first on mobile so it shows above-the-fold */}
-          <div className="order-1 mt-2 lg:order-2 lg:mt-0 lg:pl-6">
+          <div className="order-1 mt-2 lg:order-2 lg:mt-0">
             {/* Mobile-only heading above the video */}
             <h1 className="mb-5 text-center text-4xl font-bold leading-[1.05] tracking-normal text-white sm:text-6xl lg:hidden">
               TRADING <span className="text-amber-450">MONSTER AI</span>

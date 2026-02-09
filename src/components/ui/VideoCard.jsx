@@ -111,6 +111,7 @@ export default function VideoCard({ src }) {
             playsInline
             webkitPlaysInline
             preload="metadata"
+            controls
             onTouchStart={handlePlayPause}
             onClick={handlePlayPause}
           >
@@ -140,27 +141,6 @@ export default function VideoCard({ src }) {
             className="absolute bottom-3 right-3 z-10 inline-flex h-9 items-center justify-center rounded-lg bg-amber-450 px-4 text-[11px] font-extrabold text-black shadow-[0_14px_40px_rgba(255,180,20,0.22)] ring-1 ring-black/10 transition hover:bg-amber-450/90 active:translate-y-px"
           >
             Unmute
-          </button>
-        )}
-
-        {!videoError && (
-          <button
-            type="button"
-            onClick={handlePlayPause}
-            className="absolute inset-0 z-5 flex items-center justify-center bg-black/20 hover:bg-black/10 transition-colors group"
-            aria-label={isPlaying ? "Pause video" : "Play video"}
-          >
-            <div className="rounded-full bg-white/10 p-4 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
-              {isPlaying ? (
-                <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-                </svg>
-              ) : (
-                <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              )}
-            </div>
           </button>
         )}
       </div>

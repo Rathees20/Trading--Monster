@@ -26,7 +26,7 @@ export default function Hero() {
             </h1>
             {/* Mobile-only badge below the heading */}
             <div className="mb-4 flex justify-center lg:hidden">
-              <Badge>Professional AI Trend Trading System</Badge>
+              <Badge>Professional AI Trading System for Forex Traders</Badge>
             </div>
             <VideoCard src={heroVideo} />
           </div>
@@ -34,7 +34,7 @@ export default function Hero() {
           <div className="order-2 lg:order-1">
             {/* Desktop badge (hidden on mobile) */}
             <div className="hidden lg:block">
-              <Badge>PROFESSIONAL AI TRADING SYSTEM</Badge>
+              <Badge>Professional AI Trading System for Forex Traders</Badge>
             </div>
 
             {/* Desktop heading (hidden on mobile) */}

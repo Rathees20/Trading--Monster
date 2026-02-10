@@ -21,7 +21,7 @@ export default function TryBeforeYouBuySection() {
 
           <div className="relative">
             <h2 className="text-center text-2xl font-bold leading-snug tracking-normal sm:text-4xl">
-              Join Telegram &amp; Start Your{" "}
+               Start Your{" "}
               <span className="text-amber-450">3-Day Free Trial</span>
             </h2>
 

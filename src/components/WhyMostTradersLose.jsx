@@ -20,8 +20,8 @@ function MiniSignalChart({ variant = "buy" }) {
   if (variant === "hold") chartSrc = holdChartImg;
 
   return (
-    <div className="relative w-full max-w-full overflow-hidden rounded-[30px] border border-white/10 bg-black/90 shadow-[0_22px_90px_rgba(0,0,0,0.9)] md:flex-[3]">
-      <div className="relative aspect-[16/9] w-full bg-black sm:aspect-[16/8] lg:aspect-[16/7]">
+    <div className="relative w-full max-w-full overflow-hidden rounded-[30px] border border-white/10 bg-black/90 shadow-[0_22px_90px_rgba(0,0,0,0.9)] md:flex-[3.4]">
+      <div className="relative h-[220px] w-full bg-black sm:h-[280px] lg:h-[340px] xl:h-[380px]">
         {/* top labels (like screenshot) */}
         <div className="absolute left-3 top-3 z-10 flex items-center gap-2 text-[10px] font-semibold">
           
@@ -105,7 +105,7 @@ export default function WhyMostTradersLose() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <h2 className="text-2xl font-bold leading-snug tracking-normal sm:text-3xl">
           Why Most Day Traders Lose
         </h2>
@@ -119,14 +119,14 @@ export default function WhyMostTradersLose() {
 
         <div className="mt-6 grid gap-8">
           {/* Card 1 (Buy Example) */}
-          <div className="mx-auto w-full max-w-6xl rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(139,92,246,0.65),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(249,115,22,0.75),transparent_55%)] p-[1px] shadow-[0_22px_80px_rgba(0,0,0,0.7)]">
-            <div className="flex flex-col-reverse items-center justify-between gap-10 rounded-[30px] bg-black/90 px-4 py-8 backdrop-blur-md md:flex-row md:px-10 md:py-10">
+          <div className="mx-auto w-full max-w-7xl rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(139,92,246,0.65),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(249,115,22,0.75),transparent_55%)] p-[1px] shadow-[0_22px_80px_rgba(0,0,0,0.7)]">
+            <div className="flex flex-col-reverse items-center justify-between gap-10 rounded-[30px] bg-black/90 px-6 py-10 backdrop-blur-md md:flex-row md:px-12 md:py-12">
               <MiniSignalChart variant="buy" />
-              <div className="flex w-full max-w-md flex-col items-start text-left md:flex-[2]">
+              <div className="flex w-full max-w-lg flex-col items-start text-left md:flex-[2]">
                 <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-300">
                   Buy Mode
                 </span>
-                <h3 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
+                <h3 className="mt-3 text-2xl font-bold text-white sm:text-4xl">
                 Buy{" "} 
                   <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
                   Entry is active now
@@ -144,13 +144,13 @@ export default function WhyMostTradersLose() {
           </div>
 
           {/* Card 2 (Sell Example) */}
-          <div className="mx-auto w-full max-w-6xl rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(248,113,113,0.7),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(55,65,81,0.9),transparent_55%)] p-[1px] shadow-[0_22px_80px_rgba(0,0,0,0.7)]">
-            <div className="flex flex-col items-center justify-between gap-10 rounded-[30px] bg-black/90 px-4 py-8 backdrop-blur-md md:flex-row md:px-10 md:py-10">
-              <div className="flex w-full max-w-md flex-col items-start text-left md:flex-[2]">
+          <div className="mx-auto w-full max-w-7xl rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(248,113,113,0.7),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(55,65,81,0.9),transparent_55%)] p-[1px] shadow-[0_22px_80px_rgba(0,0,0,0.7)]">
+            <div className="flex flex-col items-center justify-between gap-10 rounded-[30px] bg-black/90 px-6 py-10 backdrop-blur-md md:flex-row md:px-12 md:py-12">
+              <div className="flex w-full max-w-lg flex-col items-start text-left md:flex-[2]">
                 <span className="rounded-full bg-red-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-red-400">
                   Sell Mode
                 </span>
-                <h3 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
+                <h3 className="mt-3 text-2xl font-bold text-white sm:text-4xl">
                 Sell {" "}
                   <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
                   Entry condition triggered
@@ -168,14 +168,14 @@ export default function WhyMostTradersLose() {
           </div>
 
           {/* Card 3 (Hold Example) */}
-          <div className="mx-auto w-full max-w-6xl rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(250,204,21,0.75),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.7),transparent_55%)] p-[1px] shadow-[0_22px_80px_rgba(0,0,0,0.7)]">
-            <div className="flex flex-col-reverse items-center justify-between gap-10 rounded-[30px] bg-black/90 px-4 py-8 backdrop-blur-md md:flex-row md:px-10 md:py-10">
+          <div className="mx-auto w-full max-w-7xl rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(250,204,21,0.75),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.7),transparent_55%)] p-[1px] shadow-[0_22px_80px_rgba(0,0,0,0.7)]">
+            <div className="flex flex-col-reverse items-center justify-between gap-10 rounded-[30px] bg-black/90 px-6 py-10 backdrop-blur-md md:flex-row md:px-12 md:py-12">
               <MiniSignalChart variant="hold" />
-              <div className="flex w-full max-w-md flex-col items-start text-left md:flex-[2]">
+              <div className="flex w-full max-w-lg flex-col items-start text-left md:flex-[2]">
                 <span className="rounded-full bg-amber-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-amber-300">
                   Hold Mode
                 </span>
-                <h3 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
+                <h3 className="mt-3 text-2xl font-bold text-white sm:text-4xl">
                 Choppy Market,{" "}
                   <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
                   Hold your Entry

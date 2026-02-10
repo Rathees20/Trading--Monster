@@ -46,7 +46,7 @@ export default function Hero() {
             <p className="mt-5 max-w-xl text-pretty text-sm leading-6 text-white/70 sm:text-base">
               Professional AI Trend Trading System
               <br />
-              Built for 15-Minute Forex Traders.
+              Built for intraday traders.
             </p>
 
             <p className="mt-4 max-w-xl text-xs font-semibold tracking-wide text-amber-450/95 sm:text-sm">

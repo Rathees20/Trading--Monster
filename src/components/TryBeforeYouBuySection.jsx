@@ -26,15 +26,14 @@ export default function TryBeforeYouBuySection() {
             </h2>
 
             <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10">
-              <Button
-                variant="amber"
-                size="sm"
-                className="h-11 rounded-md px-7 text-sm font-extrabold"
-                type="button"
-                onClick={() => window.open(telegramUrl, "_blank", "noopener,noreferrer")}
-              >
-              Get 3 Days Free Demo &gt;
-              </Button>
+            <a href="#trial-form" className="inline-block w-full sm:w-auto">
+                <Button
+                  variant="amber"
+                  className="h-10 w-full rounded-xl px-5 text-sm font-semibold tracking-wide sm:w-auto"
+                >
+                  Get 3 Days Free Demo &gt;
+                </Button>
+              </a>
               <div className="flex items-center gap-2 text-[11px] text-white/60">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_22px_rgba(52,211,153,0.35)]" />
                 <span>No Credit Card Required</span>

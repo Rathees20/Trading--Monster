@@ -178,7 +178,7 @@ export default function UnlockFullAccessSection() {
     isPhoneValid;
 
   return (
-    <section className="relative overflow-hidden py-12 sm:py-24" id="unlock-full-access">
+    <section className="relative overflow-hidden py-12 sm:py-12" id="unlock-full-access">
       {/* subtle spotlight like the screenshot */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_50%_10%,rgba(255,176,32,0.18),transparent_60%),radial-gradient(760px_420px_at_20%_50%,rgba(59,130,246,0.10),transparent_60%)]" />
@@ -186,14 +186,14 @@ export default function UnlockFullAccessSection() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="text-center">
+        {/* <div className="text-center">
           <h2 className="text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
             Unlock Full Access
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-white/60 sm:text-base">
             Transition from testing to high-conviction professional trading.
           </p>
-        </div>
+        </div> */}
 
         {/* Main pricing panel */}
         <div className="relative mt-12 rounded-[24px] border border-white/10 bg-black/45 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[32px] sm:px-10 sm:py-10">
@@ -223,53 +223,81 @@ export default function UnlockFullAccessSection() {
             <Pill>Free Lifetime Updates</Pill>
           </div>
 
-          {/* Pricing cards */}
-          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Pricing cards - new design */}
+          <div className="mt-9 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { label: "Monthly", price: 55, term: "Month" },
               { label: "Quarterly", price: 149, term: "3 Months" },
               { label: "Half-yearly", price: 289, term: "6 Months" },
               { label: "Yearly", price: 559, term: "Year" },
-            ].map((plan) => (
-              <div
-                key={plan.label}
-                className="relative flex flex-col justify-between overflow-hidden rounded-[22px] border border-red-500/25 bg-gradient-to-b from-black/75 via-black/90 to-black/95 p-6 shadow-[0_26px_90px_rgba(0,0,0,0.65)]"
-              >
-                {/* subtle red glow */}
-                <div className="pointer-events-none absolute inset-0">
-                  <div className="absolute -inset-10 bg-[radial-gradient(55%_55%_at_50%_0%,rgba(239,68,68,0.22),transparent_70%)]" />
-                  <div className="absolute inset-0 rounded-[22px] ring-1 ring-red-500/15" />
-                </div>
+            ].map((plan) => {
+              const isPopular = plan.label === "Quarterly";
+              const isBest = plan.label === "Yearly";
 
-                <div className="relative text-center">
-                  <div className="text-[13px] font-semibold text-white/70">
-                    Institutional Pricing
-                  </div>
-                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-white/55">
-                    {plan.label}
+              return (
+                <div
+                  key={plan.label}
+                  className={[
+                    "relative flex h-full flex-col overflow-hidden rounded-[22px] border bg-gradient-to-b from-slate-900/90 via-slate-950 to-black/95 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.65)] transition duration-200",
+                    isPopular || isBest
+                      ? "border-amber-400/60 ring-1 ring-amber-400/40 scale-[1.02]"
+                      : "border-white/10 hover:border-amber-300/40 hover:scale-[1.01]",
+                  ].join(" ")}
+                >
+                  {/* soft spotlight */}
+                  <div className="pointer-events-none absolute inset-0 opacity-60">
+                    <div className="absolute -inset-12 bg-[radial-gradient(65%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]" />
                   </div>
 
-                  <div className="mt-6 flex items-end justify-center gap-2">
-                    <span className="text-5xl font-extrabold tracking-tight text-white">
-                      ${plan.price}
-                    </span>
-                    <span className="pb-2 text-[12px] font-semibold text-white/65">
-                      USD / {plan.term}
-                    </span>
+                  {/* badges (reserve space so all buttons align) */}
+                  <div className="relative mb-3 flex min-h-[26px] justify-end">
+                    {(isPopular || isBest) && (
+                      <span className="rounded-full bg-amber-400/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-amber-300 ring-1 ring-amber-400/40">
+                        {isBest ? "Best Value" : "Most Popular"}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="relative text-center">
+                    <div className="text-[12px] font-semibold uppercase tracking-wide text-white/60">
+                      Institutional Pricing
+                    </div>
+                    <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-white">
+                      {plan.label}
+                    </div>
+
+                    <div className="mt-6 flex items-end justify-center gap-2">
+                      <span className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+                        ${plan.price}
+                      </span>
+                      <span className="pb-1.5 text-[11px] font-semibold text-white/70">
+                        USD / {plan.term}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="relative mt-auto border-t border-white/5 pt-4">
+                    <a
+                      className={[
+                        "inline-flex h-11 w-full items-center justify-center rounded-xl text-center text-[12px] font-extrabold leading-tight shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition",
+                        isPopular || isBest
+                          ? "bg-amber-400 text-black ring-1 ring-amber-300 hover:bg-amber-300"
+                          : "bg-white text-black ring-1 ring-white/30 hover:bg-white/90",
+                      ].join(" ")}
+                      href="#trial-form"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document
+                          .getElementById("trial-form")
+                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }}
+                    >
+                      Get 3 Days Free Demo
+                    </a>
                   </div>
                 </div>
-                <div className="mt-5">
-                  <a
-                    className="relative inline-flex h-11 w-full items-center justify-center rounded-xl bg-white text-center text-[12px] font-extrabold leading-tight text-black shadow-[0_16px_40px_rgba(255,255,255,0.10)] ring-1 ring-white/20 transition hover:bg-white/90 active:translate-y-px"
-                    href="https://t.me/tradingmonsterpro"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Join Telegram &amp; Start Your 3-Day Free Trial
-                  </a>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Trial form below pricing cards */}
@@ -592,7 +620,7 @@ export default function UnlockFullAccessSection() {
                     <input
                       type="tel"
                       name="phone"
-                      placeholder="Phone number"
+                      placeholder="Enter your phone number in the format country code"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       onBlur={() => setPhoneTouched(true)}
@@ -615,23 +643,6 @@ export default function UnlockFullAccessSection() {
                     Submit
                   </button>
                 </form>
-          </div>
-        </div>
-
-        {/* Bottom CTA strip */}
-        <div className="mx-auto mt-9 max-w-6xl text-center sm:mt-14">
-          <div className="mx-auto max-w-5xl text-xl font-bold leading-snug tracking-normal text-white sm:text-3xl">
-            Trade with Confirmation, Not Hope
-          </div>
-          <div className="mt-7 flex justify-center">
-            <a
-              className="inline-flex h-14 w-full max-w-3xl items-center justify-center rounded-md bg-[#2E6BFF] px-10 text-center text-base font-extrabold text-white shadow-[0_14px_40px_rgba(46,107,255,0.30)] transition hover:bg-[#2E6BFF]/90 active:translate-y-px sm:h-16 sm:px-14 sm:text-lg"
-              href="https://t.me/tradingmonsterpro"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Start Your Trading Monster AI Indicator Now
-            </a>
           </div>
         </div>
 

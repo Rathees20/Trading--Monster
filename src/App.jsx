@@ -7,7 +7,6 @@ import AITrendEngineSection from "./components/AITrendEngineSection.jsx";
 import MultiTimeframeTrendValidatorSection from "./components/MultiTimeframeTrendValidatorSection.jsx";
 import RulesAINeverBreaksSection from "./components/RulesAINeverBreaksSection.jsx";
 import TryBeforeYouBuySection from "./components/TryBeforeYouBuySection.jsx";
-import TelegramSupportCommunitySection from "./components/TelegramSupportCommunitySection.jsx";
 import UnlockFullAccessSection from "./components/UnlockFullAccessSection.jsx";
 
 export default function App() {
@@ -22,7 +21,6 @@ export default function App() {
         <MultiTimeframeTrendValidatorSection />
         <RulesAINeverBreaksSection />
         <TryBeforeYouBuySection />
-        <TelegramSupportCommunitySection />
         <UnlockFullAccessSection />
       </main>
       <TradingMonsterFooter />

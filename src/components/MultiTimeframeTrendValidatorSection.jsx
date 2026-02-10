@@ -1,6 +1,7 @@
 import acImg from "../assets/ac.jpeg";
 import mbImg from "../assets/mb.png";
 import tdImg from "../assets/td.png";
+import Button from "./ui/Button.jsx";
 
 function CardShell({ children, className = "" }) {
   return (
@@ -76,7 +77,20 @@ export default function MultiTimeframeTrendValidatorSection() {
         <div className="mt-8">
           <AlignmentCheckCard />
         </div>
-
+        <div className="mt-8 flex flex-col items-center gap-3 sm:mt-5">
+              <a href="#trial-form" className="inline-block w-full sm:w-auto">
+                <Button
+                  variant="amber"
+                  className="h-10 w-full rounded-xl px-5 text-sm font-semibold tracking-wide sm:w-auto"
+                >
+                  Get 3 Days Free Demo &gt;
+                </Button>
+              </a>
+              <div className="mt-0 flex items-center gap-2 text-xs text-white/60">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_24px_rgba(52,211,153,0.35)]" />
+                <span>No Credit Card Required</span>
+              </div>
+            </div>
         {/* Market Bias and Trade Decision cards removed as requested */}
       </div>
     </section>

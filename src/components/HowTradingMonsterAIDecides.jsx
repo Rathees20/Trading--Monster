@@ -10,11 +10,11 @@ function StepCard({ icon, title, body }) {
         {icon}
       </div>
 
-      <div className="text-[14px] font-semibold text-white">
+      <div className="text-[18px] font-semibold text-white">
         {title}
       </div>
 
-      <p className="text-[12px] leading-5 text-white/65">
+      <p className="text-[14px] leading-5 text-white/65">
         {body}
       </p>
     </div>

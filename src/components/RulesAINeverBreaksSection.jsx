@@ -5,10 +5,10 @@ function RuleCard({ icon, title, body }) {
         <div className="mx-auto grid h-10 w-10 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(46,107,255,0.12)] sm:mx-0 sm:h-12 sm:w-12">
           {icon}
         </div>
-        <div className="mt-4 text-[13px] font-semibold tracking-normal text-white sm:mt-6 sm:text-base">
+        <div className="mt-4 text-[18px] font-semibold tracking-normal text-white sm:mt-6 lg:text-lg">
           {title}
         </div>
-        <p className="mt-2 text-[10.5px] leading-4 text-white/55 sm:mt-3 sm:text-xs sm:leading-5">
+        <p className="mt-2 text-[14px] leading-4 text-white/55 sm:mt-3 lg:text-base sm:leading-6">
           {body}
         </p>
       </div>

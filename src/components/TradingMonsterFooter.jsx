@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logoImg from "../assets/logo.png";
 
 export default function TradingMonsterFooter() {
@@ -44,23 +45,6 @@ export default function TradingMonsterFooter() {
                   <circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" />
                 </svg>
               </button>
-              {/* LinkedIn icon */}
-              <button
-                type="button"
-                className="flex h-9 w-9 items-center justify-center rounded-md border border-white/15 bg-[#151515] text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition hover:bg-[#1f1f1f]"
-              >
-                <span className="sr-only">LinkedIn</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                  fill="currentColor"
-                >
-                  <rect x="4" y="9.5" width="3" height="8.5" rx="0.6" />
-                  <circle cx="5.5" cy="6.1" r="1.6" />
-                  <path d="M10 9.5h2.7v1.3h.1c.4-.8 1.3-1.6 2.8-1.6 2.2 0 3.4 1.4 3.4 3.9v5h-3v-4.5c0-1.1-.4-1.9-1.4-1.9-.8 0-1.3.6-1.5 1.2-.1.2-.1.6-.1.9v4.3H10V9.5z" />
-                </svg>
-              </button>
               {/* Telegram icon */}
               <button
                 type="button"
@@ -91,7 +75,6 @@ export default function TradingMonsterFooter() {
                   <path d="M19.35 5.34A17.3 17.3 0 0 0 15.64 4l-.3.6a15.6 15.6 0 0 1 2.2.84 6.9 6.9 0 0 0-7.08 0c.72-.35 1.47-.64 2.25-.84L12.4 4a17.3 17.3 0 0 0-3.71 1.34C6.1 9.06 5.44 12.66 5.7 16.22c1.26 1.03 2.72 1.8 4.28 2.26l.87-1.17c-.48-.18-.94-.4-1.38-.65l.33-.23c2.62 1.23 5.66 1.23 8.28 0l.33.23c-.44.25-.9.47-1.38.65l.87 1.17a13.6 13.6 0 0 0 4.28-2.26c.26-3.56-.4-7.16-2.83-10.88ZM10.21 14.52c-.9 0-1.64-.8-1.64-1.78s.73-1.79 1.64-1.79c.9 0 1.64.8 1.64 1.79s-.73 1.78-1.64 1.78Zm3.58 0c-.9 0-1.64-.8-1.64-1.78s.73-1.79 1.64-1.79c.9 0 1.64.8 1.64 1.79s-.73 1.78-1.64 1.78Z" />
                 </svg>
               </button>
-              {/* YouTube icon */}
               {/* YouTube icon */}
 <a
   href="https://www.youtube.com/channel/UCJcj-Z7Y7Q6f4GskvfVJc7g"
@@ -125,9 +108,9 @@ export default function TradingMonsterFooter() {
                 </a>
               </li>
               <li>
-                <a href="#why" className="transition hover:text-white">
+                <Link to="/about" className="transition hover:text-white">
                   About
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#how-it-decides" className="transition hover:text-white">
@@ -181,10 +164,10 @@ export default function TradingMonsterFooter() {
                 </svg>
               </span>
               <a
-                href="mailto:info@tradingmonster.org"
+                href="mailto:support@tradingmonster.ai"
                 className="break-all transition hover:text-white"
               >
-                info@tradingmonster.org
+                 support@tradingmonster.ai
               </a>
             </div>
           </div>
@@ -194,21 +177,24 @@ export default function TradingMonsterFooter() {
       {/* Full-width legal links row */}
       <div className="mt-6 pt-4 text-[12px] text-white/55">
         <div className="flex flex-wrap items-center justify-center gap-6">
-          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+          <Link to="/disclaimer" className="transition hover:text-white">
             Disclaimer
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+          </Link>
+          <Link to="/privacy-policy" className="transition hover:text-white">
             Privacy Policy
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+          </Link>
+          <Link to="/terms-and-conditions" className="transition hover:text-white">
             T&amp;C
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+          </Link>
+          <Link to="/refund-policy" className="transition hover:text-white">
             Refund Policy
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+          </Link>
+          <Link to="/cookie-policy" className="transition hover:text-white">
             Cookie Policy
-          </a>
+          </Link>
+          <Link to="/cancellation-policy" className="transition hover:text-white">
+            Cancellation Policy
+          </Link>
         </div>
       </div>
 

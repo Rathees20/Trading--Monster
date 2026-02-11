@@ -161,8 +161,7 @@ export default function UnlockFullAccessSection() {
                 Start Your 3-Day Free Trial
               </div>
               <p className="max-w-2xl text-[11px] leading-5 text-white/70 sm:text-xs">
-                Fill in your details below and our team will unlock Trading Monster AI access
-                for your TradingView account and contact you on WhatsApp if needed.
+              Fill the below form  to activate your 3days free trail.
               </p>
             </div>
 

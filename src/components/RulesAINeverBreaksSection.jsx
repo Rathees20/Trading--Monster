@@ -130,7 +130,7 @@ export default function RulesAINeverBreaksSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center">
           <h2 className="text-2xl font-bold leading-snug tracking-normal sm:text-4xl">
-            The Rules AI Never Breaks
+            The Rules To Be Followed
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-xs leading-5 text-white/60 sm:mt-4 sm:text-base sm:leading-6">
             Discipline is the only bridge between good ideas and real accomplishment.
@@ -153,7 +153,7 @@ export default function RulesAINeverBreaksSection() {
             />
             <RuleCard
               icon={<IconCloudSlash />}
-              title="Avoid Choppy Market"
+              title="If Filter Dont Align Dont Trade"
               body="If volatility is sideways, the AI stays neutral. No cash is position."
             />
             <RuleCard

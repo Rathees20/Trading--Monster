@@ -65,7 +65,7 @@ export default function HowTradingMonsterAIDecides() {
             <StepCard
               icon={<IconImg src={iconMarket} alt="Market data icon" />}
               title="Market Data"
-              body="Real-Time Intake Of Price, Volume, And Volatility Metrics."
+              body="Real-Time Analysis Of Price, And Volatility Metrics."
             />
 
             <StepCard
@@ -77,13 +77,13 @@ export default function HowTradingMonsterAIDecides() {
             <StepCard
               icon={<IconImg src={iconMTF} alt="MTF validator icon" />}
               title="MTF Validator"
-              body="Triple-Confirmation Across Higher Timeframes For Maximum Safety."
+              body="Triple-Confirmation Across Higher Timeframes For High Probability signals."
             />
 
             <StepCard
               icon={<IconImg src={iconTradeOnOff} alt="Trade or no trade icon" />}
               title="TRADE OR NO TRADE"
-              body="The System Decides Based On Confirmation. No Emotions Involved."
+              body="The System Decides using advances propietary logic."
             />
           </div>
         </div>

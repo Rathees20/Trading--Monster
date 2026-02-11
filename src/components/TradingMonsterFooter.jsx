@@ -46,8 +46,10 @@ export default function TradingMonsterFooter() {
                 </svg>
               </button>
               {/* Telegram icon */}
-              <button
-                type="button"
+              <a
+                href="https://t.me/+LPMC3hHoRE5iYjQ9"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-md border border-white/15 bg-[#151515] text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition hover:bg-[#1f1f1f]"
               >
                 <span className="sr-only">Telegram</span>
@@ -59,7 +61,7 @@ export default function TradingMonsterFooter() {
                 >
                   <path d="M20.66 4.04c-.26-.21-.6-.26-.97-.15L4.3 8.34c-.86.26-.86.84-.16 1.07l3.9 1.22 1.52 4.87c.2.54.1.76.66.76.43 0 .62-.2.86-.43l2.07-2.02 3.9 2.87c.72.4 1.23.2 1.4-.66l2.1-12.37c.14-.6-.15-.94-.39-1.11ZM9.32 12.7l8.3-5.17c.41-.25.8-.12.49.16l-6.74 6.1-.26 2.78-1.79-3.87Z" />
                 </svg>
-              </button>
+              </a>
               {/* Discord icon */}
               <button
                 type="button"
@@ -76,22 +78,22 @@ export default function TradingMonsterFooter() {
                 </svg>
               </button>
               {/* YouTube icon */}
-<a
-  href="https://www.youtube.com/channel/UCJcj-Z7Y7Q6f4GskvfVJc7g"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex h-9 w-9 items-center justify-center rounded-md border border-white/15 bg-[#151515] text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition hover:bg-[#1f1f1f]"
->
-  <span className="sr-only">YouTube</span>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    className="h-4 w-4"
-    fill="currentColor"
-  >
-    <path d="M21.6 8.2a2.6 2.6 0 0 0-1.82-1.84C18.18 6 12 6 12 6s-6.18 0-7.78.36A2.6 2.6 0 0 0 2.4 8.2 27.1 27.1 0 0 0 2 12a27.1 27.1 0 0 0 .4 3.8 2.6 2.6 0 0 0 1.82 1.84C5.82 18 12 18 12 18s6.18 0 7.78-.36a2.6 2.6 0 0 0 1.82-1.84A27.1 27.1 0 0 0 22 12a27.1 27.1 0 0 0-.4-3.8ZM10.5 14.75v-5.5L15 12l-4.5 2.75Z" />
-  </svg>
-</a>
+              <a
+                href="https://www.youtube.com/channel/UCJcj-Z7Y7Q6f4GskvfVJc7g"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-md border border-white/15 bg-[#151515] text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition hover:bg-[#1f1f1f]"
+              >
+                <span className="sr-only">YouTube</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4"
+                  fill="currentColor"
+                >
+                  <path d="M21.6 8.2a2.6 2.6 0 0 0-1.82-1.84C18.18 6 12 6 12 6s-6.18 0-7.78.36A2.6 2.6 0 0 0 2.4 8.2 27.1 27.1 0 0 0 2 12a27.1 27.1 0 0 0 .4 3.8 2.6 2.6 0 0 0 1.82 1.84C5.82 18 12 18 12 18s6.18 0 7.78-.36a2.6 2.6 0 0 0 1.82-1.84A27.1 27.1 0 0 0 22 12a27.1 27.1 0 0 0-.4-3.8ZM10.5 14.75v-5.5L15 12l-4.5 2.75Z" />
+                </svg>
+              </a>
 
             </div>
           </div>
@@ -112,11 +114,7 @@ export default function TradingMonsterFooter() {
                   About
                 </Link>
               </li>
-              <li>
-                <a href="#how-it-decides" className="transition hover:text-white">
-                Services
-                </a>
-              </li>
+
               <li>
                 <a href="#unlock-full-access" className="transition hover:text-white">
                   Pricing
@@ -124,25 +122,13 @@ export default function TradingMonsterFooter() {
               </li>
               <li>
                 <a href="#telegram-support" className="transition hover:text-white">
-                Contact
+                  Contact
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-white">
-              Services
-            </h3>
-            <ul className="mt-4 space-y-2 text-sm text-white/70">
-              <li>AI Trading Signals</li>
-              <li>Market Analysis</li>
-              <li>Trading Education</li>
-              <li>Risk Management</li>
-              <li>Community Support</li>
-            </ul>
-          </div>
+
 
           {/* Contact */}
           <div>
@@ -167,7 +153,7 @@ export default function TradingMonsterFooter() {
                 href="mailto:support@tradingmonster.ai"
                 className="break-all transition hover:text-white"
               >
-                 support@tradingmonster.ai
+                support@tradingmonster.ai
               </a>
             </div>
           </div>

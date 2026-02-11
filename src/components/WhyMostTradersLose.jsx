@@ -87,6 +87,7 @@ export default function WhyMostTradersLose() {
             <SignalCard
               variant="buy"
               mode="Buy Zone"
+              hideButton={true}
               title={
                 <>
                   <span className="text-yellow-400 font-bold">
@@ -103,6 +104,7 @@ export default function WhyMostTradersLose() {
             <SignalCard
               variant="sell"
               mode="Sell Zone"
+              hideButton={true}
               title={
                 <>
                   <span className="text-yellow-400 font-bold">

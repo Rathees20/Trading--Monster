@@ -14,8 +14,8 @@ import About from "./components/About.jsx";
 import RefundPolicy from "./components/legal/RefundPolicy.jsx";
 import TermsAndConditions from "./components/legal/TermsAndConditions.jsx";
 import Disclaimer from "./components/legal/Disclaimer.jsx";
-import PrivacyPolicy from "./components/legal/PrivacyPolicy.jsx";
-import CookiePolicy from "./components/legal/CookiePolicy.jsx";
+import LegalNoticePrivacy from "./components/legal/LegalNoticePrivacy.jsx";
+import LegalNoticeCookie from "./components/legal/LegalNoticeCookie.jsx";
 import CancellationPolicy from "./components/legal/CancellationPolicy.jsx";
 import logoImg from "./assets/logo.png";
 
@@ -82,8 +82,8 @@ export default function App() {
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/privacy-policy" element={<LegalNoticePrivacy />} />
+          <Route path="/cookie-policy" element={<LegalNoticeCookie />} />
           <Route path="/cancellation-policy" element={<CancellationPolicy />} />
         </Routes>
       </div>

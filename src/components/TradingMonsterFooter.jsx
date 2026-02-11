@@ -92,20 +92,24 @@ export default function TradingMonsterFooter() {
                 </svg>
               </button>
               {/* YouTube icon */}
-              <button
-                type="button"
-                className="flex h-9 w-9 items-center justify-center rounded-md border border-white/15 bg-[#151515] text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition hover:bg-[#1f1f1f]"
-              >
-                <span className="sr-only">YouTube</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                  fill="currentColor"
-                >
-                  <path d="M21.6 8.2a2.6 2.6 0 0 0-1.82-1.84C18.18 6 12 6 12 6s-6.18 0-7.78.36A2.6 2.6 0 0 0 2.4 8.2 27.1 27.1 0 0 0 2 12a27.1 27.1 0 0 0 .4 3.8 2.6 2.6 0 0 0 1.82 1.84C5.82 18 12 18 12 18s6.18 0 7.78-.36a2.6 2.6 0 0 0 1.82-1.84A27.1 27.1 0 0 0 22 12a27.1 27.1 0 0 0-.4-3.8ZM10.5 14.75v-5.5L15 12l-4.5 2.75Z" />
-                </svg>
-              </button>
+              {/* YouTube icon */}
+<a
+  href="https://www.youtube.com/channel/UCJcj-Z7Y7Q6f4GskvfVJc7g"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex h-9 w-9 items-center justify-center rounded-md border border-white/15 bg-[#151515] text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition hover:bg-[#1f1f1f]"
+>
+  <span className="sr-only">YouTube</span>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    className="h-4 w-4"
+    fill="currentColor"
+  >
+    <path d="M21.6 8.2a2.6 2.6 0 0 0-1.82-1.84C18.18 6 12 6 12 6s-6.18 0-7.78.36A2.6 2.6 0 0 0 2.4 8.2 27.1 27.1 0 0 0 2 12a27.1 27.1 0 0 0 .4 3.8 2.6 2.6 0 0 0 1.82 1.84C5.82 18 12 18 12 18s6.18 0 7.78-.36a2.6 2.6 0 0 0 1.82-1.84A27.1 27.1 0 0 0 22 12a27.1 27.1 0 0 0-.4-3.8ZM10.5 14.75v-5.5L15 12l-4.5 2.75Z" />
+  </svg>
+</a>
+
             </div>
           </div>
 

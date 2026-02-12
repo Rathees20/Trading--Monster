@@ -1,5 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || ""
+);
+
+const PLAN_PRICE_IDS = {
+  monthly: import.meta.env.VITE_STRIPE_PRICE_MONTHLY,
+  quarterly: import.meta.env.VITE_STRIPE_PRICE_QUARTERLY,
+  half_yearly: import.meta.env.VITE_STRIPE_PRICE_HALF_YEARLY,
+  yearly: import.meta.env.VITE_STRIPE_PRICE_YEARLY,
+};
 
 function Pill({ children, active = false }) {
   return (
@@ -22,6 +34,7 @@ export default function UnlockFullAccessSection() {
   const [email, setEmail] = useState("");
   const [tradingviewId, setTradingviewId] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [loadingPlan, setLoadingPlan] = useState(null);
 
   const isEmailValid = /^\S+@\S+\.\S+$/.test(email.trim());
 
@@ -29,6 +42,65 @@ export default function UnlockFullAccessSection() {
     name.trim().length > 0 &&
     isEmailValid &&
     tradingviewId.trim().length > 0;
+
+  const handleStartStripeTrial = async (planKey) => {
+    const priceId = PLAN_PRICE_IDS[planKey];
+
+    if (!import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY) {
+      alert("Stripe publishable key is not configured.");
+      return;
+    }
+
+    if (!priceId) {
+      alert("Stripe price ID for this plan is not configured.");
+      return;
+    }
+
+    try {
+      setLoadingPlan(planKey);
+      const stripe = await stripePromise;
+
+      if (!stripe) {
+        alert("Stripe failed to initialize.");
+        return;
+      }
+
+      const response = await fetch(
+        "http://localhost:4242/create-checkout-session",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ priceId }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data) {
+        throw new Error(data?.error || "Unable to start checkout.");
+      }
+
+      if (data.url) {
+        window.location.href = data.url;
+        return;
+      }
+
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: data.id,
+      });
+
+      if (error) {
+        alert(error.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Stripe checkout could not be started. Please try again.");
+    } finally {
+      setLoadingPlan(null);
+    }
+  };
 
   return (
     <section className="relative overflow-hidden py-12 sm:py-12" id="unlock-full-access">
@@ -78,12 +150,12 @@ export default function UnlockFullAccessSection() {
 
           {/* Pricing cards - new design */}
           <div className="mt-9 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { label: "Monthly", price: 55, term: "Month" },
-              { label: "Quarterly", price: 149, term: "3 Months" },
-              { label: "Half-yearly", price: 289, term: "6 Months" },
-              { label: "Yearly", price: 559, term: "Year" },
-            ].map((plan) => {
+          {[
+            { key: "monthly", label: "Monthly", price: 55, term: "Month" },
+            { key: "quarterly", label: "Quarterly", price: 149, term: "3 Months" },
+            { key: "half_yearly", label: "Half-yearly", price: 289, term: "6 Months" },
+            { key: "yearly", label: "Yearly", price: 559, term: "Year" },
+          ].map((plan) => {
               const isPopular = plan.label === "Quarterly";
               const isBest = plan.label === "Yearly";
 
@@ -130,23 +202,21 @@ export default function UnlockFullAccessSection() {
                   </div>
 
                   <div className="relative mt-auto border-t border-white/5 pt-4">
-                    <a
+                    <button
                       className={[
                         "inline-flex h-11 w-full items-center justify-center rounded-xl text-center text-[12px] font-extrabold leading-tight shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition",
                         isPopular || isBest
                           ? "bg-amber-400 text-black ring-1 ring-amber-300 hover:bg-amber-300"
                           : "bg-white text-black ring-1 ring-white/30 hover:bg-white/90",
                       ].join(" ")}
-                      href="#trial-form"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document
-                          .getElementById("trial-form")
-                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                      }}
+                      type="button"
+                      onClick={() => handleStartStripeTrial(plan.key)}
+                      disabled={loadingPlan === plan.key}
                     >
-                      Get 3 Days Free Demo
-                    </a>
+                      {loadingPlan === plan.key
+                        ? "Redirecting..."
+                        : "Get 3 Days Free Demo"}
+                    </button>
                   </div>
                 </div>
               );

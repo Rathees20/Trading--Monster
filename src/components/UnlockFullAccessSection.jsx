@@ -42,7 +42,7 @@ export default function UnlockFullAccessSection() {
 
   const handleCheckout = (plan) => {
     setSelectedPlan(plan);
-    fetch("http://localhost:4242/create-payment-intent", {
+    fetch("http://127.0.0.1:4242/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ items: [{ id: plan.label, amount: plan.price }] }),
@@ -193,7 +193,7 @@ export default function UnlockFullAccessSection() {
                             ?.scrollIntoView({ behavior: "smooth", block: "start" });
                         }}
                       >
-                         Get 3 Days Free Demo
+                        Get 3 Days Free Demo
                       </a>
                     </div>
                   </div>

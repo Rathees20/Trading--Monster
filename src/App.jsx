@@ -17,6 +17,7 @@ import Disclaimer from "./components/legal/Disclaimer.jsx";
 import LegalNoticePrivacy from "./components/legal/LegalNoticePrivacy.jsx";
 import LegalNoticeCookie from "./components/legal/LegalNoticeCookie.jsx";
 import CancellationPolicy from "./components/legal/CancellationPolicy.jsx";
+import ThankYouPage from "./components/ThankYouPage.jsx";
 import logoImg from "./assets/logo.png";
 
 function ScrollToTop() {
@@ -85,6 +86,7 @@ export default function App() {
           <Route path="/privacy-policy" element={<LegalNoticePrivacy />} />
           <Route path="/cookie-policy" element={<LegalNoticeCookie />} />
           <Route path="/cancellation-policy" element={<CancellationPolicy />} />
+          <Route path="/thank-you" element={<ThankYouPage />} />
         </Routes>
       </div>
       <TradingMonsterFooter />

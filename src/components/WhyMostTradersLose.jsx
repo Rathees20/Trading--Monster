@@ -17,7 +17,7 @@ function SignalCard({ variant, mode, title, hideButton = false }) {
 
   return (
     <div className="rounded-[30px] border border-white/10 bg-black/90 p-6 sm:p-8 shadow-[0_22px_80px_rgba(0,0,0,0.7)]">
-      
+
       {/* HEADER */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 
@@ -73,7 +73,7 @@ export default function WhyMostTradersLose() {
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{ backgroundImage: `url(${whyBg})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
@@ -83,17 +83,20 @@ export default function WhyMostTradersLose() {
         <div className="grid gap-8">
 
           {/* BUY ZONE */}
-          <div className="rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(139,92,246,0.65),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(249,115,22,0.75),transparent_55%)] p-[1px]">
+          <div className="rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(34,197,94,0.7),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(16,185,129,0.9),transparent_55%)] p-[1px]">
             <SignalCard
               variant="buy"
               mode="Buy Trade"
               hideButton={true}
               title={
                 <>
-                  <span className="text-yellow-400 font-bold">
+                  <span className="text-white/80 font-bold">
                     Trend Engine Bias Bullish
                   </span>{" "}
-                  + Multi-Filter Confirmation Complete = Buy Zone Activated
+                  <span className="text-yellow-400 font-bold">
+                    + Multi-Filter Confirmation Complete
+                  </span>
+                  = Buy Zone Activated
                 </>
               }
             />
@@ -107,9 +110,12 @@ export default function WhyMostTradersLose() {
               hideButton={true}
               title={
                 <>
+                  <span className="text-white/80 font-bold">
+                    Trend Engine Bias Bearish
+                  </span>{" "}
                   <span className="text-yellow-400 font-bold">
-                  Trend Engine Bias Bearish
-                  </span>{" "} + Multi-Filter Confirmation Complete
+                    + Multi-Filter Confirmation Complete
+                  </span>
                   = Sell Zone Activated
                 </>
               }
@@ -124,10 +130,13 @@ export default function WhyMostTradersLose() {
               hideButton={true}
               title={
                 <>
-                <span className="text-yellow-400 font-bold">
-                  Trend Engine Bias Bullish
-                  </span>{" "} But, Multi-Filter Confirmation
-                  Incomplete = No Trade Zone Activated
+                  <span className="text-white-400 font-bold">
+                    Trend Engine Bias Bullish
+                  </span>{" "}
+                  <span className="text-yellow-400 font-bold">
+                    But, Multi-Filter Confirmation Incomplete
+                  </span>
+                  = No Trade Zone Activated
                 </>
               }
             />

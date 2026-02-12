@@ -49,7 +49,7 @@ export default function MultiTimeframeTrendValidatorSection() {
 
           <p className="mx-auto mt-4 max-w-3xl text-lg leading-6 text-white/60 ">
             The Ultimate Filtering Layer. If the Timeframes Don&apos;t Align,
-            There&apos;s No Trade and After Period.
+            There&apos;s No Trade.
           </p>
         </div>
 

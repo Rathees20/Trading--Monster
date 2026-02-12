@@ -121,7 +121,7 @@ export default function TradingMonsterFooter() {
                 </a>
               </li>
               <li>
-                <a href="#telegram-support" className="transition hover:text-white">
+                <a href="#trial-form" className="transition hover:text-white">
                   Contact
                 </a>
               </li>
@@ -130,31 +130,55 @@ export default function TradingMonsterFooter() {
 
 
 
-          {/* Contact */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-white">
               Contact Us
             </h3>
-            <div className="mt-4 flex items-center gap-2 text-sm text-white/70">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-450/15 text-amber-300 shadow-[0_0_0_1px_rgba(250,204,21,0.35)]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
+            <div className="mt-4 space-y-4">
+              <div className="flex items-start gap-3 text-sm text-white/70">
+                <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-450/15 text-amber-300 shadow-[0_0_0_1px_rgba(250,204,21,0.35)]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+                <p className="leading-relaxed">
+                  A1, IFZA Property FZCO,
+                  <br />
+                  Dubai Silicon Oasis, Dubai,
+                  <br />
+                  United Arab Emirates
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 text-sm text-white/70">
+                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-450/15 text-amber-300 shadow-[0_0_0_1px_rgba(250,204,21,0.35)]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <rect x="3.5" y="5" width="17" height="14" rx="2.2" />
+                    <path d="M5 7.5 12 12l7-4.5" />
+                  </svg>
+                </span>
+                <a
+                  href="mailto:support@tradingmonster.ai"
+                  className="transition hover:text-white"
                 >
-                  <rect x="3.5" y="5" width="17" height="14" rx="2.2" />
-                  <path d="M5 7.5 12 12l7-4.5" />
-                </svg>
-              </span>
-              <a
-                href="mailto:support@tradingmonster.ai"
-                className="break-all transition hover:text-white"
-              >
-                support@tradingmonster.ai
-              </a>
+                  support@tradingmonster.ai
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -163,9 +187,6 @@ export default function TradingMonsterFooter() {
       {/* Full-width legal links row */}
       <div className="mt-6 pt-4 text-[12px] text-white/55">
         <div className="flex flex-wrap items-center justify-center gap-6">
-          <Link to="/disclaimer" className="transition hover:text-white">
-            Disclaimer
-          </Link>
           <Link to="/privacy-policy" className="transition hover:text-white">
             Privacy Policy
           </Link>
@@ -190,8 +211,8 @@ export default function TradingMonsterFooter() {
           © {new Date().getFullYear()} Trading Monster AI. All rights reserved.
         </div>
         <div className="text-[11px] leading-4 text-white/40 text-left sm:text-right">
-          Disclaimer: Trading involves risk. Results not guaranteed. Past performance is not
-          indicative of future results.
+          Disclaimer: We are not: Financial advisors, Investment advisors, Portfolio
+          managers, Broker-dealers.
         </div>
       </div>
     </footer>

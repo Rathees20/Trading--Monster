@@ -86,12 +86,12 @@ export default function WhyMostTradersLose() {
           <div className="rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(139,92,246,0.65),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(249,115,22,0.75),transparent_55%)] p-[1px]">
             <SignalCard
               variant="buy"
-              mode="Buy Zone"
+              mode="Buy Trade"
               hideButton={true}
               title={
                 <>
                   <span className="text-yellow-400 font-bold">
-                    Trend engine Bias Bullish
+                    Trend Engine Bias Bullish
                   </span>{" "}
                   + Multi-Filter Confirmation Complete = Buy Zone Activated
                 </>
@@ -103,12 +103,12 @@ export default function WhyMostTradersLose() {
           <div className="rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(248,113,113,0.7),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(55,65,81,0.9),transparent_55%)] p-[1px]">
             <SignalCard
               variant="sell"
-              mode="Sell Zone"
+              mode="Sell Trade"
               hideButton={true}
               title={
                 <>
                   <span className="text-yellow-400 font-bold">
-                  Trend engine Bias Bearish
+                  Trend Engine Bias Bearish
                   </span>{" "} + Multi-Filter Confirmation Complete
                   = Sell Zone Activated
                 </>
@@ -120,12 +120,12 @@ export default function WhyMostTradersLose() {
           <div className="rounded-[32px] bg-[radial-gradient(circle_at_0%_0%,rgba(250,204,21,0.75),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.7),transparent_55%)] p-[1px]">
             <SignalCard
               variant="hold"
-              mode="Hold Zone"
+              mode="Hold vs No Trade"
               hideButton={true}
               title={
                 <>
                 <span className="text-yellow-400 font-bold">
-                  Trend engine Bias Bullish
+                  Trend Engine Bias Bullish
                   </span>{" "} But, Multi-Filter Confirmation
                   Incomplete = No Trade Zone Activated
                 </>

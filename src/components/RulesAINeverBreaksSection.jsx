@@ -144,22 +144,30 @@ export default function RulesAINeverBreaksSection() {
             <RuleCard
               icon={<IconClock />}
               title="Wait For Candle Close"
-              body="Signals only validate after the candle closes. No jumping in, no guessing."
+              body="Signal becomes
+valid only after
+candle close."
             />
-            <RuleCard
-              icon={<IconPlane />}
-              title="Trend Direction Only"
-              body="We trade in the direction of the trend only. No counter‑trend entries."
-            />
+            
             <RuleCard
               icon={<IconCloudSlash />}
               title="If Filter Dont Align Dont Trade"
-              body="If volatility is sideways, the AI stays neutral. No cash is position."
+              body="All Proprietary filters
+must align in direction
+of trend."
             />
             <RuleCard
               icon={<IconMinusCircle />}
-              title="Ignore Late Signals"
-              body="No chasing. If the trade has already moved, the AI won’t follow."
+              title="Ignore late
+Entries"
+              body="Missed the
+move? Wait for
+next opportunity."
+            />
+             <RuleCard
+              icon={<IconPlane />}
+              title="Trend Direction Only"
+              body="We trade in the direction of the trend only. No counter‑trend entries."
             />
           </div>
         </div>

@@ -6,11 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "server": "node server.js"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
     "@stripe/stripe-js": "^8.7.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",

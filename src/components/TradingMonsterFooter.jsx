@@ -206,13 +206,14 @@ export default function TradingMonsterFooter() {
       </div>
 
       {/* Full-width copyright + risk text */}
-      <div className="mt-4 pt-3 text-[12px] text-white/40 flex flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
-        <div className="text-left">
-          © {new Date().getFullYear()} Trading Monster AI. All rights reserved.
-        </div>
-        <div className="text-[11px] leading-4 text-white/40 text-left sm:text-right">
-          Disclaimer: We are not: Financial advisors, Investment advisors, Portfolio
-          managers, Broker-dealers.
+      <div className="mt-8 border-t border-white/5 pt-8 px-4 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="text-[11px] leading-relaxed text-white/40">
+            <span className="font-bold text-white/60">Risk Disclaimer:</span> Trading Forex and leveraged instruments involves significant risk. TradingMonster.ai provides educational tools and analytics only. We do not provide financial advice or guarantee profits. We do not accept client funds or trade on behalf of users. Please consult your licensed financial advisor before making investment decisions. Trade responsibly.
+          </p>
+          <div className="mt-6 text-[11px] text-white/30">
+            © {new Date().getFullYear()} Trading Monster AI. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>

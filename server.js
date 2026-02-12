@@ -18,7 +18,7 @@ const calculateOrderAmount = (items) => {
     return 1400;
 };
 
-app.post("/api/create-intent", async (req, res) => {
+app.post("/create-payment-intent", async (req, res) => {
     console.log("Received payment intent request:", req.body);
     const { items } = req.body;
 

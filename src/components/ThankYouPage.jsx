@@ -42,12 +42,12 @@ export default function ThankYouPage() {
                 </div>
 
                 <h1 className="mb-6 text-3xl font-extrabold text-white sm:text-4xl">
-                    Thank you for requesting your free trail
+                    Thank you for requesting your free trial
                 </h1>
 
                 <div className="space-y-6 text-lg leading-relaxed text-white/80">
                     <p>
-                        Your trail pack will be activated in few minutes.
+                        Your trial pack will be activated in few minutes.
                     </p>
                     <p>
                         For more details reach us via chat or mail to{" "}

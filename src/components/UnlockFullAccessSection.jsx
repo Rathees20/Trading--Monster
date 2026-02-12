@@ -1,5 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
+
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+const stripePromise = loadStripe("pk_test_51SyrIqLS6iYGsALv1chYkq1daw4ktPhCPmtUA3btl9eRX6JEedmg9WFqReVwP6ycebdqYOCMxBBNzgXMz0Og2UqC00df1BM6HF");
 
 function Pill({ children, active = false }) {
   return (
@@ -22,6 +29,37 @@ export default function UnlockFullAccessSection() {
   const [email, setEmail] = useState("");
   const [tradingviewId, setTradingviewId] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const appearance = {
+    theme: 'stripe',
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
+
+  const handleCheckout = (plan) => {
+    setSelectedPlan(plan);
+    fetch("http://localhost:4242/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: [{ id: plan.label, amount: plan.price }] }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Server error: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => setClientSecret(data.clientSecret))
+      .catch((error) => {
+        console.error("Payment initiation failed:", error);
+        alert("Could not connect to payment server. Please ensure 'node server.js' is running.");
+        setSelectedPlan(null);
+      });
+  };
 
   const isEmailValid = /^\S+@\S+\.\S+$/.test(email.trim());
 
@@ -130,28 +168,61 @@ export default function UnlockFullAccessSection() {
                   </div>
 
                   <div className="relative mt-auto border-t border-white/5 pt-4">
-                    <a
+                    <button
                       className={[
                         "inline-flex h-11 w-full items-center justify-center rounded-xl text-center text-[12px] font-extrabold leading-tight shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition",
                         isPopular || isBest
                           ? "bg-amber-400 text-black ring-1 ring-amber-300 hover:bg-amber-300"
                           : "bg-white text-black ring-1 ring-white/30 hover:bg-white/90",
                       ].join(" ")}
-                      href="#trial-form"
                       onClick={(e) => {
                         e.preventDefault();
-                        document
-                          .getElementById("trial-form")
-                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        handleCheckout(plan);
                       }}
                     >
-                      Get 3 Days Free Demo
-                    </a>
+                      Subscribe Now
+                    </button>
+                    <div className="mt-2 text-center">
+                      <a
+                        className="text-[10px] text-white/50 hover:text-white underline"
+                        href="#trial-form"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          document
+                            .getElementById("trial-form")
+                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }}
+                      >
+                         Get 3 Days Free Demo
+                      </a>
+                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
+
+          {clientSecret && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm">
+              <div className="relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
+                <button
+                  onClick={() => {
+                    setClientSecret("");
+                    setSelectedPlan(null);
+                  }}
+                  className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <h3 className="mb-4 text-xl font-bold text-gray-900">Subscribe to {selectedPlan?.label}</h3>
+                <Elements options={options} stripe={stripePromise}>
+                  <CheckoutForm />
+                </Elements>
+              </div>
+            </div>
+          )}
 
           {/* Trial form below pricing cards */}
           <div

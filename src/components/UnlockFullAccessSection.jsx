@@ -6,7 +6,7 @@ import CheckoutForm from "./CheckoutForm";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
-const stripePromise = loadStripe("pk_test_51SyrIqLS6iYGsALv1chYkq1daw4ktPhCPmtUA3btl9eRX6JEedmg9WFqReVwP6ycebdqYOCMxBBNzgXMz0Og2UqC00df1BM6HF");
+const stripePromise = loadStripe("pk_live_51SyrD0LJNO5TSaBJYbfy6Q1mR9ST7ImIJChLJSWHwMheBqbuhooHRkA1nRSFF3Oy22imwIzJShql0A30OtJKLm1U00ybzHL3Rv");
 
 function Pill({ children, active = false }) {
   return (
@@ -31,6 +31,22 @@ export default function UnlockFullAccessSection() {
   const [whatsapp, setWhatsapp] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const [activePlanType, setActivePlanType] = useState("basic");
+
+  const basicPlans = [
+    { label: "Monthly", price: 55, term: "Month", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"] },
+    { label: "Quarterly", price: 149, term: "3 Months", popular: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"] },
+    { label: "Half-yearly", price: 289, term: "6 Months", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"] },
+    { label: "Yearly", price: 559, term: "Year", best: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials", "Update on New features"] },
+  ];
+
+  const proPlans = [
+    { label: "Quarterly", price: 269, term: "3 Months", popular: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"] },
+    { label: "Half-yearly", price: 529, term: "6 Months", features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"] },
+    { label: "Yearly", price: 999, term: "Year", best: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials", "Update on New features"] },
+  ];
+
+  const currentPlans = activePlanType === "basic" ? basicPlans : proPlans;
 
   const appearance = {
     theme: 'stripe',
@@ -114,16 +130,44 @@ export default function UnlockFullAccessSection() {
             <Pill>Free Lifetime Updates</Pill>
           </div> */}
 
+          {/* Pricing Toggle */}
+          <div className="mt-8 flex justify-center">
+            <div className="relative flex rounded-full bg-white/5 p-1 ring-1 ring-white/10 backdrop-blur-sm">
+              <button
+                onClick={() => setActivePlanType("basic")}
+                className={[
+                  "relative z-10 px-6 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-300 sm:px-10 sm:py-2.5 sm:text-[13px]",
+                  activePlanType === "basic" ? "text-black" : "text-white/60 hover:text-white"
+                ].join(" ")}
+              >
+                Basic
+              </button>
+              <button
+                onClick={() => setActivePlanType("pro")}
+                className={[
+                  "relative z-10 px-6 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-300 sm:px-10 sm:py-2.5 sm:text-[13px]",
+                  activePlanType === "pro" ? "text-black" : "text-white/60 hover:text-white"
+                ].join(" ")}
+              >
+                Pro
+              </button>
+              <div
+                className={[
+                  "absolute inset-y-1 rounded-full bg-amber-400 transition-all duration-300 ease-out",
+                  activePlanType === "basic" ? "left-1 right-1/2" : "left-1/2 right-1"
+                ].join(" ")}
+              />
+            </div>
+          </div>
+
           {/* Pricing cards - new design */}
-          <div className="mt-9 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { label: "Monthly", price: 55, term: "Month" },
-              { label: "Quarterly", price: 149, term: "3 Months" },
-              { label: "Half-yearly", price: 289, term: "6 Months" },
-              { label: "Yearly", price: 559, term: "Year" },
-            ].map((plan) => {
-              const isPopular = plan.label === "Quarterly";
-              const isBest = plan.label === "Yearly";
+          <div className={[
+            "mt-9 grid items-stretch gap-5",
+            activePlanType === "basic" ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"
+          ].join(" ")}>
+            {currentPlans.map((plan) => {
+              const isPopular = plan.popular;
+              const isBest = plan.best;
 
               return (
                 <div
@@ -165,9 +209,20 @@ export default function UnlockFullAccessSection() {
                         USD / {plan.term}
                       </span>
                     </div>
+
+                    <ul className="mt-8 space-y-3 text-left">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-[11px] text-white/70">
+                          <svg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                          </svg>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <div className="relative mt-auto border-t border-white/5 pt-4">
+                  <div className="relative mt-auto border-t border-white/5 pt-6">
                     <button
                       className={[
                         "inline-flex h-11 w-full items-center justify-center rounded-xl text-center text-[12px] font-extrabold leading-tight shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition",

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import Stripe from "stripe";
 
-const stripe = new Stripe('sk_test_51SyrIqLS6iYGsALv9hYdzZARYD63rhyG2AwkweTMPYMsyB3uIsJuKalUQlzdztgYidAeyhoDnmeMM7eFCYF7adYT00o2FvUUrw');
+const stripe = new Stripe('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');
 
 const app = express();
 

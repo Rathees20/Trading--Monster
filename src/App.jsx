@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Hero from "./components/Hero.jsx";
 import TradingMonsterFooter from "./components/TradingMonsterFooter.jsx";
 import WhyMostTradersLose from "./components/WhyMostTradersLose.jsx";
@@ -18,6 +18,7 @@ import LegalNoticePrivacy from "./components/legal/LegalNoticePrivacy.jsx";
 import LegalNoticeCookie from "./components/legal/LegalNoticeCookie.jsx";
 import CancellationPolicy from "./components/legal/CancellationPolicy.jsx";
 import ThankYouPage from "./components/ThankYouPage.jsx";
+import BlockedCountry from "./components/BlockedCountry.jsx";
 import logoImg from "./assets/logo.jpeg";
 
 function ScrollToTop() {
@@ -32,6 +33,39 @@ function ScrollToTop() {
 
 export default function App() {
   const location = useLocation();
+  const [isBlocked, setIsBlocked] = useState(null);
+
+  useEffect(() => {
+    const checkGeo = async () => {
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+
+        // Blocked: Russia (RU), Belarus (BY), North Korea (KP), Ukraine (UA)
+        const blockedCountries = ["RU", "BY", "KP", "UA"];
+        if (blockedCountries.includes(data.country_code)) {
+          setIsBlocked(true);
+        } else {
+          setIsBlocked(false);
+        }
+      } catch (error) {
+        console.error("Geo-blocking check failed:", error);
+        // Default to not blocked if API fails, to avoid locking out everyone
+        setIsBlocked(false);
+      }
+    };
+
+    checkGeo();
+  }, []);
+
+  if (isBlocked === true) {
+    return <BlockedCountry />;
+  }
+
+  // Still checking... show nothing or a loader
+  if (isBlocked === null) {
+    return <div className="tm-bg min-h-dvh flex items-center justify-center text-white">Loading...</div>;
+  }
 
   return (
     <div className="tm-bg min-h-dvh text-white flex flex-col">

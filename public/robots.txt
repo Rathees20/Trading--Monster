@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Point crawlers to your XML sitemap
+Sitemap: https://tradingmonster.ai/sitemap.xml
+

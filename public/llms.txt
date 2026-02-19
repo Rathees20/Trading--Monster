@@ -1,0 +1,21 @@
+# Trading Monster AI
+
+> TradingMonster.ai is an AI-powered forex trend trading system that helps intraday traders analyze market trends, validate setups, and make more structured trading decisions.
+
+## Key Pages
+- [Home](https://tradingmonster.ai/): Overview of Trading Monster AI, main benefits, hero content, and primary call-to-actions.
+- [About](https://tradingmonster.ai/about): Background on Trading Monster AI, who it is for, and how the system works.
+- [Pricing](https://tradingmonster.ai/#unlock-full-access): Pricing and subscription details for accessing the AI trading system.
+- [Free Trial](https://tradingmonster.ai/#trial-form): Lead form and information about the 3-day free demo.
+
+## Legal & Compliance
+- [Terms and Conditions](https://tradingmonster.ai/terms-and-conditions): Terms of use and conditions for using Trading Monster AI.
+- [Privacy Policy](https://tradingmonster.ai/privacy-policy): How user data is collected, processed, and protected.
+- [Refund Policy](https://tradingmonster.ai/refund-policy): Refund rules and conditions.
+- [Cookie Policy](https://tradingmonster.ai/cookie-policy): Information about cookies and tracking technologies used on the site.
+- [Cancellation Policy](https://tradingmonster.ai/cancellation-policy): Rules for cancelling subscriptions or services.
+- [Disclaimer](https://tradingmonster.ai/disclaimer): Risk and educational-use disclaimer for trading and financial content.
+
+## Optional
+- [Thank You](https://tradingmonster.ai/thank-you): Confirmation page shown after successful lead or purchase actions.
+

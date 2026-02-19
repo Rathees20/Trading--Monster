@@ -211,14 +211,17 @@ export default function UnlockFullAccessSection() {
                     </div>
 
                     <ul className="mt-8 space-y-3 text-left">
-                      {plan.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-[11px] text-white/70">
-                          <svg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                          </svg>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
+                      {plan.features.map((feature, idx) => {
+                        const isAlert = feature === "Alert";
+                        return (
+                          <li key={idx} className={["flex items-start gap-2.5 text-[11px]", isAlert ? "font-bold text-sky-400" : "text-white/70"].join(" ")}>
+                            <svg className={["mt-0.5 h-3.5 w-3.5 shrink-0", isAlert ? "text-sky-500" : "text-amber-400"].join(" ")} fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                            <span>{feature}</span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
 

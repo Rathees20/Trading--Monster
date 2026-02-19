@@ -18,7 +18,7 @@ import LegalNoticePrivacy from "./components/legal/LegalNoticePrivacy.jsx";
 import LegalNoticeCookie from "./components/legal/LegalNoticeCookie.jsx";
 import CancellationPolicy from "./components/legal/CancellationPolicy.jsx";
 import ThankYouPage from "./components/ThankYouPage.jsx";
-import logoImg from "./assets/logo.png";
+import logoImg from "./assets/logo.jpeg";
 
 function ScrollToTop() {
   const location = useLocation();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "./ui/Button.jsx";
-import logoImg from "../assets/logo.png";
+import logoImg from "../assets/logo.jpeg";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
-import logoUrl from "./assets/logo.png";
+import logoUrl from "./assets/logo.jpeg";
 
 // Ensure favicon uses the project logo (works in build too)
 const ensureFavicon = () => {
@@ -15,7 +15,7 @@ const ensureFavicon = () => {
     link.rel = "icon";
     head.appendChild(link);
   }
-  link.type = "image/png";
+  link.type = "image/jpeg";
   link.href = logoUrl;
 };
 ensureFavicon();

@@ -214,8 +214,8 @@ export default function UnlockFullAccessSection() {
                       {plan.features.map((feature, idx) => {
                         const isAlert = feature === "Alert";
                         return (
-                          <li key={idx} className={["flex items-start gap-2.5 text-[11px]", isAlert ? "font-bold text-sky-400" : "text-white/70"].join(" ")}>
-                            <svg className={["mt-0.5 h-3.5 w-3.5 shrink-0", isAlert ? "text-sky-500" : "text-amber-400"].join(" ")} fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor">
+                          <li key={idx} className={["flex items-start gap-2.5 text-[11px]", isAlert ? "font-bold text-sky-400 bg-sky-500/10 ring-1 ring-sky-500/30 px-2 py-1.5 rounded-lg -mx-2" : "text-white/70"].join(" ")}>
+                            <svg className={["mt-0.5 h-3.5 w-3.5 shrink-0", isAlert ? "text-sky-400" : "text-amber-400"].join(" ")} fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                             </svg>
                             <span>{feature}</span>

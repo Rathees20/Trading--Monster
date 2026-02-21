@@ -32,6 +32,7 @@ export default function UnlockFullAccessSection() {
   ];
 
   const proPlans = [
+    { label: "Monthly", price: 99, term: "Month", features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/eVq9AUbjlc5Uf2Qc2p77O07" },
     { label: "Quarterly", price: 269, term: "3 Months", popular: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/9B614o5Z15HwdYMfeB77O04" },
     { label: "Half-yearly", price: 529, term: "6 Months", features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/aFa5kE1IL2vk7Ao0jH77O05" },
     { label: "Yearly", price: 999, term: "Year", best: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/cNi28s0EHgma1c0giF77O06" },
@@ -42,6 +43,8 @@ export default function UnlockFullAccessSection() {
   const handleCheckout = (plan) => {
     if (plan.stripeLink) {
       window.location.href = plan.stripeLink;
+    } else {
+      alert("Stripe link for this plan is coming soon!");
     }
   };
 
@@ -105,7 +108,7 @@ export default function UnlockFullAccessSection() {
               </button>
               <div
                 className={[
-                  "absolute inset-y-1 rounded-full bg-amber-400 transition-all duration-300 ease-out",
+                  "absolute inset-y-1 rounded-full bg-amber-450 transition-all duration-300 ease-out",
                   activePlanType === "basic" ? "left-1 right-1/2" : "left-1/2 right-1"
                 ].join(" ")}
               />
@@ -113,10 +116,7 @@ export default function UnlockFullAccessSection() {
           </div>
 
           {/* Pricing cards */}
-          <div className={[
-            "mt-9 grid items-stretch gap-5",
-            activePlanType === "basic" ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"
-          ].join(" ")}>
+          <div className="mt-9 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {currentPlans.map((plan) => {
               const isPopular = plan.popular;
               const isBest = plan.best;

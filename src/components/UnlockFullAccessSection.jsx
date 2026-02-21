@@ -1,12 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm";
-
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
-const stripePromise = loadStripe("pk_live_51SyrD0LJNO5TSaBJYbfy6Q1mR9ST7ImIJChLJSWHwMheBqbuhooHRkA1nRSFF3Oy22imwIzJShql0A30OtJKLm1U00ybzHL3Rv");
 
 function Pill({ children, active = false }) {
   return (
@@ -29,52 +22,27 @@ export default function UnlockFullAccessSection() {
   const [email, setEmail] = useState("");
   const [tradingviewId, setTradingviewId] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
-  const [clientSecret, setClientSecret] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState(null);
   const [activePlanType, setActivePlanType] = useState("basic");
 
   const basicPlans = [
-    { label: "Monthly", price: 55, term: "Month", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"] },
-    { label: "Quarterly", price: 149, term: "3 Months", popular: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"] },
-    { label: "Half-yearly", price: 289, term: "6 Months", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"] },
-    { label: "Yearly", price: 559, term: "Year", best: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials", "Update on New features"] },
+    { label: "Monthly", price: 55, term: "Month", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/7sYbJ23QT5Hw9Iwc2p77O00" },
+    { label: "Quarterly", price: 149, term: "3 Months", popular: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/14A9AUbjl9XMdYM1nL77O01" },
+    { label: "Half-yearly", price: 289, term: "6 Months", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/3cI4gA8797PE8EsfeB77O02" },
+    { label: "Yearly", price: 559, term: "Year", best: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/8x28wQgDFfi64oceax77O03" },
   ];
 
   const proPlans = [
-    { label: "Quarterly", price: 269, term: "3 Months", popular: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"] },
-    { label: "Half-yearly", price: 529, term: "6 Months", features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"] },
-    { label: "Yearly", price: 999, term: "Year", best: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials", "Update on New features"] },
+    { label: "Quarterly", price: 269, term: "3 Months", popular: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/9B614o5Z15HwdYMfeB77O04" },
+    { label: "Half-yearly", price: 529, term: "6 Months", features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/aFa5kE1IL2vk7Ao0jH77O05" },
+    { label: "Yearly", price: 999, term: "Year", best: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/cNi28s0EHgma1c0giF77O06" },
   ];
 
   const currentPlans = activePlanType === "basic" ? basicPlans : proPlans;
 
-  const appearance = {
-    theme: 'stripe',
-  };
-  const options = {
-    clientSecret,
-    appearance,
-  };
-
   const handleCheckout = (plan) => {
-    setSelectedPlan(plan);
-    fetch("http://127.0.0.1:4242/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: [{ id: plan.label, amount: plan.price }] }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`Server error: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => setClientSecret(data.clientSecret))
-      .catch((error) => {
-        console.error("Payment initiation failed:", error);
-        alert("Could not connect to payment server. Please ensure 'node server.js' is running.");
-        setSelectedPlan(null);
-      });
+    if (plan.stripeLink) {
+      window.location.href = plan.stripeLink;
+    }
   };
 
   const isEmailValid = /^\S+@\S+\.\S+$/.test(email.trim());
@@ -93,15 +61,6 @@ export default function UnlockFullAccessSection() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        {/* <div className="text-center">
-          <h2 className="text-3xl font-bold leading-snug tracking-normal sm:text-4xl">
-            Unlock Full Access
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-white/60 sm:text-base">
-            Transition from testing to high-conviction professional trading.
-          </p>
-        </div> */}
-
         {/* Main pricing panel */}
         <div className="relative mt-12 rounded-[24px] border border-white/10 bg-black/45 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[32px] sm:px-10 sm:py-10">
           {/* top-right star */}
@@ -122,13 +81,6 @@ export default function UnlockFullAccessSection() {
               <span className="text-white/90">Professional Indicator</span>
             </div>
           </div>
-
-          {/* <div className="mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center">
-            <Pill active>Full AI Trend Indicator Suite</Pill>
-            <Pill>Private Telegram Community</Pill>
-            <Pill>Priority Technical Support</Pill>
-            <Pill>Free Lifetime Updates</Pill>
-          </div> */}
 
           {/* Pricing Toggle */}
           <div className="mt-8 flex justify-center">
@@ -160,7 +112,7 @@ export default function UnlockFullAccessSection() {
             </div>
           </div>
 
-          {/* Pricing cards - new design */}
+          {/* Pricing cards */}
           <div className={[
             "mt-9 grid items-stretch gap-5",
             activePlanType === "basic" ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"
@@ -194,9 +146,6 @@ export default function UnlockFullAccessSection() {
                   </div>
 
                   <div className="relative text-center">
-                    {/* <div className="text-[12px] font-semibold uppercase tracking-wide text-white/60">
-                      Institutional Pricing
-                    </div> */}
                     <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-white">
                       {plan.label}
                     </div>
@@ -259,28 +208,6 @@ export default function UnlockFullAccessSection() {
               );
             })}
           </div>
-
-          {clientSecret && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm">
-              <div className="relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
-                <button
-                  onClick={() => {
-                    setClientSecret("");
-                    setSelectedPlan(null);
-                  }}
-                  className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-                <h3 className="mb-4 text-xl font-bold text-gray-900">Subscribe to {selectedPlan?.label}</h3>
-                <Elements options={options} stripe={stripePromise}>
-                  <CheckoutForm />
-                </Elements>
-              </div>
-            </div>
-          )}
 
           {/* Trial form below pricing cards */}
           <div
@@ -410,4 +337,3 @@ export default function UnlockFullAccessSection() {
     </section>
   );
 }
-

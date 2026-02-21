@@ -219,7 +219,7 @@ export default function UnlockFullAccessSection() {
                 Start Your 3-Day Free Trial
               </div>
               <p className="max-w-2xl text-[11px] leading-5 text-white/70 sm:text-xs">
-                Fill the below form  to activate your 3days free trail.
+                Fill the below form  to activate your 3-day free trial.
               </p>
             </div>
 

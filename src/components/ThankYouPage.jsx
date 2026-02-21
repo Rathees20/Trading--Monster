@@ -47,7 +47,7 @@ export default function ThankYouPage() {
 
                 <div className="space-y-6 text-lg leading-relaxed text-white/80">
                     <p>
-                        Your trial pack will be activated in few minutes.
+                        Your trial pack will be activated in a few minutes.
                     </p>
                     <p>
                         For more details reach us via chat or mail to{" "}
@@ -57,7 +57,14 @@ export default function ThankYouPage() {
                         >
                             Support@tradingmonster.ai
                         </a>{" "}
-                        in unlockfull acess page.
+                        in{" "}
+                        <Link
+                            to="/#unlock-full-access"
+                            className="font-semibold text-amber-450 underline decoration-amber-450/30 underline-offset-4 transition hover:text-amber-400"
+                        >
+                            unlock full access
+                        </Link>{" "}
+                        page.
                     </p>
                 </div>
 

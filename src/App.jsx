@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import TradingMonsterFooter from "./components/TradingMonsterFooter.jsx";
 import WhyMostTradersLose from "./components/WhyMostTradersLose.jsx";
@@ -11,6 +12,7 @@ import RulesAINeverBreaksSection from "./components/RulesAINeverBreaksSection.js
 import TryBeforeYouBuySection from "./components/TryBeforeYouBuySection.jsx";
 import UnlockFullAccessSection from "./components/UnlockFullAccessSection.jsx";
 import About from "./components/About.jsx";
+import FAQ from "./components/FAQ.jsx";
 import RefundPolicy from "./components/legal/RefundPolicy.jsx";
 import TermsAndConditions from "./components/legal/TermsAndConditions.jsx";
 import Disclaimer from "./components/legal/Disclaimer.jsx";
@@ -101,6 +103,7 @@ export default function App() {
             path="/"
             element={
               <main>
+                <Navbar />
                 <Hero />
                 <WhyMostTradersLose />
                 <RulesAINeverBreaksSection />
@@ -114,6 +117,7 @@ export default function App() {
             }
           />
           <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/disclaimer" element={<Disclaimer />} />

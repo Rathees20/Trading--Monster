@@ -116,6 +116,11 @@ export default function TradingMonsterFooter() {
               </li>
 
               <li>
+                <Link to="/faq" className="transition hover:text-white">
+                  FAQ
+                </Link>
+              </li>
+              <li>
                 <a href="#unlock-full-access" className="transition hover:text-white">
                   Pricing
                 </a>

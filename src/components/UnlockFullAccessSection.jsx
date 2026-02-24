@@ -63,7 +63,7 @@ export default function UnlockFullAccessSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/35" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
         {/* Main pricing panel */}
         <div className="relative mt-12 rounded-[24px] border border-white/10 bg-black/45 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[32px] sm:px-10 sm:py-10">
           {/* top-right star */}
@@ -78,7 +78,7 @@ export default function UnlockFullAccessSection() {
           </div>
 
           <div className="text-center">
-            <div className="text-lg font-semibold leading-snug text-white sm:text-2xl">
+            <div className="text-lg font-semibold leading-snug text-white sm:text-2xl 2xl:text-4xl">
               Trading Monster
               <br />
               <span className="text-white/90">Professional Indicator</span>

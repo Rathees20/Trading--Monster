@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/65" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 pt-5 pb-10 sm:px-6 sm:pt-8 sm:pb-14 lg:pt-8 lg:pb-12">
+      <div className="mx-auto max-w-7xl px-4 pt-5 pb-10 sm:px-6 sm:pt-8 sm:pb-14 lg:pt-8 lg:pb-12 2xl:max-w-[1440px] 2xl:pt-12 2xl:pb-20">
         <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-10">
           {/* Video first on mobile so it shows above-the-fold */}
           <div className="order-1 mt-2 lg:order-2 lg:mt-0">
@@ -38,12 +38,12 @@ export default function Hero() {
             </div>
 
             {/* Desktop heading (hidden on mobile) */}
-            <h1 className="mt-5 hidden text-balance text-4xl font-bold leading-[1.05] tracking-normal sm:text-6xl lg:block lg:text-6xl xl:text-7xl">
+            <h1 className="mt-5 hidden text-balance text-4xl font-bold leading-[1.05] tracking-normal sm:text-6xl lg:block lg:text-6xl xl:text-7xl 2xl:text-8xl">
               <span className="block text-white">TRADING</span>
               <span className="block text-amber-450">MONSTER AI</span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-pretty text-sm leading-6 text-white/70 sm:text-base">
+            <p className="mt-5 max-w-xl text-pretty text-sm leading-6 text-white/70 sm:text-base 2xl:max-w-2xl 2xl:text-lg">
               Professional AI Trend Trading System
               <br />
               Built for intraday traders.
@@ -65,7 +65,7 @@ export default function Hero() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-amber-450/90 shadow-glow" />
-                  15-Minute Optimized 
+                  15-Minute Optimized
                 </li>
               </ul>
               <ul className="space-y-3 text-sm font-semibold text-amber-450/90">

@@ -5,10 +5,10 @@ function RuleCard({ icon, title, body }) {
         <div className="mx-auto grid h-10 w-10 place-items-center rounded-2xl bg-[#1B2F4F] ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(46,107,255,0.12)] sm:mx-0 sm:h-12 sm:w-12">
           {icon}
         </div>
-        <div className="mt-4 text-[18px] font-semibold tracking-normal text-white sm:mt-6 lg:text-lg">
+        <div className="mt-4 text-[18px] font-semibold tracking-normal text-white sm:mt-6 lg:text-lg 2xl:text-xl">
           {title}
         </div>
-        <p className="mt-2 text-[14px] leading-4 text-white/55 sm:mt-3 lg:text-base sm:leading-6">
+        <p className="mt-2 text-[14px] leading-4 text-white/55 sm:mt-3 lg:text-base sm:leading-6 2xl:text-lg">
           {body}
         </p>
       </div>
@@ -127,7 +127,7 @@ function IconMinusCircle() {
 export default function RulesAINeverBreaksSection() {
   return (
     <section className="relative overflow-hidden py-8 sm:py-2" id="rules-ai-never-breaks">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
         <div className="text-center">
           <h2 className="text-2xl font-bold leading-snug tracking-normal sm:text-4xl">
             The Rules To Be Followed
@@ -148,7 +148,7 @@ export default function RulesAINeverBreaksSection() {
 valid only after
 candle close."
             />
-            
+
             <RuleCard
               icon={<IconCloudSlash />}
               title="If Filter Dont Align Dont Trade"
@@ -164,7 +164,7 @@ Entries"
 move? Wait for
 next opportunity."
             />
-             <RuleCard
+            <RuleCard
               icon={<IconPlane />}
               title="Trend Direction Only"
               body="We trade in the direction of the trend only. No counter‑trend entries."

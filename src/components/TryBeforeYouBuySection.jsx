@@ -6,7 +6,7 @@ export default function TryBeforeYouBuySection() {
 
   return (
     <section className="relative overflow-hidden py-10 sm:py-20" id="try-before-you-buy">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
         <div className="relative overflow-hidden rounded-[28px] bg-[#252525] p-6 ring-1 ring-white/10 sm:rounded-[38px] sm:p-12">
           {/* inner glow + top-right corner graphic */}
           <div className="pointer-events-none absolute inset-0">
@@ -20,13 +20,13 @@ export default function TryBeforeYouBuySection() {
           </div>
 
           <div className="relative">
-            <h2 className="text-center text-2xl font-bold leading-snug tracking-normal sm:text-4xl">
-               Start Your{" "}
+            <h2 className="text-center text-2xl font-bold leading-snug tracking-normal sm:text-4xl 2xl:text-5xl">
+              Start Your{" "}
               <span className="text-amber-450">3-Day Free Trial</span>
             </h2>
 
             <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10">
-            <a href="#trial-form" className="inline-block w-full sm:w-auto">
+              <a href="#trial-form" className="inline-block w-full sm:w-auto">
                 <Button
                   variant="amber"
                   className="h-10 w-full rounded-xl px-5 text-sm font-semibold tracking-wide sm:w-auto"

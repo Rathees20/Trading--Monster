@@ -5,7 +5,7 @@ export default function TradingMonsterFooter() {
   return (
     <footer className="relative border-t border-[#1F1F1F] bg-black py-10 text-white sm:py-18">
       {/* Top constrained content */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px] lg:px-10">
         {/* Top 4-column layout */}
         <div className="grid gap-10 border-b-2 border-white/20 pb-10 sm:grid-cols-2 lg:grid-cols-[1.4fr,1fr,1fr,1.1fr]">
           {/* Brand + description + socials */}

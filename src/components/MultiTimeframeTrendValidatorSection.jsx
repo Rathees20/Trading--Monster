@@ -40,10 +40,10 @@ export default function MultiTimeframeTrendValidatorSection() {
       </div>
 
       {/* Wider Container */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
         {/* Heading */}
         <div className="text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">
+          <h2 className="text-3xl font-bold sm:text-4xl 2xl:text-5xl">
             Multi-Timeframe Trend Validator
           </h2>
 

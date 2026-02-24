@@ -30,7 +30,7 @@ function SignalCard({ variant, mode, title, hideButton = false }) {
             {mode}
           </span>
 
-          <h3 className="mt-4 text-lg font-semibold text-white sm:text-2xl leading-relaxed">
+          <h3 className="mt-4 text-lg font-semibold text-white sm:text-2xl 2xl:text-3xl leading-relaxed">
             {title}
           </h3>
         </div>
@@ -53,7 +53,7 @@ function SignalCard({ variant, mode, title, hideButton = false }) {
         <img
           src={chartSrc}
           alt={variant}
-          className="h-[220px] w-full object-contain sm:h-[280px] lg:h-[340px] xl:h-[380px]"
+          className="h-[220px] w-full object-contain sm:h-[280px] lg:h-[340px] xl:h-[380px] 2xl:h-[500px]"
           loading="lazy"
           draggable={false}
         />
@@ -79,7 +79,7 @@ export default function WhyMostTradersLose() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
         <div className="grid gap-8">
 
           {/* BUY ZONE */}

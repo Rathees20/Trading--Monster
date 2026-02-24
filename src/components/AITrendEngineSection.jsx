@@ -53,10 +53,10 @@ export default function AITrendEngineSection() {
       className="relative overflow-hidden bg-[#F6F3EC] py-16 sm:py-24"
       id="ai-trend-engine"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 2xl:max-w-[1440px]">
         {/* Increased Right Side Weight */}
         <div className="grid items-center gap-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-          
+
           {/* LEFT */}
           <div>
             <div className="text-center text-3xl font-bold text-black lg:text-left">
@@ -78,11 +78,11 @@ export default function AITrendEngineSection() {
 
           {/* RIGHT - WIDER */}
           <div className="text-center lg:text-left">
-            <h3 className="text-4xl font-bold text-slate-900">
+            <h3 className="text-4xl font-bold text-slate-900 2xl:text-5xl">
               AI Trend Engine
             </h3>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 lg:mx-0">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 lg:mx-0 2xl:max-w-3xl 2xl:text-lg">
               The core engine clearly shows the dominant market trend,
               allowing you to filter out noise efficiently.
             </p>

@@ -13,6 +13,8 @@ import TryBeforeYouBuySection from "./components/TryBeforeYouBuySection.jsx";
 import UnlockFullAccessSection from "./components/UnlockFullAccessSection.jsx";
 import About from "./components/About.jsx";
 import FAQ from "./components/FAQ.jsx";
+import Blog from "./components/Blog.jsx";
+import BlogPost from "./components/BlogPost.jsx";
 import RefundPolicy from "./components/legal/RefundPolicy.jsx";
 import TermsAndConditions from "./components/legal/TermsAndConditions.jsx";
 import Disclaimer from "./components/legal/Disclaimer.jsx";
@@ -117,6 +119,8 @@ export default function App() {
             }
           />
           <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

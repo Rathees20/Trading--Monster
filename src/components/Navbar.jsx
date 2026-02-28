@@ -32,7 +32,7 @@ export default function Navbar() {
   const menuItems = [
     { label: "FAQ", to: "/faq" },
     { label: "Pricing", href: "#unlock-full-access" },
-    { label: "Blog", href: "#blog" },
+    { label: "Blog", to: "/blog" },
   ];
 
   const proIndicators = [

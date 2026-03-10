@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Navbar from "./components/Navbar.jsx";
+import Navbar from "./pages/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import TradingMonsterFooter from "./components/TradingMonsterFooter.jsx";
 import WhyMostTradersLose from "./components/WhyMostTradersLose.jsx";
@@ -11,18 +11,20 @@ import MultiTimeframeTrendValidatorSection from "./components/MultiTimeframeTren
 import RulesAINeverBreaksSection from "./components/RulesAINeverBreaksSection.jsx";
 import TryBeforeYouBuySection from "./components/TryBeforeYouBuySection.jsx";
 import UnlockFullAccessSection from "./components/UnlockFullAccessSection.jsx";
-import About from "./components/About.jsx";
-import FAQ from "./components/FAQ.jsx";
-import Blog from "./components/Blog.jsx";
-import BlogPost from "./components/BlogPost.jsx";
-import RefundPolicy from "./components/legal/RefundPolicy.jsx";
-import TermsAndConditions from "./components/legal/TermsAndConditions.jsx";
-import Disclaimer from "./components/legal/Disclaimer.jsx";
-import LegalNoticePrivacy from "./components/legal/LegalNoticePrivacy.jsx";
-import LegalNoticeCookie from "./components/legal/LegalNoticeCookie.jsx";
-import CancellationPolicy from "./components/legal/CancellationPolicy.jsx";
-import ThankYouPage from "./components/ThankYouPage.jsx";
-import BlockedCountry from "./components/BlockedCountry.jsx";
+import TrendEnginePro from "./pages/TrendEnginePro.jsx";
+import ScannerPro from "./pages/ScannerPro.jsx";
+import About from "./pages/About.jsx";
+import FAQ from "./pages/FAQ.jsx";
+import Blog from "./pages/Blog.jsx";
+import BlogPost from "./pages/BlogPost.jsx";
+import RefundPolicy from "./pages/legal/RefundPolicy.jsx";
+import TermsAndConditions from "./pages/legal/TermsAndConditions.jsx";
+import Disclaimer from "./pages/legal/Disclaimer.jsx";
+import LegalNoticePrivacy from "./pages/legal/LegalNoticePrivacy.jsx";
+import LegalNoticeCookie from "./pages/legal/LegalNoticeCookie.jsx";
+import CancellationPolicy from "./pages/legal/CancellationPolicy.jsx";
+import ThankYouPage from "./pages/ThankYouPage.jsx";
+import BlockedCountry from "./pages/BlockedCountry.jsx";
 import logoImg from "./assets/logo.jpeg";
 
 function ScrollToTop() {
@@ -73,8 +75,7 @@ export default function App() {
 
   return (
     <div className="tm-bg min-h-dvh text-white flex flex-col">
-      {/* Global top bar with logo and Home button (hidden on main home page) */}
-      {location.pathname !== "/" && (
+      {location.pathname !== "/" && location.pathname !== "/trend-engine-pro" && location.pathname !== "/scanner-pro" && (
         <header className="border-b border-white/10 bg-black/80 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-8 lg:px-10">
             <Link to="/" className="flex items-center gap-3">
@@ -118,6 +119,8 @@ export default function App() {
               </main>
             }
           />
+          <Route path="/trend-engine-pro" element={<TrendEnginePro />} />
+          <Route path="/scanner-pro" element={<ScannerPro />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
@@ -132,7 +135,7 @@ export default function App() {
         </Routes>
       </div>
       <TradingMonsterFooter />
-    </div>
+    </div >
   );
 }
 

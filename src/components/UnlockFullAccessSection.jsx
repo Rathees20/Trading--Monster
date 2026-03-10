@@ -27,13 +27,13 @@ export default function UnlockFullAccessSection() {
   const basicPlans = [
     { label: "Monthly", price: 55, term: "Month", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/7sYbJ23QT5Hw9Iwc2p77O00" },
     { label: "Quarterly", price: 149, term: "3 Months", popular: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/14A9AUbjl9XMdYM1nL77O01" },
-    { label: "Half-yearly", price: 289, term: "6 Months", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/3cI4gA8797PE8EsfeB77O02" },
+    { label: "Half-yearly", price: 289, term: "6 Months", features: ["Trend engine", "volatility engine", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/3cI4gA8797PE8EsfeB77O02" },
     { label: "Yearly", price: 559, term: "Year", best: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/8x28wQgDFfi64oceax77O03" },
   ];
 
   const proPlans = [
     { label: "Monthly", price: 99, term: "Month", features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/eVq9AUbjlc5Uf2Qc2p77O07" },
-    { label: "Quarterly", price: 269, term: "3 Months", popular: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/9B614o5Z15HwdYMfeB77O04" },
+    { label: "Quarterly", price: 269, term: "3 Months", popular: true, features: ["Multi frame momentum scanner for FX", "Alert", "Trend engine with alters", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/9B614o5Z15HwdYMfeB77O04" },
     { label: "Half-yearly", price: 529, term: "6 Months", features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/aFa5kE1IL2vk7Ao0jH77O05" },
     { label: "Yearly", price: 999, term: "Year", best: true, features: ["AI Indicator", "Alert", "Discord Community", "Priority Support", "User Guides & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/cNi28s0EHgma1c0giF77O06" },
   ];

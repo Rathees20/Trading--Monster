@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "./ui/Button.jsx";
+import Button from "../components/ui/Button.jsx";
 import logoImg from "../assets/logo.jpeg";
 
 export default function Navbar() {
@@ -36,8 +36,8 @@ export default function Navbar() {
   ];
 
   const proIndicators = [
-    { label: "Trend Engine Pro", href: "#ai-trend-engine" },
-    { label: "Breakout Pro", href: "#breakout-pro" },
+    { label: "Trend Engine Pro", to: "/trend-engine-pro" },
+    { label: "Scanner Pro", to: "/scanner-pro" },
   ];
 
   return (
@@ -81,14 +81,25 @@ export default function Navbar() {
                 {proOpen && (
                   <div className="absolute left-0 mt-2 w-48 rounded-2xl border border-white/10 bg-black/90 p-2 shadow-2xl backdrop-blur-xl">
                     {proIndicators.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setProOpen(false)}
-                        className="block rounded-xl px-4 py-2 text-sm font-semibold text-white/70 transition hover:bg-white/5 hover:text-white"
-                      >
-                        {item.label}
-                      </a>
+                      item.to ? (
+                        <Link
+                          key={item.label}
+                          to={item.to}
+                          onClick={() => setProOpen(false)}
+                          className="block rounded-xl px-4 py-2 text-sm font-semibold text-white/70 transition hover:bg-white/5 hover:text-white"
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => setProOpen(false)}
+                          className="block rounded-xl px-4 py-2 text-sm font-semibold text-white/70 transition hover:bg-white/5 hover:text-white"
+                        >
+                          {item.label}
+                        </a>
+                      )
                     ))}
                   </div>
                 )}
@@ -171,17 +182,31 @@ export default function Navbar() {
                     {mobileProOpen && (
                       <div className="mt-1 ml-4 space-y-1">
                         {proIndicators.map((item) => (
-                          <a
-                            key={item.label}
-                            href={item.href}
-                            onClick={() => {
-                              setMobileOpen(false);
-                              setMobileProOpen(false);
-                            }}
-                            className="flex h-10 items-center px-4 text-sm font-semibold text-white/60 transition hover:text-white hover:bg-white/5 rounded-xl"
-                          >
-                            {item.label}
-                          </a>
+                          item.to ? (
+                            <Link
+                              key={item.label}
+                              to={item.to}
+                              onClick={() => {
+                                setMobileOpen(false);
+                                setMobileProOpen(false);
+                              }}
+                              className="flex h-10 items-center px-4 text-sm font-semibold text-white/60 transition hover:text-white hover:bg-white/5 rounded-xl"
+                            >
+                              {item.label}
+                            </Link>
+                          ) : (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              onClick={() => {
+                                setMobileOpen(false);
+                                setMobileProOpen(false);
+                              }}
+                              className="flex h-10 items-center px-4 text-sm font-semibold text-white/60 transition hover:text-white hover:bg-white/5 rounded-xl"
+                            >
+                              {item.label}
+                            </a>
+                          )
                         ))}
                       </div>
                     )}

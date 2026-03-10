@@ -4,7 +4,7 @@ import VideoCard from "./ui/VideoCard.jsx";
 import heroBg from "../assets/bacground hero.jpg";
 import heroVideo from "../assets/hero video.mov";
 
-export default function Hero() {
+export default function Hero({ customHeading }) {
   return (
     <section id="top" className="relative overflow-hidden">
       {/* Hero background image: `src/assets/bacground hero.jpg` */}
@@ -17,13 +17,21 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 pt-5 pb-10 sm:px-6 sm:pt-8 sm:pb-14 lg:pt-8 lg:pb-12 2xl:max-w-[1440px] 2xl:pt-12 2xl:pb-20">
+        {customHeading && (
+          <div className="mb-12 text-center">
+            {customHeading}
+          </div>
+        )}
+
         <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-10">
           {/* Video first on mobile so it shows above-the-fold */}
           <div className="order-1 mt-2 lg:order-2 lg:mt-0">
-            {/* Mobile-only heading above the video */}
-            <h1 className="mb-5 text-center text-4xl font-bold leading-[1.05] tracking-normal text-white sm:text-6xl lg:hidden">
-              TRADING <span className="text-amber-450">MONSTER AI</span>
-            </h1>
+            {/* Mobile-only heading above the video (hidden if customHeading provided) */}
+            {!customHeading && (
+              <h1 className="mb-5 text-center text-4xl font-bold leading-[1.05] tracking-normal text-white sm:text-6xl lg:hidden">
+                TRADING <span className="text-amber-450">MONSTER AI</span>
+              </h1>
+            )}
             {/* Mobile-only badge below the heading */}
             <div className="mb-4 flex justify-center lg:hidden">
               <Badge>Professional AI Trading System for Forex Traders</Badge>
@@ -37,11 +45,13 @@ export default function Hero() {
               <Badge>Professional AI Trading System for Forex Traders</Badge>
             </div>
 
-            {/* Desktop heading (hidden on mobile) */}
-            <h1 className="mt-5 hidden text-balance text-4xl font-bold leading-[1.05] tracking-normal sm:text-6xl lg:block lg:text-6xl xl:text-7xl 2xl:text-8xl">
-              <span className="block text-white">TRADING</span>
-              <span className="block text-amber-450">MONSTER AI</span>
-            </h1>
+            {/* Desktop heading (hidden on mobile and if customHeading provided) */}
+            {!customHeading && (
+              <h1 className="mt-5 hidden text-balance text-4xl font-bold leading-[1.05] tracking-normal sm:text-6xl lg:block lg:text-6xl xl:text-7xl 2xl:text-8xl">
+                <span className="block text-white">TRADING</span>
+                <span className="block text-amber-450">MONSTER AI</span>
+              </h1>
+            )}
 
             <p className="mt-5 max-w-xl text-pretty text-sm leading-6 text-white/70 sm:text-base 2xl:max-w-2xl 2xl:text-lg">
               Professional AI Trend Trading System

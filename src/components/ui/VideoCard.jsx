@@ -12,38 +12,35 @@ export default function VideoCard({ src }) {
     const el = videoRef.current;
     if (!el) return;
 
-    // iOS Safari can be picky about autoplay; this helps ensure the element
-    // is actually muted and we attempt playback as soon as possible.
     el.muted = muted;
+
+    const onPlay = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
+    const onError = () => setVideoError(true);
+    const onMetadata = () => setDuration(el.duration);
+
+    el.addEventListener("play", onPlay);
+    el.addEventListener("pause", onPause);
+    el.addEventListener("error", onError);
+    el.addEventListener("loadedmetadata", onMetadata);
+
+    // Initial check
+    if (el.duration) setDuration(el.duration);
 
     const tryPlay = async () => {
       try {
         await el.play();
-        setIsPlaying(true);
       } catch {
-        // Autoplay may still be blocked until user interacts.
-        setIsPlaying(false);
+        // Autoplay may be blocked
       }
     };
-
-    // Try immediately and again once metadata is ready.
     tryPlay();
-    el.addEventListener("loadedmetadata", () => {
-      setDuration(el.duration);
-      tryPlay();
-    });
-    el.addEventListener("play", () => setIsPlaying(true));
-    el.addEventListener("pause", () => setIsPlaying(false));
-    el.addEventListener("error", () => setVideoError(true));
 
     return () => {
-      el.removeEventListener("loadedmetadata", () => {
-        setDuration(el.duration);
-        tryPlay();
-      });
-      el.removeEventListener("play", () => setIsPlaying(true));
-      el.removeEventListener("pause", () => setIsPlaying(false));
-      el.removeEventListener("error", () => setVideoError(true));
+      el.removeEventListener("play", onPlay);
+      el.removeEventListener("pause", onPause);
+      el.removeEventListener("error", onError);
+      el.removeEventListener("loadedmetadata", onMetadata);
     };
   }, [src, muted]);
 
@@ -104,7 +101,7 @@ export default function VideoCard({ src }) {
         ) : (
           <video
             ref={videoRef}
-            className="absolute inset-0 block h-full w-full object-cover cursor-pointer"
+            className="absolute inset-0 block h-full w-full object-cover"
             autoPlay
             muted={muted}
             loop
@@ -112,8 +109,6 @@ export default function VideoCard({ src }) {
             webkitPlaysInline
             preload="metadata"
             controls
-            onTouchStart={handlePlayPause}
-            onClick={handlePlayPause}
           >
             <source src={src} />
             Your browser does not support the video tag.

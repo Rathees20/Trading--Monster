@@ -36,6 +36,23 @@
   border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
+
+/* Custom Animations */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-left {
+  animation: fadeInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Nice focus ring */
 *:focus-visible {
   outline: 2px solid rgba(255, 176, 32, 0.6);

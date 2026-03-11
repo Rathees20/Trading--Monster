@@ -94,38 +94,73 @@ function ScannerHero() {
                     </h1>
                 </div>
 
-                {/* Main Scanner Container (Image Replace) */}
-                <div className="relative mx-auto max-w-[950px] mb-12 rounded-[32px] border border-white/10 bg-black/40 p-2 backdrop-blur-xl shadow-2xl overflow-hidden">
-                    <img
-                        src={t5Image}
-                        alt="Momentum Scanner Interface"
-                        className="w-full h-[500px] rounded-[24px] object-cover shadow-2xl"
-                    />
-                    {/* Overlay to give it a premium feel */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
-                </div>
-
-                {/* Currency Selection & Demo CTA */}
-                <div className="flex flex-col items-center justify-between gap-8 lg:flex-row lg:items-end">
-                    <div className="relative flex flex-wrap items-center justify-center gap-2 lg:-top-8 lg:left-20 lg:justify-start">
-                        {currencies.map((curr) => (
-                            <button
-                                key={curr}
-                                onClick={() => setActiveCurrency(curr)}
-                                className={`relative px-2 py-1 text-xl sm:text-2xl font-black transition-all duration-300 ${activeCurrency === curr
-                                    ? "text-amber-500 scale-110"
-                                    : "text-white/30 hover:text-white/70 hover:scale-105"
-                                    }`}
+                {/* Side-by-Side Layout: Points Left, Image Right */}
+                <div className="grid gap-8 lg:grid-cols-12 lg:items-center mt-12 mb-16 px-4 mx-auto max-w-[1200px]">
+                    {/* Left Side: Feature Points */}
+                    <div className="lg:col-span-3 flex flex-col gap-6 order-2 lg:order-1">
+                        {[
+                            "SCAN MULTIPLE PAIRS",
+                            "RANKS MOMENTUM",
+                            "DETECTS STRONG MOVES",
+                            "LIVE UPDATE"
+                        ].map((text, idx) => (
+                            <div
+                                key={idx}
+                                className="flex items-center gap-4 group/item"
                             >
-                                {curr}
-                                <div className={`absolute -bottom-1 left-0 h-[2px] w-full bg-amber-500 transition-all duration-500 ${activeCurrency === curr ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"}`}></div>
-                            </button>
+                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10 text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.1)] transition-all group-hover/item:scale-110 group-hover/item:bg-amber-500 group-hover/item:text-black animate-fade-in-left"
+                                    style={{ animationDelay: `${idx * 150}ms`, animationFillMode: 'both' }}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-lg font-black tracking-tight text-white uppercase italic leading-none group-hover/item:text-amber-500 transition-colors">
+                                        {text}
+                                    </span>
+                                    <div className="mt-1 h-[2px] w-0 bg-amber-500 transition-all duration-300 group-hover/item:w-full"></div>
+                                </div>
+                            </div>
                         ))}
                     </div>
 
-                    <div className="relative -top-2 lg:-left-20">
-                        <a href="#trial-form">
-                            <Button variant="white" size="lg" className="h-16 rounded-2xl px-16 text-lg font-black uppercase tracking-widest border-2 border-white bg-transparent text-white hover:border-amber-500 hover:bg-amber-500 hover:text-black hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] transition-all shadow-2xl lg:mb-1">
+                    {/* Right Side: Scanner Image */}
+                    <div className="lg:col-span-9 order-1 lg:order-2">
+                        <div className="relative group rounded-[32px] border border-white/10 bg-black/40 p-2 backdrop-blur-xl shadow-2xl overflow-hidden transition-all hover:border-amber-500/30">
+                            <img
+                                src={t5Image}
+                                alt="Momentum Scanner Interface"
+                                className="w-full h-auto min-h-[300px] lg:h-[450px] rounded-[24px] object-cover shadow-2xl transition-transform duration-700 group-hover:scale-[1.01]"
+                            />
+                            {/* Overlay to give it a premium feel */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Single Consolidated Card for Currency & Demo CTA */}
+                <div className="mx-auto max-w-[1200px] px-4">
+                    <div className="flex flex-col items-center justify-between gap-8 rounded-[32px] border border-white/10 bg-black/40 p-6 backdrop-blur-xl shadow-2xl lg:flex-row lg:items-center">
+                        {/* Currency Selection */}
+                        <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                            {currencies.map((curr) => (
+                                <button
+                                    key={curr}
+                                    onClick={() => setActiveCurrency(curr)}
+                                    className={`relative px-2 py-1 text-xl sm:text-2xl font-black transition-all duration-300 ${activeCurrency === curr
+                                        ? "text-amber-500 scale-110"
+                                        : "text-white/30 hover:text-white/70 hover:scale-105"
+                                        }`}
+                                >
+                                    {curr}
+                                    <div className={`absolute -bottom-1 left-0 h-[2px] w-full bg-amber-500 transition-all duration-500 ${activeCurrency === curr ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"}`}></div>
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Demo CTA Button */}
+                        <a href="#trial-form" className="w-full lg:w-auto">
+                            <Button variant="white" size="lg" className="h-16 w-full rounded-2xl px-16 text-lg font-black uppercase tracking-widest border-2 border-white bg-transparent text-white hover:border-amber-500 hover:bg-amber-500 hover:text-black hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] transition-all shadow-2xl">
                                 Get 3 day free demo
                             </Button>
                         </a>

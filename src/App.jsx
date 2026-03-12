@@ -32,6 +32,15 @@ function ScrollToTop() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+    
+    // Minimize Tawk.to widget on all page transitions to match home page behavior
+    if (window.Tawk_API && typeof window.Tawk_API.minimize === 'function') {
+      try {
+        window.Tawk_API.minimize();
+      } catch (err) {
+        console.error("Error minimizing Tawk widget:", err);
+      }
+    }
   }, [location.pathname]);
 
   return null;

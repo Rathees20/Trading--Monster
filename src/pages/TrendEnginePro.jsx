@@ -3,9 +3,12 @@ import Navbar from "./Navbar.jsx";
 import Hero from "../components/Hero.jsx";
 import WhyMostTradersLose from "../components/WhyMostTradersLose.jsx";
 import RulesAINeverBreaksSection from "../components/RulesAINeverBreaksSection.jsx";
+import MultiTimeframeTrendValidatorSection from "../components/MultiTimeframeTrendValidatorSection.jsx";
+import LeadCtaForm from "../components/LeadCtaForm.jsx";
 import HowTradingMonsterAIDecides from "../components/HowTradingMonsterAIDecides.jsx";
 import AITrendEngineSection from "../components/AITrendEngineSection.jsx";
 import TryBeforeYouBuySection from "../components/TryBeforeYouBuySection.jsx";
+import FreeTrialForm from "../components/FreeTrialForm.jsx";
 
 export default function TrendEnginePro() {
     useEffect(() => {
@@ -18,18 +21,23 @@ export default function TrendEnginePro() {
             <Hero
                 customHeading={
                     <h1 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-[0.9]">
-                        Trend Engine <span className="text-amber-450">Pro</span> <br />
-                        <span className="text-3xl sm:text-xl lg:text-2xl text-white/40">for Currency</span>
+                        Best Trading Indicators <br />
+                        <span className="text-amber-450">for Forex and XAUUSD</span>
                     </h1>
                 }
             />
             <WhyMostTradersLose />
             <RulesAINeverBreaksSection />
-
+            <MultiTimeframeTrendValidatorSection />
+            <LeadCtaForm />
             <HowTradingMonsterAIDecides />
             <AITrendEngineSection />
 
             <TryBeforeYouBuySection />
+            
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px] pb-24">
+                <FreeTrialForm />
+            </div>
         </main>
     );
 }

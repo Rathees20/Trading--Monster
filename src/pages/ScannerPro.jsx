@@ -89,8 +89,7 @@ function ScannerHero() {
                 {/* Bigger font title as requested */}
                 <div className="mb-12 text-center">
                     <h1 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-[0.9]">
-                        Momentum <span className="text-amber-450">Scanner</span> <br />
-                        <span className="text-3xl sm:text-xl lg:text-2xl text-white/40">for Currency</span>
+                        Momentum Scanner – <span className="text-amber-450">Identify Strong Market Movement</span>
                     </h1>
                 </div>
 
@@ -129,7 +128,7 @@ function ScannerHero() {
                         <div className="relative group rounded-[32px] border border-white/10 bg-black/40 p-2 backdrop-blur-xl shadow-2xl overflow-hidden transition-all hover:border-amber-500/30">
                             <img
                                 src={t5Image}
-                                alt="Momentum Scanner Interface"
+                                alt="xauusd-momentum-scanner-tradingmonster"
                                 className="w-full h-auto min-h-[300px] lg:h-[450px] rounded-[24px] object-cover shadow-2xl transition-transform duration-700 group-hover:scale-[1.01]"
                             />
                             {/* Overlay to give it a premium feel */}

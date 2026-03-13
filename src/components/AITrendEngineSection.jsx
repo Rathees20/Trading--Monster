@@ -67,7 +67,7 @@ export default function AITrendEngineSection() {
               <div className="w-full max-w-[420px] overflow-hidden rounded-3xl border border-black bg-white shadow-[0_30px_80px_rgba(0,0,0,0.15)]">
                 <img
                   src={tiImg}
-                  alt="Indicators integration"
+                  alt="forex-trend-engine-indicator"
                   className="block w-full object-cover select-none"
                   draggable={false}
                   loading="lazy"

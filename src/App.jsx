@@ -1,7 +1,10 @@
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "./pages/Navbar.jsx";
-import Hero from "./components/Hero.jsx";
+// Removed old Hero since it was shifted to TrendEnginePro
+import HomeHero from "./components/HomeHero.jsx";
+import HomeHeroSecondary from "./components/HomeHeroSecondary.jsx";
+import HomeHeroThird from "./components/HomeHeroThird.jsx";
 import TradingMonsterFooter from "./components/TradingMonsterFooter.jsx";
 import WhyMostTradersLose from "./components/WhyMostTradersLose.jsx";
 import LeadCtaForm from "./components/LeadCtaForm.jsx";
@@ -116,13 +119,9 @@ export default function App() {
             element={
               <main>
                 <Navbar />
-                <Hero />
-                <WhyMostTradersLose />
-                <RulesAINeverBreaksSection />
-                <MultiTimeframeTrendValidatorSection />
-                <LeadCtaForm />
-                <HowTradingMonsterAIDecides />
-                <AITrendEngineSection />
+                <HomeHero />
+                <HomeHeroSecondary />
+                <HomeHeroThird />
                 <TryBeforeYouBuySection />
                 <UnlockFullAccessSection />
               </main>

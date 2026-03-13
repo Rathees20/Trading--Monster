@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import Button from "./ui/Button.jsx";
 import hs1Img from "../assets/HS1.png";
 
 export default function HomeHero() {
+  const navigate = useNavigate();
+
   return (
     <section id="top" className="relative overflow-hidden">
       {/* Background gradients for premium feel without the background image since we use HS1 as main visual */}
@@ -9,7 +12,7 @@ export default function HomeHero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(250,204,21,0.08),transparent_50%),radial-gradient(circle_at_80%_70%,rgba(59,130,246,0.05),transparent_50%)]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 pt-10 pb-12 sm:px-6 sm:pt-16 sm:pb-20 lg:pt-24 lg:pb-28 2xl:max-w-[1440px]">
+      <div className="mx-auto max-w-7xl px-4 pt-10 pb-12 sm:px-6 sm:pt-16 sm:pb-20 lg:pt-12 lg:pb-28 2xl:max-w-[1440px]">
         <div className="grid items-center gap-10 lg:grid-cols-5 lg:gap-12 xl:gap-16">
 
           {/* Left Content */}
@@ -36,6 +39,16 @@ export default function HomeHero() {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-10 lg:mt-12">
+              <Button 
+                onClick={() => navigate("/scanner-pro")}
+                className="group relative h-14 w-full text-base font-bold uppercase tracking-widest sm:w-auto sm:px-10"
+              >
+                Momentum Scanner Pro
+                <div className="absolute inset-0 -z-10 rounded-2xl bg-amber-400 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-40" />
+              </Button>
+            </div>
 
           </div>
 

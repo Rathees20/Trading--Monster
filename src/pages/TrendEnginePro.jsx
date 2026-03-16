@@ -27,14 +27,12 @@ export default function TrendEnginePro() {
                 }
             />
             <WhyMostTradersLose />
+            <TryBeforeYouBuySection />
             <RulesAINeverBreaksSection />
             <MultiTimeframeTrendValidatorSection />
             <LeadCtaForm />
             <HowTradingMonsterAIDecides />
-            <AITrendEngineSection />
 
-            <TryBeforeYouBuySection />
-            
             <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px] pb-24">
                 <FreeTrialForm />
             </div>

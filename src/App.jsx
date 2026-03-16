@@ -34,7 +34,18 @@ function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    if (location.hash) {
+      // If there's a hash, wait a tiny bit for the page to render then scroll to it
+      const id = location.hash.replace('#', '');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
     
     // Minimize Tawk.to widget on all page transitions to match home page behavior
     if (window.Tawk_API && typeof window.Tawk_API.minimize === 'function') {
@@ -44,7 +55,7 @@ function ScrollToTop() {
         console.error("Error minimizing Tawk widget:", err);
       }
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return null;
 }

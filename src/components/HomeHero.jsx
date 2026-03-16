@@ -21,7 +21,7 @@ export default function HomeHero() {
               Identify Momentum. <br />
               <span className="mt-3 block text-amber-450">Trade With Structure.</span>
             </h1>
-            
+
             <h2 className="mt-4 text-lg font-medium text-white/60 sm:text-xl">
               Advanced Forex Trading Indicators for TradingView
             </h2>
@@ -29,9 +29,9 @@ export default function HomeHero() {
             <ul className="mt-8 space-y-4 sm:ml-2 sm:mt-10 lg:space-y-6">
               {[
                 "Momentum Scanner",
-                "Multiple Currency",
+                "Multiple currency  analysis",
                 "Multi Time Frame",
-                "Live Update",
+                "Real Time Update",
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-3 text-base font-semibold text-white/90 sm:text-lg lg:text-xl tracking-wide">
                   <span className="flex h-2 w-2 shrink-0 items-center justify-center rounded-full bg-amber-450 shadow-[0_0_10px_rgba(251,191,36,0.8)]" />
@@ -41,7 +41,7 @@ export default function HomeHero() {
             </ul>
 
             <div className="mt-10 lg:mt-12">
-              <Button 
+              <Button
                 onClick={() => navigate("/scanner-pro")}
                 className="group relative h-14 w-full text-base font-bold uppercase tracking-widest sm:w-auto sm:px-10"
               >

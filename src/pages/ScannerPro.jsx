@@ -328,7 +328,7 @@ export default function ScannerPro() {
                 </div>
             </section>
 
-            {/* NO Trade Section */}
+            {/*NO Trade Section
             <section className="relative bg-[#050505] py-24 overflow-hidden border-t border-white/5">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
@@ -346,7 +346,7 @@ export default function ScannerPro() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>*/}
             {/* Summary Cards: How to Use & Benefits */}
             <section className="relative bg-[#050505] py-24 overflow-hidden border-t border-white/5">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-500/5 blur-[150px] rounded-full pointer-events-none"></div>
@@ -354,25 +354,25 @@ export default function ScannerPro() {
                 <div className="relative z-10 mx-auto max-w-[1920px] px-4 sm:px-6">
                     <div className="grid gap-8 md:grid-cols-2">
                         {/* Card 1: HOW TO USE */}
-                        <div className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-black/40 p-10 backdrop-blur-xl transition-all hover:border-amber-500/30">
+                        <div className="group relative h-full overflow-hidden rounded-[32px] border border-white/10 bg-black/40 p-10 backdrop-blur-xl transition-all hover:border-amber-500/30">
                             <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-amber-500/5 blur-3xl transition-all group-hover:bg-amber-500/10"></div>
 
-                            <h3 className="mb-8 text-2xl font-black text-white italic tracking-tight uppercase">
-                                HOW TO USE <span className="text-amber-500">MOMENTUM SCANNER</span>
+                            <h3 className="mb-8 text-2xl font-black text-white italic tracking-tight">
+                                How to use <span className="text-amber-500">Momentum Scanner</span>
                             </h3>
 
                             <ul className="space-y-6">
                                 {[
-                                    "SELECT TOP BUY ZONE PAIR FOR LONG ENTRY",
-                                    "SELECT TOP SELL ZONE PAIR FOR SHORT ENTRY",
-                                    "STICK WITH HIGH MOMENTUM CURRENCY PAIRS",
-                                    "KEEP PROPER RISK REWARD RATION"
+                                    "Select top Green tab for long entry",
+                                    "Select top Red tab for short entry",
+                                    "Use Trend Engine for entry and exit",
+                                    "Keep proper risk reward ratio"
                                 ].map((text, i) => (
                                     <li key={i} className="flex gap-4">
                                         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-[10px] font-black text-black">
                                             {i + 1}
                                         </div>
-                                        <span className="text-sm font-bold uppercase tracking-wide text-white/70 group-hover:text-white transition-colors">
+                                        <span className="text-sm font-bold tracking-wide text-white/70 group-hover:text-white transition-colors">
                                             {text}
                                         </span>
                                     </li>
@@ -381,20 +381,20 @@ export default function ScannerPro() {
                         </div>
 
                         {/* Card 2: BENEFITS */}
-                        <div className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-black/40 p-10 backdrop-blur-xl transition-all hover:border-blue-500/30">
+                        <div className="group relative h-full overflow-hidden rounded-[32px] border border-white/10 bg-black/40 p-10 backdrop-blur-xl transition-all hover:border-blue-500/30">
                             <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-blue-500/5 blur-3xl transition-all group-hover:bg-blue-500/10"></div>
 
-                            <h3 className="mb-8 text-2xl font-black text-white italic tracking-tight uppercase">
-                                BENEFITS OF <span className="text-blue-500">MOMENTUM SCANNER</span>
+                            <h3 className="mb-8 text-2xl font-black text-white italic tracking-tight">
+                                Benefits of <span className="text-blue-500">Momentum Scanner</span>
                             </h3>
 
                             <ul className="space-y-6">
                                 {[
-                                    "FOCUS ONLY ON HIGH MOMENTUM CURRENCY PAIR",
-                                    "AVOID SIDEWAYS CONDITIONS",
-                                    "STRUCTURED TRADE MANAGEMENT",
-                                    "SAVE TIME FROM SCANNING CHARTS",
-                                    "DESIGNED FOR DISCIPLINED TRADING"
+                                    "Focus only on high momentum currency pair",
+                                    "Avoid sideways conditions",
+                                    "Structured trade management",
+                                    "Save time from scanning charts",
+                                    "Designed for disciplined trading"
                                 ].map((text, i) => (
                                     <li key={i} className="flex gap-4">
                                         <div className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-500">
@@ -402,7 +402,7 @@ export default function ScannerPro() {
                                                 <polyline points="20 6 9 17 4 12"></polyline>
                                             </svg>
                                         </div>
-                                        <span className="text-sm font-bold uppercase tracking-wide text-white/70 group-hover:text-white transition-colors">
+                                        <span className="text-sm font-bold tracking-wide text-white/70 group-hover:text-white transition-colors">
                                             {text}
                                         </span>
                                     </li>

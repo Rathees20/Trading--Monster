@@ -105,9 +105,9 @@ export default function TradingMonsterFooter() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
               <li>
-                <a href="#top" className="transition hover:text-white">
+                <Link to="/" className="transition hover:text-white">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <Link to="/about" className="transition hover:text-white">
@@ -121,14 +121,14 @@ export default function TradingMonsterFooter() {
                 </Link>
               </li>
               <li>
-                <a href="#unlock-full-access" className="transition hover:text-white">
+                <Link to="/#unlock-full-access" className="transition hover:text-white">
                   Pricing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#trial-form" className="transition hover:text-white">
+                <Link to="/#trial-form" className="transition hover:text-white">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

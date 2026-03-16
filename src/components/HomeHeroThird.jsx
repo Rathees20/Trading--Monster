@@ -97,9 +97,9 @@ export default function HomeHeroThird() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-12">
+        <div className="grid items-start gap-12 lg:grid-cols-12">
           {/* Left Header Content */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4 lg:pt-6">
             <h2 className="text-4xl font-bold leading-tight tracking-normal text-white sm:text-5xl lg:text-[56px] xl:text-[64px]">
               Momentum <br />
               Scanner <br />
@@ -110,7 +110,7 @@ export default function HomeHeroThird() {
           {/* Right: Main Card Layout */}
           <div className="lg:col-span-8">
             <div className="relative group w-full rounded-[32px] border border-white/10 bg-black/40 p-4 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:border-amber-450/20 sm:p-6 lg:p-8">
-              
+
               {/* Top of Card: Currency Tabs (Moving Words) */}
               <div className="mb-8 flex flex-col items-center justify-between gap-6 border-b border-white/5 pb-8 lg:flex-row">
                 <div className="w-full lg:w-3/4">
@@ -153,32 +153,32 @@ export default function HomeHeroThird() {
               </div>
 
               {/* Middle of Card: Split Proportions (Chart Left, Table Right) */}
-              <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
-                
+              <div className="grid gap-8 lg:grid-cols-12 lg:items-stretch">
+
                 {/* Left Column: Chart (Image) */}
                 <div className="lg:col-span-8">
-                  <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 shadow-inner">
+                  <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 shadow-inner lg:h-[300px]">
                     <img
                       src={t5Image}
                       alt="tradingview-momentum-scanner-dashboard"
-                      className="w-full h-auto object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100"
+                      className="w-full h-full object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                   </div>
                 </div>
 
                 {/* Right Column: Dynamic Table */}
-                <div className="lg:col-span-4 h-full">
-                  <div className="flex h-full flex-col rounded-2xl border border-white/5 bg-white/5 p-4 backdrop-blur-md">
+                <div className="lg:col-span-4 lg:h-full">
+                  <div className="flex lg:h-[300px] flex-col rounded-2xl border border-white/5 bg-white/5 p-4 backdrop-blur-md">
                     <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-3">
                       <span className="text-xs font-black uppercase tracking-widest text-white/40">Pair</span>
                       <span className="text-xs font-black uppercase tracking-widest text-white/40">Momentum</span>
                     </div>
-                    
-                    <div className="flex flex-col gap-2">
+
+                    <div className="flex flex-col gap-2 overflow-y-auto pr-1 scrollbar-hide">
                       {currentData.map((item, idx) => (
-                        <div 
-                          key={idx} 
+                        <div
+                          key={idx}
                           className="flex items-center justify-between rounded-lg bg-black/30 p-3 ring-1 ring-white/5 transition-all hover:bg-black/50 hover:ring-white/20 animate-fade-in"
                           style={{ animationDelay: `${idx * 100}ms` }}
                         >
@@ -200,9 +200,9 @@ export default function HomeHeroThird() {
                         </div>
                       ))}
                     </div>
-                    
+
                     <div className="mt-auto pt-6 text-center">
-                       <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em]">Live Data Feed Enabled</p>
+                      <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em]">Live Data Feed Enabled</p>
                     </div>
                   </div>
                 </div>
@@ -210,22 +210,22 @@ export default function HomeHeroThird() {
 
               {/* Bottom of Card: Action Row */}
               <div className="mt-10 flex flex-col items-center justify-center gap-6 pt-8 border-t border-white/5 sm:flex-row sm:justify-between">
-                 <div className="hidden sm:flex flex-col">
-                    <p className="text-sm font-black italic text-white/40 uppercase">Secure your demo access</p>
-                    <div className="mt-1 flex items-center gap-1.5">
-                       <div className="h-1 w-12 rounded-full bg-amber-450/40" />
-                       <div className="h-1 w-4 rounded-full bg-amber-450" />
-                    </div>
-                 </div>
+                <div className="hidden sm:flex flex-col">
+                  <p className="text-sm font-black italic text-white/40 uppercase">Secure your demo access</p>
+                  <div className="mt-1 flex items-center gap-1.5">
+                    <div className="h-1 w-12 rounded-full bg-amber-450/40" />
+                    <div className="h-1 w-4 rounded-full bg-amber-450" />
+                  </div>
+                </div>
 
-                 <a href="#trial-form" className="w-full sm:w-auto">
-                    <Button
-                      variant="outline"
-                      className="h-14 w-full sm:w-[320px] rounded-2xl border-2 border-white px-10 text-[18px] font-black uppercase tracking-widest text-white hover:border-amber-450 hover:bg-amber-450 hover:text-black hover:shadow-[0_0_40px_rgba(251,191,36,0.5)] transition-all bg-transparent shadow-[0_20px_60px_rgba(0,0,0,0.5)] active:translate-y-1"
-                    >
-                      Get 3 day free demo
-                    </Button>
-                  </a>
+                <a href="#trial-form" className="w-full sm:w-auto">
+                  <Button
+                    variant="outline"
+                    className="h-14 w-full sm:w-[320px] rounded-2xl border-2 border-white px-10 text-[18px] font-black uppercase tracking-widest text-white hover:border-amber-450 hover:bg-amber-450 hover:text-black hover:shadow-[0_0_40px_rgba(251,191,36,0.5)] transition-all bg-transparent shadow-[0_20px_60px_rgba(0,0,0,0.5)] active:translate-y-1"
+                  >
+                    Get 3 day free demo
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

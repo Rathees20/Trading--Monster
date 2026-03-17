@@ -133,7 +133,7 @@ export default function Navbar() {
                   size="sm"
                   className="h-10 rounded-full px-4 font-bold tracking-wide sm:px-6"
                 >
-                  Get 3 Days Free Demo ;
+                  Get 3 Days Free Demo
                 </Button>
               </a>
 
@@ -247,7 +247,7 @@ export default function Navbar() {
                 <div className="mt-3 grid gap-2">
                   <a href="#trial-form" onClick={() => setMobileOpen(false)}>
                     <Button variant="amber" size="sm" className="h-10 w-full rounded-xl px-6">
-                      Get 3 Days Free Demo ;
+                      Get 3 Days Free Demo
                     </Button>
                   </a>
                   <a href="#trial-form" onClick={() => setMobileOpen(false)}>

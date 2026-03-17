@@ -139,7 +139,7 @@ export default function Navbar() {
 
               <a href="#trial-form" className="hidden sm:block">
                 <Button
-                  variant="amber"
+                  variant="subtle"
                   size="sm"
                   className="h-10 rounded-full px-4 font-extrabold tracking-wide sm:px-6"
                 >
@@ -251,7 +251,7 @@ export default function Navbar() {
                     </Button>
                   </a>
                   <a href="#trial-form" onClick={() => setMobileOpen(false)}>
-                    <Button variant="amber" size="sm" className="h-10 w-full rounded-xl px-6">
+                    <Button variant="subtle" size="sm" className="h-10 w-full rounded-xl px-6">
                       Signup
                     </Button>
                   </a>

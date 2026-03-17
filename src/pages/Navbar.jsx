@@ -127,6 +127,16 @@ export default function Navbar() {
             </nav>
 
             <div className="flex items-center gap-2 sm:gap-3">
+              <a href="#trial-form" className="hidden lg:block">
+                <Button
+                  variant="subtle"
+                  size="sm"
+                  className="h-10 rounded-full px-4 font-bold tracking-wide sm:px-6"
+                >
+                  Get 3 Days Free Demo &gt;
+                </Button>
+              </a>
+
               <a href="#trial-form" className="hidden sm:block">
                 <Button
                   variant="amber"
@@ -235,6 +245,11 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="mt-3 grid gap-2">
+                  <a href="#trial-form" onClick={() => setMobileOpen(false)}>
+                    <Button variant="subtle" size="sm" className="h-10 w-full rounded-xl px-6">
+                      Get 3 Days Free Demo &gt;
+                    </Button>
+                  </a>
                   <a href="#trial-form" onClick={() => setMobileOpen(false)}>
                     <Button variant="amber" size="sm" className="h-10 w-full rounded-xl px-6">
                       Signup

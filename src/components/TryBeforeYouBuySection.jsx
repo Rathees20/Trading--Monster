@@ -5,7 +5,7 @@ export default function TryBeforeYouBuySection() {
   const telegramUrl = "https://t.me/tradingmonsterpro";
 
   return (
-    <section className="relative overflow-hidden py-10 sm:py-20" id="try-before-you-buy">
+    <section className="relative overflow-hidden py-10 sm:pt-20 sm:pb-4" id="try-before-you-buy">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
         <div className="relative overflow-hidden rounded-[28px] bg-[#252525] p-6 ring-1 ring-white/10 sm:rounded-[38px] sm:p-12">
           {/* inner glow + top-right corner graphic */}

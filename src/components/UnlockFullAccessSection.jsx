@@ -46,7 +46,7 @@ export default function UnlockFullAccessSection() {
   };
 
   return (
-    <section className="relative overflow-hidden py-12 sm:py-12" id="unlock-full-access">
+    <section className="relative overflow-hidden py-4 sm:py-4" id="unlock-full-access">
       {/* subtle spotlight like the screenshot */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_50%_10%,rgba(255,176,32,0.18),transparent_60%),radial-gradient(760px_420px_at_20%_50%,rgba(59,130,246,0.10),transparent_60%)]" />
@@ -55,7 +55,7 @@ export default function UnlockFullAccessSection() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
         {/* Main pricing panel */}
-        <div className="relative mt-12 rounded-[24px] border border-white/10 bg-black/45 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[32px] sm:px-10 sm:py-10">
+        <div className="relative mt-0 rounded-[24px] border border-white/10 bg-black/45 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[32px] sm:px-10 sm:py-10">
           {/* top-right star */}
           <div className="absolute right-4 top-4 text-white/35">
             <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">

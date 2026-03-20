@@ -79,7 +79,7 @@ export default function TradingMonsterFooter() {
               </button>
               {/* YouTube icon */}
               <a
-                href="https://www.youtube.com/channel/UCJcj-Z7Y7Q6f4GskvfVJc7g"
+                href="https://www.youtube.com/@tradingmonsterai_official"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-md border border-white/15 bg-[#151515] text-white shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition hover:bg-[#1f1f1f]"

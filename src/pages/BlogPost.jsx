@@ -28,7 +28,7 @@ export default function BlogPost() {
         // Using a general trading/chart image as placeholder
         heroImage: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=2070&auto=format&fit=crop",
         // Secondary media inside content
-        contentVideo: "https://youtu.be/xHU5MHuUSKI?si=1a2-jbWPz6t2dLJY",
+        contentVideo: "https://youtu.be/xYpUIA-L68Q?si=wWmzrLITVYtevkft",
         content: `
             <p>Turn AI-built strategies into live, automated signals with Trading Monster's AI Strategy Alerts. Discover, stress-test, and "Dive Deeper" into any strategy, then stream precise entry/exit alerts to your screen, inbox, or bots. All synced with your existing Trading Monster workflow.</p>
             

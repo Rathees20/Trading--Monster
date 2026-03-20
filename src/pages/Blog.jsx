@@ -72,7 +72,7 @@ export default function Blog() {
         author: "Trading Monster Team",
         date: "Feb 15, 2026",
         image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
-        videoUrl: "https://youtu.be/xHU5MHuUSKI?si=1a2-jbWPz6t2dLJY"
+        videoUrl: "https://youtu.be/xYpUIA-L68Q?si=wWmzrLITVYtevkft"
     };
 
     const sidePosts = [

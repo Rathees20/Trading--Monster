@@ -178,7 +178,7 @@ function MultiTimeframeMomentumSection() {
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
                 <div className="mb-12 text-left">
-                    <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-tight uppercase italic leading-none">
+                    <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-none">
                         MULTI TIME FRAME <span className="text-amber-450">MOMENTUM ANALYSIS</span>
                     </h2>
                 </div>
@@ -200,7 +200,7 @@ function MultiTimeframeMomentumSection() {
                             <div className="absolute -inset-4 rounded-full bg-amber-500/20 blur-2xl animate-pulse delay-700"></div>
 
                             {/* Label */}
-                            <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-amber-500 px-2 py-1 text-[10px] font-black text-black uppercase tracking-tighter shadow-lg">
+                            <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-amber-500 px-2 py-1 text-[10px] font-black text-black uppercase tracking-wider shadow-lg">
                                 Multi-Timeframe Selection
                                 <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-x-4 border-x-transparent border-t-4 border-t-amber-500"></div>
                             </div>
@@ -293,10 +293,10 @@ export default function ScannerPro() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none"></div>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
                     <div className="mb-12 text-left">
-                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-tight uppercase italic leading-none">
+                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-none">
                             BUY <span className="text-emerald-500">TRADE</span>
                         </h2>
-                        <p className="mt-4 text-lg font-bold text-white/40 uppercase tracking-widest">Strong Momentum in buy side</p>
+                        <p className="mt-4 text-lg font-bold text-emerald-500/80 tracking-widest">Strong momentum in buy side</p>
                     </div>
                     <div className="relative group mx-auto max-w-5xl">
                         <div className="absolute -inset-1 rounded-[32px] bg-gradient-to-b from-emerald-500/20 to-transparent blur-sm opacity-50 transition-opacity group-hover:opacity-100"></div>
@@ -313,10 +313,10 @@ export default function ScannerPro() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-500/5 blur-[120px] rounded-full pointer-events-none"></div>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
                     <div className="mb-12 text-left">
-                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-tight uppercase italic leading-none">
+                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-none">
                             Sell <span className="text-rose-500">Trade</span>
                         </h2>
-                        <p className="mt-4 text-lg font-bold text-white/40 uppercase tracking-widest">Strong Momentum in sell side</p>
+                        <p className="mt-4 text-lg font-bold text-rose-500/80 tracking-widest">Strong momentum in sell side</p>
                     </div>
                     <div className="relative group mx-auto max-w-5xl">
                         <div className="absolute -inset-1 rounded-[32px] bg-gradient-to-b from-rose-500/20 to-transparent blur-sm opacity-50 transition-opacity group-hover:opacity-100"></div>
@@ -333,7 +333,7 @@ export default function ScannerPro() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
                     <div className="mb-12 text-left">
-                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-tight uppercase italic leading-none">
+                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-none">
                             NO <span className="text-white/60">Trade</span>
                         </h2>
                         <p className="mt-4 text-lg font-bold text-white/40 uppercase tracking-widest">Low Momentum - Side ways move</p>
@@ -357,7 +357,7 @@ export default function ScannerPro() {
                         <div className="group relative h-full overflow-hidden rounded-[32px] border border-white/10 bg-black/40 p-10 backdrop-blur-xl transition-all hover:border-amber-500/30">
                             <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-amber-500/5 blur-3xl transition-all group-hover:bg-amber-500/10"></div>
 
-                            <h3 className="mb-8 text-2xl font-black text-white italic tracking-tight">
+                            <h3 className="mb-8 text-2xl font-black text-white italic tracking-wide">
                                 How to use <span className="text-amber-500">Momentum Scanner</span>
                             </h3>
 

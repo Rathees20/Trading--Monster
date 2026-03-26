@@ -98,10 +98,10 @@ function ScannerHero() {
                     {/* Left Side: Feature Points */}
                     <div className="lg:col-span-3 flex flex-col gap-6 order-2 lg:order-1">
                         {[
-                            "SCAN MULTIPLE PAIRS",
-                            "RANKS MOMENTUM",
-                            "DETECTS STRONG MOVES",
-                            "LIVE UPDATE"
+                            "Scan multiple pairs",
+                            "Ranks momentum",
+                            "Detects strong moves",
+                            "Live update"
                         ].map((text, idx) => (
                             <div
                                 key={idx}
@@ -114,7 +114,7 @@ function ScannerHero() {
                                     </svg>
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-lg font-black tracking-tight text-white uppercase italic leading-none group-hover/item:text-amber-500 transition-colors">
+                                    <span className="text-lg font-black tracking-wide text-white italic leading-none group-hover/item:text-amber-500 transition-colors">
                                         {text}
                                     </span>
                                     <div className="mt-1 h-[2px] w-0 bg-amber-500 transition-all duration-300 group-hover/item:w-full"></div>

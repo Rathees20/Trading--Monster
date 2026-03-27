@@ -88,7 +88,7 @@ function ScannerHero() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
                 {/* Bigger font title as requested */}
                 <div className="mb-12 text-center">
-                    <h1 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-[0.9]">
+                    <h1 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide italic leading-[0.9]">
                         Momentum Scanner – <span className="text-amber-450">Identify Strong Market Movement</span>
                     </h1>
                 </div>
@@ -178,8 +178,8 @@ function MultiTimeframeMomentumSection() {
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
                 <div className="mb-12 text-left">
-                    <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-none">
-                        MULTI TIME FRAME <span className="text-amber-450">MOMENTUM ANALYSIS</span>
+                    <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide italic leading-none">
+                        Multi Time Frame <span className="text-amber-450">Momentum Analysis</span>
                     </h2>
                 </div>
 
@@ -232,7 +232,7 @@ function TrialFormSection() {
                     <div className="inline-block rounded-full bg-amber-500/10 px-4 py-1.5 text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 ring-1 ring-amber-500/30">
                         Limited Time Offer
                     </div>
-                    <h4 className="text-3xl font-black text-white mb-2 uppercase italic">Start Your trial now</h4>
+                    <h4 className="text-3xl font-black text-white mb-2 italic">Start Your trial now</h4>
                     <p className="text-white/50 text-sm font-medium">Experience the power of our real-time momentum scanner.</p>
                 </div>
 
@@ -293,8 +293,8 @@ export default function ScannerPro() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none"></div>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
                     <div className="mb-12 text-left">
-                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-none">
-                            BUY <span className="text-emerald-500">TRADE</span>
+                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide italic leading-none">
+                            Buy <span className="text-emerald-500">Trade</span>
                         </h2>
                         <p className="mt-4 text-lg font-bold text-emerald-500/80 tracking-widest">Strong momentum in buy side</p>
                     </div>
@@ -313,7 +313,7 @@ export default function ScannerPro() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-500/5 blur-[120px] rounded-full pointer-events-none"></div>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
                     <div className="mb-12 text-left">
-                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide uppercase italic leading-none">
+                        <h2 className="text-2xl font-black text-white sm:text-3xl lg:text-4xl tracking-wide italic leading-none">
                             Sell <span className="text-rose-500">Trade</span>
                         </h2>
                         <p className="mt-4 text-lg font-bold text-rose-500/80 tracking-widest">Strong momentum in sell side</p>

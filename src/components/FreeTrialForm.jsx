@@ -34,34 +34,51 @@ export default function FreeTrialForm() {
         onSubmit={async (e) => {
           e.preventDefault();
 
+          const btn = e.target.querySelector('button');
+          const originalText = btn.innerHTML;
+
+          btn.innerHTML = "Submitting...";
+          btn.disabled = true;
+
           try {
-            const res = await fetch(
-              "https://script.google.com/macros/s/AKfycbzwKPhQ3vEOeEK6K29gteY3M_NkLWCMTXReSVI-PpqTiTVjmHg0lbZbQyqTYbj0FkaNng/exec",
+            await fetch(
+              "https://script.google.com/macros/s/AKfycbxh84kGpvH4iEH1Krb4oFJsNP9VT6sTlJYOd7IFWGtDBxHXbvn4k-IqKoWZXWz7wV4hVQ/exec",
               {
                 method: "POST",
+                mode: "no-cors",
+                headers: {
+                  "Content-Type": "text/plain"
+                },
                 body: JSON.stringify({
                   name: name.trim(),
                   email: email.trim(),
                   tradingviewId: tradingviewId.trim(),
-                  whatsapp: whatsapp.trim(),
-                }),
+                  whatsapp: whatsapp.trim(), // Reverted to 'whatsapp' to match script
+                  formType: "trader",        // Reverted to 'trader' to match script
+                  timestamp: new Date().toISOString()
+                })
               }
             );
 
-            const data = await res.json();
+            // Reset form
+            setName("");
+            setEmail("");
+            setTradingviewId("");
+            setWhatsapp("");
 
-            if (data.success) {
-              setName("");
-              setEmail("");
-              setTradingviewId("");
-              setWhatsapp("");
-              navigate("/thank-you");
-            } else {
-              alert("Something went wrong");
-            }
+            // Redirect
+            navigate("/thank-you");
+
           } catch (err) {
-            console.error(err);
-            alert("Submission failed");
+            console.error("Submit error:", err);
+
+            // Still redirect (optional)
+            navigate("/thank-you");
+
+          } finally {
+            // Restore button (important fix)
+            btn.innerHTML = originalText;
+            btn.disabled = false;
           }
         }}
       >

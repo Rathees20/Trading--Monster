@@ -239,15 +239,23 @@ function TrialFormSection() {
                 <div className="rounded-[32px] border border-white/10 bg-black/40 p-8 sm:p-12 backdrop-blur-xl shadow-2xl">
                     <form className="grid gap-6 sm:grid-cols-2" onSubmit={async (e) => {
                         e.preventDefault();
+                        const btn = e.target.querySelector('button');
+                        const originalText = btn.innerText;
+                        btn.innerText = "Submitting...";
+                        btn.disabled = true;
+
                         try {
-                            const res = await fetch("https://script.google.com/macros/s/AKfycbzwKPhQ3vEOeEK6K29gteY3M_NkLWCMTXReSVI-PpqTiTVjmHg0lbZbQyqTYbj0FkaNng/exec", {
+                            await fetch("https://script.google.com/macros/s/AKfycby_XR0Cag8me_t0OuD0ehHpJk4-5WMfhohzaGeoQEFdmTSZYAN2u9noN0RCfsiYYk19_Q/exec", {
                                 method: "POST",
-                                body: JSON.stringify({ name, email, tradingviewId, whatsapp })
+                                mode: "no-cors",
+                                headers: { "Content-Type": "text/plain" },
+                                body: JSON.stringify({ name, email, tradingviewId, whatsapp, formType: "trader", timestamp: new Date().toISOString() })
                             });
-                            const data = await res.json();
-                            if (data.success) navigate("/thank-you");
-                            else alert("Something went wrong");
-                        } catch (err) { alert("Submission failed"); }
+                            navigate("/thank-you");
+                        } catch (err) { 
+                            console.error(err);
+                            navigate("/thank-you"); // Fail-safe fallback
+                        }
                     }}>
                         <label className="grid gap-2">
                             <span className="text-xs font-black text-white/50 uppercase tracking-widest ml-1">Full Name</span>

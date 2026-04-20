@@ -130,6 +130,11 @@ export default function TradingMonsterFooter() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link to="/social-media-form" target="_blank" className="transition hover:text-white">
+                  Affiliate Form
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -27,6 +27,7 @@ import LegalNoticePrivacy from "./pages/legal/LegalNoticePrivacy.jsx";
 import LegalNoticeCookie from "./pages/legal/LegalNoticeCookie.jsx";
 import CancellationPolicy from "./pages/legal/CancellationPolicy.jsx";
 import ThankYouPage from "./pages/ThankYouPage.jsx";
+import SocialMediaSubmission from "./pages/SocialMediaSubmission.jsx";
 import BlockedCountry from "./pages/BlockedCountry.jsx";
 import logoImg from "./assets/logo.jpeg";
 
@@ -151,6 +152,7 @@ export default function App() {
           <Route path="/cookie-policy" element={<LegalNoticeCookie />} />
           <Route path="/cancellation-policy" element={<CancellationPolicy />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/social-media-form" element={<SocialMediaSubmission />} />
         </Routes>
       </div>
       <TradingMonsterFooter />

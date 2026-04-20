@@ -245,7 +245,7 @@ function TrialFormSection() {
                         btn.disabled = true;
 
                         try {
-                            await fetch("https://script.google.com/macros/s/AKfycby_XR0Cag8me_t0OuD0ehHpJk4-5WMfhohzaGeoQEFdmTSZYAN2u9noN0RCfsiYYk19_Q/exec", {
+                            await fetch("https://script.google.com/macros/s/AKfycbxh84kGpvH4iEH1Krb4oFJsNP9VT6sTlJYOd7IFWGtDBxHXbvn4k-IqKoWZXWz7wV4hVQ/exec", {
                                 method: "POST",
                                 mode: "no-cors",
                                 headers: { "Content-Type": "text/plain" },

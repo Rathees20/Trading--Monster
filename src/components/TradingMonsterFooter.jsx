@@ -132,7 +132,7 @@ export default function TradingMonsterFooter() {
               </li>
               <li>
                 <Link to="/social-media-form" className="transition hover:text-white">
-                  Affiliate Form
+                  Affiliate
                 </Link>
               </li>
             </ul>

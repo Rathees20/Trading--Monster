@@ -44,15 +44,15 @@ export default function Navbar() {
     <header className="relative z-10 border-b border-white/10 bg-black/30 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link to="/" className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link to="/" className="flex items-center gap-2 sm:gap-3">
               <img
                 src={logoImg}
                 alt="Trading Monster"
-                className="h-10 w-10 select-none"
+                className="h-8 w-8 sm:h-10 sm:w-10 select-none"
                 draggable="false"
               />
-              <span className="text-sm font-semibold tracking-wide text-white/90">
+              <span className="text-[11px] sm:text-sm font-semibold tracking-wide text-white/90">
                 TRADING <span className="text-amber-450">MONSTER</span>
               </span>
             </Link>
@@ -127,13 +127,14 @@ export default function Navbar() {
             </nav>
 
             <div className="flex items-center gap-2 sm:gap-3">
-              <a href="#trial-form" className="hidden lg:block">
+              <a href="#trial-form" className="block">
                 <Button
                   variant="amber"
                   size="sm"
-                  className="h-10 rounded-full px-4 font-bold tracking-wide sm:px-6"
+                  className="h-8 sm:h-10 rounded-full px-3 sm:px-6 text-[10px] sm:text-sm font-bold tracking-wide whitespace-nowrap"
                 >
-                  Get 3 Days Free Demo
+                  <span className="sm:hidden">Free Demo</span>
+                  <span className="hidden sm:inline">Get 3 Days Free Demo</span>
                 </Button>
               </a>
 
@@ -152,9 +153,9 @@ export default function Navbar() {
                 aria-label="Open menu"
                 aria-expanded={mobileOpen}
                 onClick={() => setMobileOpen((v) => !v)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/85 transition hover:bg-white/10 hover:text-white md:hidden"
+                className="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/85 transition hover:bg-white/10 hover:text-white md:hidden"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
                     d="M4 7h16M4 12h16M4 17h16"
                     stroke="currentColor"
@@ -245,11 +246,6 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="mt-3 grid gap-2">
-                  <a href="#trial-form" onClick={() => setMobileOpen(false)}>
-                    <Button variant="amber" size="sm" className="h-10 w-full rounded-xl px-6">
-                      Get 3 Days Free Demo
-                    </Button>
-                  </a>
                   <a href="#trial-form" onClick={() => setMobileOpen(false)}>
                     <Button variant="subtle" size="sm" className="h-10 w-full rounded-xl px-6">
                       Signup

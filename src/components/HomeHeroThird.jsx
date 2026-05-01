@@ -99,8 +99,8 @@ export default function HomeHeroThird() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-12">
           {/* Left Header Content */}
-          <div className="lg:col-span-4 lg:pt-6">
-            <h2 className="text-4xl font-bold leading-tight tracking-normal text-white sm:text-5xl lg:text-[56px] xl:text-[64px]">
+          <div className="lg:col-span-4 lg:pt-6 text-left min-w-0">
+            <h2 className="text-[32px] font-bold leading-tight tracking-normal text-white sm:text-5xl lg:text-[56px] xl:text-[64px]">
               Momentum <br />
               Scanner <br />
               <span className="mt-3 block text-amber-450">For Currency</span>
@@ -108,12 +108,12 @@ export default function HomeHeroThird() {
           </div>
 
           {/* Right: Main Card Layout */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 min-w-0">
             <div className="relative group w-full rounded-[32px] border border-white/10 bg-black/40 p-4 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:border-amber-450/20 sm:p-6 lg:p-8">
 
               {/* Top of Card: Currency Tabs (Moving Words) */}
               <div className="mb-8 flex flex-col items-center justify-between gap-6 border-b border-white/5 pb-8 lg:flex-row">
-                <div className="w-full lg:w-3/4">
+                <div className="w-full lg:w-3/4 min-w-0">
                   <div
                     ref={scrollContainerRef}
                     className="flex items-center gap-6 overflow-x-auto pb-2 scrollbar-hide sm:gap-10 text-xl font-black uppercase italic"
@@ -157,7 +157,7 @@ export default function HomeHeroThird() {
 
                 {/* Left Column: Chart (Image) */}
                 <div className="lg:col-span-8">
-                  <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 shadow-inner lg:h-[300px]">
+                  <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 shadow-inner h-[200px] sm:h-[250px] lg:h-[300px]">
                     <img
                       src={t5Image}
                       alt="tradingview-momentum-scanner-dashboard"
@@ -169,7 +169,7 @@ export default function HomeHeroThird() {
 
                 {/* Right Column: Dynamic Table */}
                 <div className="lg:col-span-4 lg:h-full">
-                  <div className="flex lg:h-[300px] flex-col rounded-2xl border border-white/5 bg-white/5 p-4 backdrop-blur-md">
+                  <div className="flex h-[300px] flex-col rounded-2xl border border-white/5 bg-white/5 p-4 backdrop-blur-md">
                     <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-3">
                       <span className="text-xs font-black uppercase tracking-widest text-white/40">Pair</span>
                       <span className="text-xs font-black uppercase tracking-widest text-white/40">Momentum</span>
@@ -221,7 +221,7 @@ export default function HomeHeroThird() {
                 <a href="#trial-form" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
-                    className="h-14 w-full sm:w-[320px] rounded-2xl border-2 border-white px-10 text-[18px] font-black uppercase tracking-widest text-white hover:border-amber-450 hover:bg-amber-450 hover:text-black hover:shadow-[0_0_40px_rgba(251,191,36,0.5)] transition-all bg-transparent shadow-[0_20px_60px_rgba(0,0,0,0.5)] active:translate-y-1"
+                    className="h-12 sm:h-14 w-full sm:w-[320px] rounded-2xl border-2 border-white px-4 sm:px-10 text-[14px] sm:text-[18px] font-black uppercase tracking-widest text-white hover:border-amber-450 hover:bg-amber-450 hover:text-black hover:shadow-[0_0_40px_rgba(251,191,36,0.5)] transition-all bg-transparent shadow-[0_20px_60px_rgba(0,0,0,0.5)] active:translate-y-1"
                   >
                     Get 3 day free demo
                   </Button>

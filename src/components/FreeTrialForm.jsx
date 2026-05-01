@@ -18,13 +18,13 @@ export default function FreeTrialForm() {
   return (
     <div
       id="trial-form"
-      className="mt-14 rounded-[26px] border border-white/12 bg-[radial-gradient(900px_520px_at_50%_0%,rgba(255,176,32,0.18),transparent_65%),radial-gradient(860px_520px_at_0%_100%,rgba(59,130,246,0.20),transparent_65%)] px-6 py-7 shadow-[0_26px_90px_rgba(0,0,0,0.55)] sm:px-10 sm:py-10"
+      className="mt-14 rounded-[24px] sm:rounded-[26px] border border-white/12 bg-[radial-gradient(900px_520px_at_50%_0%,rgba(255,176,32,0.18),transparent_65%),radial-gradient(860px_520px_at_0%_100%,rgba(59,130,246,0.20),transparent_65%)] p-5 shadow-[0_26px_90px_rgba(0,0,0,0.55)] sm:px-10 sm:py-10"
     >
       <div className="flex flex-col items-center gap-3 text-center sm:gap-4">
-        <div className="rounded-full bg-amber-450/95 px-6 py-2.5 text-[13px] font-extrabold uppercase tracking-wide text-black shadow-[0_18px_55px_rgba(255,180,20,0.35)] ring-1 ring-black/10 sm:text-sm">
-          Start Your 3-Day Free Trial
-        </div>
-        <p className="max-w-2xl text-[11px] leading-5 text-white/70 sm:text-xs">
+        <h3 className="text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+          Start Your <span className="text-amber-450">3-Day Free Trial</span>
+        </h3>
+        <p className="max-w-2xl text-xs leading-5 text-white/70 sm:text-sm">
           Fill the below form to activate your 3-day free trial.
         </p>
       </div>
@@ -83,7 +83,7 @@ export default function FreeTrialForm() {
         }}
       >
         <label className="grid gap-1 sm:col-span-1">
-          <span className="text-xs font-semibold tracking-wide text-white/80 sm:text-[15px]">
+          <span className="text-[13px] font-semibold tracking-wide text-white/80 sm:text-[15px]">
             Name
           </span>
           <input
@@ -99,7 +99,7 @@ export default function FreeTrialForm() {
         </label>
 
         <label className="grid gap-1 sm:col-span-1">
-          <span className="text-xs font-semibold tracking-wide text-white/80 sm:text-[15px]">
+          <span className="text-[13px] font-semibold tracking-wide text-white/80 sm:text-[15px]">
             Email
           </span>
           <input
@@ -115,7 +115,7 @@ export default function FreeTrialForm() {
         </label>
 
         <label className="grid gap-1 sm:col-span-1">
-          <span className="text-xs font-semibold tracking-wide text-white/80 sm:text-[15px]">
+          <span className="text-[13px] font-semibold tracking-wide text-white/80 sm:text-[15px]">
             TradingView User ID
           </span>
           <input
@@ -131,7 +131,7 @@ export default function FreeTrialForm() {
         </label>
 
         <label className="grid gap-1 sm:col-span-1">
-          <span className="text-xs font-semibold tracking-wide text-white/80 sm:text-[15px]">
+          <span className="text-[13px] font-semibold tracking-wide text-white/80 sm:text-[15px]">
             WhatsApp No. <span className="text-white/40">(optional)</span>
           </span>
           <input
@@ -148,7 +148,7 @@ export default function FreeTrialForm() {
         <button
           type="submit"
           disabled={!canSubmit}
-          className="mt-3 h-12 w-full rounded-full bg-[#2E6BFF] px-6 text-[12px] font-extrabold uppercase tracking-wide text-white shadow-[0_18px_45px_rgba(46,107,255,0.45)] transition hover:bg-[#2E6BFF]/90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 sm:col-span-2"
+          className="mt-3 h-12 w-full rounded-full bg-[#2E6BFF] px-4 sm:px-6 text-[12px] sm:text-[13px] font-extrabold uppercase tracking-wide text-white shadow-[0_18px_45px_rgba(46,107,255,0.45)] transition hover:bg-[#2E6BFF]/90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 sm:col-span-2 whitespace-nowrap"
         >
           Submit & Request Access
         </button>

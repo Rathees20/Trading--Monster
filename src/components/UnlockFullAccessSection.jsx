@@ -55,7 +55,7 @@ export default function UnlockFullAccessSection() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 2xl:max-w-[1440px]">
         {/* Main pricing panel */}
-        <div className="relative mt-0 rounded-[24px] border border-white/10 bg-black/45 px-6 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[32px] sm:px-10 sm:py-10">
+        <div className="relative mt-0 rounded-[24px] border border-white/10 bg-black/45 px-4 py-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[32px] sm:px-10 sm:py-10">
           {/* top-right star */}
           <div className="absolute right-4 top-4 text-white/35">
             <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">

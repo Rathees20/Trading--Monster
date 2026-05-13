@@ -38,6 +38,7 @@ export default function Navbar() {
   const proIndicators = [
     { label: "Trend Engine Pro", to: "/trend-engine-pro" },
     { label: "Scanner Pro", to: "/scanner-pro" },
+    { label: "Dynamic & Support and Resistance Pro", to: "/dynamic-support-resistance-pro" },
   ];
 
   return (

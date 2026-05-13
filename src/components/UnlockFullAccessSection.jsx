@@ -29,10 +29,10 @@ export default function UnlockFullAccessSection() {
   ];
 
   const proPlans = [
-    { label: "Monthly", price: 99, term: "Month", features: ["Trend Engine with Alert", "Momentum Scanner", "Break out Scanner", "Discord Community", "Priority Support", "User Guide & Tutorials"], stripeLink: "https://buy.stripe.com/eVq9AUbjlc5Uf2Qc2p77O07" },
-    { label: "Quarterly", price: 269, term: "3 Months", popular: true, features: ["Trend Engine with Alert", "Momentum Scanner", "Break out Scanner", "Discord Community", "Priority Support", "User Guide & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/9B614o5Z15HwdYMfeB77O04" },
-    { label: "Half-yearly", price: 529, term: "6 Months", features: ["Trend Engine with Alert", "Momentum Scanner", "Break out Scanner", "Discord Community", "Priority Support", "User Guide & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/aFa5kE1IL2vk7Ao0jH77O05" },
-    { label: "Yearly", price: 999, term: "Year", best: true, features: ["Trend Engine with Alert", "Momentum Scanner", "Break out Scanner", "Discord Community", "Priority Support", "User Guide & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/cNi28s0EHgma1c0giF77O06" },
+    { label: "Monthly", price: 99, term: "Month", features: ["Trend Engine with Alert", "Momentum Scanner", "Dynamic Support and Resistance", "Break out Scanner", "Discord Community", "Priority Support", "User Guide & Tutorials"], stripeLink: "https://buy.stripe.com/eVq9AUbjlc5Uf2Qc2p77O07" },
+    { label: "Quarterly", price: 269, term: "3 Months", popular: true, features: ["Trend Engine with Alert", "Momentum Scanner", "Dynamic Support and Resistance", "Break out Scanner", "Discord Community", "Priority Support", "User Guide & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/9B614o5Z15HwdYMfeB77O04" },
+    { label: "Half-yearly", price: 529, term: "6 Months", features: ["Trend Engine with Alert", "Momentum Scanner", "Dynamic Support and Resistance", "Break out Scanner", "Discord Community", "Priority Support", "User Guide & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/aFa5kE1IL2vk7Ao0jH77O05" },
+    { label: "Yearly", price: 999, term: "Year", best: true, features: ["Trend Engine with Alert", "Momentum Scanner", "Dynamic Support and Resistance", "Break out Scanner", "Discord Community", "Priority Support", "User Guide & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/cNi28s0EHgma1c0giF77O06" },
   ];
 
   const currentPlans = activePlanType === "basic" ? basicPlans : proPlans;

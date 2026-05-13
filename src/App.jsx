@@ -16,6 +16,7 @@ import TryBeforeYouBuySection from "./components/TryBeforeYouBuySection.jsx";
 import UnlockFullAccessSection from "./components/UnlockFullAccessSection.jsx";
 import TrendEnginePro from "./pages/TrendEnginePro.jsx";
 import ScannerPro from "./pages/ScannerPro.jsx";
+import DynamicSupportResistancePro from "./pages/DynamicSupportResistancePro.jsx";
 import About from "./pages/About.jsx";
 import FAQ from "./pages/FAQ.jsx";
 import Blog from "./pages/Blog.jsx";
@@ -99,7 +100,7 @@ export default function App() {
 
   return (
     <div className="tm-bg min-h-dvh text-white flex flex-col">
-      {location.pathname !== "/" && location.pathname !== "/trend-engine-pro" && location.pathname !== "/scanner-pro" && (
+      {location.pathname !== "/" && location.pathname !== "/trend-engine-pro" && location.pathname !== "/scanner-pro" && location.pathname !== "/dynamic-support-resistance-pro" && (
         <header className="border-b border-white/10 bg-black/80 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-8 lg:px-10">
             <Link to="/" className="flex items-center gap-3">
@@ -141,6 +142,7 @@ export default function App() {
           />
           <Route path="/trend-engine-pro" element={<TrendEnginePro />} />
           <Route path="/scanner-pro" element={<ScannerPro />} />
+          <Route path="/dynamic-support-resistance-pro" element={<DynamicSupportResistancePro />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />

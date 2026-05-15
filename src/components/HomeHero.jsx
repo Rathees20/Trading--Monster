@@ -15,8 +15,20 @@ export default function HomeHero() {
       <div className="mx-auto max-w-7xl px-4 pt-10 pb-12 sm:px-6 sm:pt-16 sm:pb-20 lg:pt-12 lg:pb-28 2xl:max-w-[1440px]">
         <div className="grid items-center gap-10 lg:grid-cols-5 lg:gap-12 xl:gap-16">
 
-          {/* Left Content */}
-          <div className="order-2 lg:order-1 flex flex-col justify-center lg:col-span-2">
+          {/* Left Image (Swap to Left) */}
+          <div className="order-1 lg:order-1 perspective-[1000px] lg:col-span-3">
+            <div className="relative group rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-2 shadow-2xl backdrop-blur-sm sm:p-4 transition-transform duration-500 hover:-rotate-y-2 hover:rotate-x-2">
+              <div className="absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl bg-amber-450/10 opacity-50 blur-2xl transition-opacity duration-500 group-hover:opacity-100 group-hover:bg-amber-450/20" />
+              <img
+                src={hs1Img}
+                alt="forex-momentum-scanner-xauusd-tradingmonster-ai"
+                className="w-full h-auto rounded-xl sm:rounded-2xl border border-white/10 shadow-inner object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Right Content (Swap to Right) */}
+          <div className="order-2 lg:order-2 flex flex-col justify-center lg:col-span-2">
             <h1 className="text-3xl font-bold leading-tight tracking-normal text-white sm:text-4xl lg:text-[44px]">
               Identify Momentum. <br />
               <span className="mt-3 block text-amber-450">Trade With Structure.</span>
@@ -48,21 +60,6 @@ export default function HomeHero() {
                 Momentum Scanner Pro
                 <div className="absolute inset-0 -z-10 rounded-2xl bg-amber-400 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-40" />
               </Button>
-            </div>
-
-          </div>
-
-          {/* Right Image */}
-          <div className="order-1 lg:order-2 perspective-[1000px] lg:col-span-3">
-            {/* Adding a gentle glassmorphism frame around the image layout */}
-            <div className="relative group rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-2 shadow-2xl backdrop-blur-sm sm:p-4 transition-transform duration-500 hover:rotate-y-2 hover:rotate-x-2">
-              {/* Glow effect that intensifies on hover */}
-              <div className="absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl bg-amber-450/10 opacity-50 blur-2xl transition-opacity duration-500 group-hover:opacity-100 group-hover:bg-amber-450/20" />
-              <img
-                src={hs1Img}
-                alt="forex-momentum-scanner-xauusd-tradingmonster-ai"
-                className="w-full h-auto rounded-xl sm:rounded-2xl border border-white/10 shadow-inner object-cover"
-              />
             </div>
           </div>
         </div>

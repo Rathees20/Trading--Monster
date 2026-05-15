@@ -98,17 +98,8 @@ export default function HomeHeroThird() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-12">
-          {/* Left Header Content */}
-          <div className="lg:col-span-4 lg:pt-6 text-left min-w-0">
-            <h2 className="text-[32px] font-bold leading-tight tracking-normal text-white sm:text-5xl lg:text-[56px] xl:text-[64px]">
-              Momentum <br />
-              Scanner <br />
-              <span className="mt-3 block text-amber-450">For Currency</span>
-            </h2>
-          </div>
-
-          {/* Right: Main Card Layout */}
-          <div className="lg:col-span-8 min-w-0">
+          {/* Left: Main Card Layout */}
+          <div className="lg:col-span-8 order-2 lg:order-1 min-w-0">
             <div className="relative group w-full rounded-[32px] border border-white/10 bg-black/40 p-4 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:border-amber-450/20 sm:p-6 lg:p-8">
 
               {/* Top of Card: Currency Tabs (Moving Words) */}
@@ -228,6 +219,15 @@ export default function HomeHeroThird() {
                 </a>
               </div>
             </div>
+          </div>
+
+          {/* Right Header Content */}
+          <div className="lg:col-span-4 lg:pt-6 text-center order-1 lg:order-2 min-w-0">
+            <h2 className="text-[32px] font-bold leading-tight tracking-normal text-white sm:text-5xl lg:text-[56px] xl:text-[64px]">
+              Momentum <br />
+              Scanner <br />
+              <span className="mt-3 block text-amber-450">For Currency</span>
+            </h2>
           </div>
         </div>
       </div>

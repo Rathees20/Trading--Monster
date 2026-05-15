@@ -2,6 +2,7 @@ import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "./pages/Navbar.jsx";
 // Removed old Hero since it was shifted to TrendEnginePro
+import HomeHeroPrimary from "./components/HomeHeroPrimary.jsx";
 import HomeHero from "./components/HomeHero.jsx";
 import HomeHeroSecondary from "./components/HomeHeroSecondary.jsx";
 import HomeHeroThird from "./components/HomeHeroThird.jsx";
@@ -132,6 +133,7 @@ export default function App() {
             element={
               <main>
                 <Navbar />
+                <HomeHeroPrimary />
                 <HomeHero />
                 <HomeHeroSecondary />
                 <HomeHeroThird />

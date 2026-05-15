@@ -151,7 +151,7 @@ export default function UnlockFullAccessSection() {
 
                     <ul className="mt-8 space-y-3 text-left">
                       {plan.features.map((feature, idx) => {
-                        const isHighlighted = feature === "Momentum Scanner" || feature === "Alert";
+                        const isHighlighted = feature === "Momentum Scanner" || feature === "Alert" || feature === "Dynamic Support and Resistance";
                         return (
                           <li key={idx} className={["flex items-start gap-2.5 text-[11px]", isHighlighted ? "font-bold text-sky-400 bg-sky-500/10 ring-1 ring-sky-500/30 px-2 py-1.5 rounded-lg -mx-2" : "text-white/70"].join(" ")}>
                             <svg className={["mt-0.5 h-3.5 w-3.5 shrink-0", isHighlighted ? "text-sky-400" : "text-amber-400"].join(" ")} fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor">

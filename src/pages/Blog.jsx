@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { initialBlogs } from "../data/initialBlogs.js";
 
 export default function Blog() {
     const categories = [
@@ -18,6 +19,21 @@ export default function Blog() {
     };
 
     const [activeCategory, setActiveCategory] = useState("Recent");
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        let storedPosts = localStorage.getItem("tm_blog_posts");
+        if (!storedPosts) {
+            localStorage.setItem("tm_blog_posts", JSON.stringify(initialBlogs));
+            storedPosts = JSON.stringify(initialBlogs);
+        }
+        try {
+            setPosts(JSON.parse(storedPosts));
+        } catch (e) {
+            console.error("Error parsing blog posts from localStorage:", e);
+            setPosts(initialBlogs);
+        }
+    }, []);
 
     const handleCategoryChange = (category) => {
         setActiveCategory(category);
@@ -33,11 +49,11 @@ export default function Blog() {
                 return (
                     <div className="relative w-full h-full pb-[56.25%]">
                         <iframe
-                            src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`}
+							src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`}
                             title={post.title}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
-                            className="absolute top-0 left-0 w-full h-full rounded-xl"
+                            className="absolute top-0 left-0 w-full h-full rounded-xl border-0"
                         ></iframe>
                     </div>
                 );
@@ -64,175 +80,49 @@ export default function Blog() {
         );
     };
 
-    const featuredPost = {
-        id: 1,
-        title: "Mastering the Trend Engine: A Complete Guide",
-        excerpt: "Learn how the AI Trend Engine processes multi-timeframe data to find the highest probability setups in the current market conditions.",
-        category: "Product Updates",
-        author: "Trading Monster Team",
-        date: "Feb 15, 2026",
-        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
-        videoUrl: "https://youtu.be/xYpUIA-L68Q?si=wWmzrLITVYtevkft"
-    };
+    // Filter out drafts for public viewing
+    const publishedPosts = posts.filter(p => p.status !== "draft");
 
-    const sidePosts = [
-        {
-            id: 2,
-            title: "Spotting Reversals with Momentum Scanner",
-            category: "Technical Analysis",
-            author: "Alex Pierrefou",
-            date: "Jan 22, 2026",
-            image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 3,
-            title: "Trading Gold (XAUUSD) like a Pro",
-            category: "Strategies & Tips",
-            author: "Brady Young",
-            date: "Jan 18, 2026",
-            image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 4,
-            title: "Avoiding Fakeouts: The Breakout Checklist",
-            category: "Strategies & Tips",
-            author: "Sean Mackay",
-            date: "Jan 12, 2026",
-            image: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 5,
-            title: "Why Multi-Timeframe Alignment is Crucial",
-            category: "Technical Analysis",
-            author: "Christopher Downie",
-            date: "Jan 10, 2026",
-            image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop"
-        }
-    ];
+    // Sort posts: newest first (higher ID first)
+    const sortedPosts = [...publishedPosts].sort((a, b) => b.id - a.id);
 
+    // Find featured post: post marked isFeatured, or the newest one
+    const featuredPost = sortedPosts.find(p => p.isFeatured) || sortedPosts[0] || null;
+
+    // Side posts: next 4 posts excluding featured
+    const sidePosts = sortedPosts.filter(p => p.id !== (featuredPost ? featuredPost.id : null)).slice(0, 4);
+
+    // Horizontal sections: newest 4 posts for each category
     const horizontalSections = [
         {
             title: "Trend Engine",
-            posts: [
-                {
-                    id: 10,
-                    title: "Advanced Engine Adjustments",
-                    category: "Trend Engine",
-                    author: "Alex Pierrefou",
-                    date: "Jan 08, 2026",
-                    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 11,
-                    title: "Riding the Wave to Profit",
-                    category: "Trend Engine",
-                    author: "Brady Young",
-                    date: "Jan 07, 2026",
-                    image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 12,
-                    title: "When to trust the Trend Line",
-                    category: "Trend Engine",
-                    author: "Brady Young",
-                    date: "Jan 06, 2026",
-                    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 13,
-                    title: "Is it a trend or a trap?",
-                    category: "Trend Engine",
-                    author: "Christopher Downie",
-                    date: "Jan 05, 2026",
-                    image: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=1000&auto=format&fit=crop"
-                }
-            ]
+            posts: sortedPosts.filter(p => p.category === "Trend Engine").slice(0, 4)
         },
         {
             title: "Momentum Scanner",
-            posts: [
-                {
-                    id: 20,
-                    title: "How to Use the Momentum Scanner Effectively",
-                    category: "Momentum Scanner",
-                    author: "Sean Mackay",
-                    date: "Jan 12, 2026",
-                    image: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 21,
-                    title: "Finding the Reversal: Momentum Tips",
-                    category: "Momentum Scanner",
-                    author: "Sean Mackay",
-                    date: "Nov 26, 2025",
-                    image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 22,
-                    title: "Combining Momentum with Price Action",
-                    category: "Momentum Scanner",
-                    author: "Brady Young",
-                    date: "Sep 29, 2025",
-                    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 23,
-                    title: "Divergence Trading on the Scanner",
-                    category: "Momentum Scanner",
-                    author: "Alex Pierrefou",
-                    date: "Sep 15, 2025",
-                    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop"
-                }
-            ]
+            posts: sortedPosts.filter(p => p.category === "Momentum Scanner").slice(0, 4)
         },
         {
             title: "Breakout",
-            posts: [
-                {
-                    id: 30,
-                    title: "QUANT: AI for Pine Script Trading Breakouts",
-                    category: "Breakout",
-                    author: "Alex Pierrefou",
-                    date: "Feb 10, 2026",
-                    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 31,
-                    title: "Volume Pitfalls: How to avoid fakeouts",
-                    category: "Breakout",
-                    author: "Sean Mackay",
-                    date: "Feb 08, 2026",
-                    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 32,
-                    title: "Consolidations before the big move",
-                    category: "Breakout",
-                    author: "Brady Young",
-                    date: "Feb 05, 2026",
-                    image: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=1000&auto=format&fit=crop"
-                },
-                {
-                    id: 33,
-                    title: "Analyzing the Breakout Logic",
-                    category: "Breakout",
-                    author: "Christopher Downie",
-                    date: "Feb 01, 2026",
-                    image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=1000&auto=format&fit=crop"
-                }
-            ]
+            posts: sortedPosts.filter(p => p.category === "Breakout").slice(0, 4)
         }
     ];
 
-    // Combine all posts for filtering
-    const allPostsRaw = [
-        featuredPost,
-        ...sidePosts,
-        ...horizontalSections.flatMap(s => s.posts)
-    ];
+    const allPosts = sortedPosts;
 
-    // Deduplicate posts based on id
-    const allPosts = Array.from(new Map(allPostsRaw.map(p => [p.id, p])).values());
+    if (posts.length === 0) {
+        return (
+            <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[50vh] flex flex-col justify-center items-center">
+                <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
+                    Trading Monster <span className="text-amber-450">Blog</span>
+                </h1>
+                <p className="text-lg text-white/60 max-w-2xl mx-auto">
+                    Loading posts...
+                </p>
+            </div>
+        );
+    }
+
 
     return (
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">

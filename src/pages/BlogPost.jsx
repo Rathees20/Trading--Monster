@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { initialBlogs } from "../data/initialBlogs.js";
 
 export default function BlogPost() {
     const { id } = useParams();
@@ -13,73 +14,39 @@ export default function BlogPost() {
     ];
 
     const [activeRelatedCategory, setActiveRelatedCategory] = useState("Recent");
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // Scroll to top on load
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [id]);
 
-    // Mock post data based on user screenshots
-    const post = {
-        title: "Auto Trading with Trading Monster: AI Strategy Alerts",
-        category: "Product Updates",
-        author: "Sean Mackay",
-        date: "Nov 26, 2025",
-        // Using a general trading/chart image as placeholder
-        heroImage: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=2070&auto=format&fit=crop",
-        // Secondary media inside content
-        contentVideo: "https://youtu.be/xYpUIA-L68Q?si=wWmzrLITVYtevkft",
-        content: `
-            <p>Turn AI-built strategies into live, automated signals with Trading Monster's AI Strategy Alerts. Discover, stress-test, and "Dive Deeper" into any strategy, then stream precise entry/exit alerts to your screen, inbox, or bots. All synced with your existing Trading Monster workflow.</p>
-            
-            <h3>The next step for our AI Platform</h3>
-            <p>Markets aren't getting easier. Institutional models are getting faster, retail tools are more automated, and the edge now belongs to traders who can combine human intelligence with machine-level execution.</p>
-            <p>Over the last year, our <a href="#">AI platform</a> has grown from a simple strategy finder into a full backtesting engine: it understands the majority of technical analysis concepts traders use every day (yes, even order blocks, mean reversion, market structure, etc), it searches through millions of backtested strategies across every market, and it lets you save those strategies to your account & do further analysis on-platform or even on TradingView too.</p>
-            <p>Today's update is about what happens next.</p>
-        `,
-        bottomContent: `
-            <p>With <strong>AI Strategy Alerts</strong>, you're no longer just discovering & analyzing strategies, you're deploying them. Any strategy you pull from the Trading Monster AI can now fire live alerts: to your screen, your inbox, or via webhooks to route orders to your broker, exchange, or prop firm.</p>
-            <p>This is the missing bridge between "that backtest looks great" and "this setup is actually firing on my account right now."</p>
-            
-            <h3>From millions of strategies to the one you actually trade</h3>
-            <p>Stop trying to manually execute complex, multi-timeframe strategies. Let the engine do the heavy lifting while you focus on risk management and overall market direction.</p>
-        `
-    };
-
-    const relatedArticles = [
-        {
-            id: 30,
-            title: "QUANT: AI for Pine Script Trading",
-            category: "Product Updates",
-            author: "Alex Pierrefou",
-            date: "Feb 10, 2026",
-            image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 31,
-            title: "Volume Pitfalls: How to avoid them",
-            category: "Strategies & Tips",
-            author: "Sean Mackay",
-            date: "Feb 08, 2026",
-            image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 32,
-            title: "How I use GPT-5 to Analyze and Trade Stocks",
-            category: "AI & Technology",
-            author: "Brady Young",
-            date: "Feb 05, 2026",
-            image: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=1000&auto=format&fit=crop"
-        },
-        {
-            id: 33,
-            title: "Analyzing the 15M Gold Strategy",
-            category: "Gold Strategy",
-            author: "Christopher Downie",
-            date: "Feb 01, 2026",
-            image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=1000&auto=format&fit=crop"
+    useEffect(() => {
+        let storedPosts = localStorage.getItem("tm_blog_posts");
+        if (!storedPosts) {
+            localStorage.setItem("tm_blog_posts", JSON.stringify(initialBlogs));
+            storedPosts = JSON.stringify(initialBlogs);
         }
-    ];
+        try {
+            setPosts(JSON.parse(storedPosts));
+        } catch (e) {
+            console.error("Error parsing blog posts:", e);
+            setPosts(initialBlogs);
+        }
+        setLoading(false);
+    }, []);
+
+    // Find the current post
+    const post = posts.find(p => String(p.id) === String(id));
+
+    // Get all other published posts for related section
+    const allPosts = posts.filter(p => p.status !== "draft");
+    const relatedArticles = post ? allPosts.filter(a => String(a.id) !== String(post.id)) : [];
+
+    const filteredRelated = relatedArticles
+        .filter(article => activeRelatedCategory === "Recent" || article.category === activeRelatedCategory)
+        .slice(0, 4);
 
     // Simple helper to render video or image
     const renderVideo = (videoUrl) => {
@@ -95,7 +62,7 @@ export default function BlogPost() {
                         title="Embedded Video"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                        className="absolute top-0 left-0 w-full h-full rounded-lg"
+                        className="absolute top-0 left-0 w-full h-full rounded-lg border-0"
                     ></iframe>
                 </div>
             );
@@ -110,6 +77,35 @@ export default function BlogPost() {
             </div>
         );
     };
+
+    if (loading) {
+        return (
+            <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[50vh] flex flex-col justify-center items-center">
+                <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
+                    Trading Monster <span className="text-amber-450">Blog</span>
+                </h1>
+                <p className="text-lg text-white/60 max-w-2xl mx-auto">
+                    Loading article...
+                </p>
+            </div>
+        );
+    }
+
+    if (!post) {
+        return (
+            <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[55vh] flex flex-col justify-center items-center">
+                <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
+                    Post <span className="text-amber-450">Not Found</span>
+                </h1>
+                <p className="text-lg text-white/60 max-w-2xl mx-auto mb-8">
+                    The article you are looking for does not exist or has been set to draft.
+                </p>
+                <Link to="/blog" className="rounded-full bg-amber-450 px-6 py-2.5 text-sm font-semibold text-black shadow-lg hover:bg-amber-400 transition-all">
+                    Back to Blog
+                </Link>
+            </div>
+        );
+    }
 
     return (
         <article className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -135,12 +131,12 @@ export default function BlogPost() {
                 </h1>
 
                 <div className="flex items-center gap-3 text-sm font-medium text-white/60">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-black font-bold text-lg border border-amber-300 shadow-[0_0_15px_rgba(250,204,21,0.3)]">
-                        {post.author.charAt(0)}
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-black font-bold text-lg border border-amber-300 shadow-[0_0_15px_rgba(250,204,21,0.3)] select-none">
+                        {(post.author || "T").charAt(0)}
                     </div>
                     <div>
-                        <span className="text-white/90 font-bold block">{post.author}</span>
-                        <span>{post.date}</span>
+                        <span className="text-white/90 font-bold block">{post.author || "Trading Monster"}</span>
+                        <span>{post.date || "Feb 2026"}</span>
                     </div>
                 </div>
             </div>
@@ -148,7 +144,7 @@ export default function BlogPost() {
             {/* Hero Image */}
             <div className="mb-12 rounded-2xl overflow-hidden tm-card p-1 shadow-2xl">
                 <img
-                    src={post.heroImage}
+                    src={post.heroImage || post.image}
                     alt={post.title}
                     className="w-full h-auto max-h-[600px] object-cover rounded-xl"
                 />
@@ -160,15 +156,17 @@ export default function BlogPost() {
             </div>
 
             {/* Inline Video Example */}
-            {post.contentVideo && (
+            {(post.contentVideo || post.videoUrl) && (
                 <div className="my-12">
-                    {renderVideo(post.contentVideo)}
+                    {renderVideo(post.contentVideo || post.videoUrl)}
                 </div>
             )}
 
-            <div className="prose prose-invert prose-lg max-w-none prose-p:text-white/80 prose-headings:text-white prose-a:text-amber-450 hover:prose-a:text-amber-400 prose-strong:text-amber-450 prose-strong:font-bold mb-16 custom-prose">
-                <div dangerouslySetInnerHTML={{ __html: post.bottomContent }} />
-            </div>
+            {post.bottomContent && (
+                <div className="prose prose-invert prose-lg max-w-none prose-p:text-white/80 prose-headings:text-white prose-a:text-amber-450 hover:prose-a:text-amber-400 prose-strong:text-amber-450 prose-strong:font-bold mb-16 custom-prose">
+                    <div dangerouslySetInnerHTML={{ __html: post.bottomContent }} />
+                </div>
+            )}
 
             {/* Custom CSS for Prose to clean up spacing from raw HTML */}
             <style dangerouslySetInnerHTML={{
@@ -187,6 +185,14 @@ export default function BlogPost() {
                 .custom-prose a {
                     text-decoration: underline;
                     text-underline-offset: 4px;
+                }
+                .custom-prose ul {
+                    list-style-type: disc;
+                    margin-left: 1.5rem;
+                    margin-bottom: 1.5em;
+                }
+                .custom-prose li {
+                    margin-bottom: 0.5em;
                 }
             `}} />
 
@@ -227,34 +233,32 @@ export default function BlogPost() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {relatedArticles
-                            .filter(article => activeRelatedCategory === "Recent" || article.category === activeRelatedCategory)
-                            .map(article => (
-                                <Link to={`/blog/${article.id}`} key={article.id} className="group cursor-pointer flex flex-col">
-                                    <div className="w-full aspect-[16/10] overflow-hidden rounded-xl mb-4 tm-card p-1">
-                                        <img
-                                            src={article.image}
-                                            alt={article.title}
-                                            className="w-full h-full object-cover rounded-lg transition-transform duration-700 group-hover:scale-105"
-                                            draggable="false"
-                                        />
+                        {filteredRelated.map(article => (
+                            <Link to={`/blog/${article.id}`} key={article.id} className="group cursor-pointer flex flex-col">
+                                <div className="w-full aspect-[16/10] overflow-hidden rounded-xl mb-4 tm-card p-1">
+                                    <img
+                                        src={article.image}
+                                        alt={article.title}
+                                        className="w-full h-full object-cover rounded-lg transition-transform duration-700 group-hover:scale-105"
+                                        draggable="false"
+                                    />
+                                </div>
+                                <div className="flex-1 flex flex-col">
+                                    <span className="text-amber-450 text-xs font-semibold mb-2 block uppercase tracking-wide">
+                                        {article.category}
+                                    </span>
+                                    <h3 className="text-base font-bold text-white group-hover:text-amber-400 transition-colors leading-snug mb-3">
+                                        {article.title}
+                                    </h3>
+                                    <div className="mt-auto flex items-center gap-1.5 text-xs text-white/50 font-medium">
+                                        <span>By <span className="text-white/80">{article.author}</span></span>
+                                        <span className="w-1 h-1 rounded-full bg-white/30"></span>
+                                        <span>{article.date}</span>
                                     </div>
-                                    <div className="flex-1 flex flex-col">
-                                        <span className="text-amber-450 text-xs font-semibold mb-2 block uppercase tracking-wide">
-                                            {article.category}
-                                        </span>
-                                        <h3 className="text-base font-bold text-white group-hover:text-amber-400 transition-colors leading-snug mb-3">
-                                            {article.title}
-                                        </h3>
-                                        <div className="mt-auto flex items-center gap-1.5 text-xs text-white/50 font-medium">
-                                            <span>By <span className="text-white/80">{article.author}</span></span>
-                                            <span className="w-1 h-1 rounded-full bg-white/30"></span>
-                                            <span>{article.date}</span>
-                                        </div>
-                                    </div>
-                                </Link>
-                            ))}
-                        {relatedArticles.filter(article => article.category === activeRelatedCategory).length === 0 && activeRelatedCategory !== "Recent" && (
+                                </div>
+                            </Link>
+                        ))}
+                        {filteredRelated.length === 0 && (
                             <div className="col-span-full py-10 text-center tm-card rounded-2xl border border-white/10">
                                 <p className="text-white/60 text-lg">No related posts found for {activeRelatedCategory}.</p>
                             </div>
@@ -266,3 +270,4 @@ export default function BlogPost() {
         </article>
     );
 }
+

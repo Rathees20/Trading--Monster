@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./ui/Button.jsx";
-import rejectionZoneImg from "../assets/tmimages/Rejection Zone.png";
+import dsrProImg from "../assets/tmimages/XAUUSD.png";
 
 export default function HomeHeroPrimary() {
   const navigate = useNavigate();
@@ -18,14 +18,14 @@ export default function HomeHeroPrimary() {
             </h1>
             
             <p className="mt-4 text-lg font-medium text-white/60 sm:text-xl tracking-wide">
-              Live support and resistance Bands as price structure changes.
+              Live support and resistance based on volatility.
             </p>
 
             <ul className="mt-8 space-y-4 sm:ml-2 sm:mt-10 lg:space-y-6">
               {[
-                "Rejection zone",
+                "Volatility Adjusted",
                 "Multi market Compatible",
-                "No Emotional Analysis"
+                "Multi Time Frame"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-3 text-base font-semibold text-white/90 sm:text-lg lg:text-xl tracking-wide">
                   <span className="flex h-2 w-2 shrink-0 items-center justify-center rounded-full bg-amber-450 shadow-[0_0_10px_rgba(251,191,36,0.8)]" />
@@ -48,7 +48,7 @@ export default function HomeHeroPrimary() {
           {/* Right Image - Larger Proportion */}
           <div className="relative lg:col-span-3">
             <img
-              src={rejectionZoneImg}
+              src={dsrProImg}
               alt="dynamic-support-resistance-pro-analysis"
               className="w-full h-auto rounded-lg shadow-2xl transition-transform duration-500 hover:scale-[1.02]"
             />

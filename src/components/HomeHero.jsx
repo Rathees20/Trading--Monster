@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./ui/Button.jsx";
-import hs1Img from "../assets/HS1.png";
+import scannerImg from "../assets/tmimages/GBPAUD_2026-05-12_14-36-45.png";
 
 export default function HomeHero() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function HomeHero() {
             <div className="relative group rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-2 shadow-2xl backdrop-blur-sm sm:p-4 transition-transform duration-500 hover:-rotate-y-2 hover:rotate-x-2">
               <div className="absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl bg-amber-450/10 opacity-50 blur-2xl transition-opacity duration-500 group-hover:opacity-100 group-hover:bg-amber-450/20" />
               <img
-                src={hs1Img}
+                src={scannerImg}
                 alt="forex-momentum-scanner-xauusd-tradingmonster-ai"
                 className="w-full h-auto rounded-xl sm:rounded-2xl border border-white/10 shadow-inner object-cover"
               />
@@ -30,12 +30,12 @@ export default function HomeHero() {
           {/* Right Content (Swap to Right) */}
           <div className="order-2 lg:order-2 flex flex-col justify-center lg:col-span-2">
             <h1 className="text-3xl font-bold leading-tight tracking-normal text-white sm:text-4xl lg:text-[44px]">
-              Identify Momentum. <br />
+              Scan Breakouts. <br />
               <span className="mt-3 block text-amber-450">Trade With Structure.</span>
             </h1>
 
             <h2 className="mt-4 text-lg font-medium text-white/60 sm:text-xl">
-              Advanced Forex Trading Indicators for TradingView
+              Real Time Across All Time Frames
             </h2>
 
             <ul className="mt-8 space-y-4 sm:ml-2 sm:mt-10 lg:space-y-6">

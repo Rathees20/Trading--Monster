@@ -43,8 +43,8 @@ export default function DynamicSupportResistancePro() {
                         <div className="flex flex-col gap-8 lg:col-span-2 order-2 lg:order-1">
                             {[
                                 "Multi-Market Compatible",
-                                "Rejection Zone",
-                                "No Emotional Analysis"
+                                "Volatility Adjusted",
+                                "Multi Time Frame"
                             ].map((text, idx) => (
                                 <div
                                     key={idx}
@@ -81,7 +81,7 @@ export default function DynamicSupportResistancePro() {
 
                     <div className="mt-12 text-center">
                         <p className="text-lg font-bold text-white/70 tracking-wide">
-                            Live support and resistance Bands as price structure changes.
+                            Live support and resistance based on volatility.
                         </p>
                     </div>
                 </div>

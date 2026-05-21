@@ -12,7 +12,7 @@ import t2Image from "../assets/t2.jpeg";
 import t1Image from "../assets/t5.jpeg";
 import t4Image from "../assets/t4.jpeg";
 import t3Image from "../assets/t3.jpeg";
-import t5Image from "../assets/t1.jpeg";
+import t5Image from "../assets/tmimages/GBPAUD_2026-05-12_14-36-45.png";
 
 // Mock data for the momentum scanner (kept for potential future use or other components, but Hero now uses image)
 const scannerData = {

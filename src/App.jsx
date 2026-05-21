@@ -22,6 +22,7 @@ import About from "./pages/About.jsx";
 import FAQ from "./pages/FAQ.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
+import BlogAdmin from "./pages/BlogAdmin.jsx";
 import RefundPolicy from "./pages/legal/RefundPolicy.jsx";
 import TermsAndConditions from "./pages/legal/TermsAndConditions.jsx";
 import Disclaimer from "./pages/legal/Disclaimer.jsx";
@@ -148,6 +149,8 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/blog-admin" element={<BlogAdmin />} />
+          <Route path="/admin" element={<BlogAdmin />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

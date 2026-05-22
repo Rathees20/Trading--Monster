@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { initialBlogs } from "../data/initialBlogs.js";
+import { API_BASE_URL } from "../config.js";
 
 export default function Blog() {
     const categories = [
@@ -20,19 +20,29 @@ export default function Blog() {
 
     const [activeCategory, setActiveCategory] = useState("Recent");
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        let storedPosts = localStorage.getItem("tm_blog_posts");
-        if (!storedPosts) {
-            localStorage.setItem("tm_blog_posts", JSON.stringify(initialBlogs));
-            storedPosts = JSON.stringify(initialBlogs);
-        }
-        try {
-            setPosts(JSON.parse(storedPosts));
-        } catch (e) {
-            console.error("Error parsing blog posts from localStorage:", e);
-            setPosts(initialBlogs);
-        }
+        const fetchPosts = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`${API_BASE_URL}/api/blogs`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch blog posts from server.");
+                }
+                const data = await response.json();
+                setPosts(data);
+                setError(null);
+            } catch (err) {
+                console.error("Error loading blog posts:", err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPosts();
     }, []);
 
     const handleCategoryChange = (category) => {
@@ -110,6 +120,32 @@ export default function Blog() {
 
     const allPosts = sortedPosts;
 
+    if (loading) {
+        return (
+            <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[50vh] flex flex-col justify-center items-center">
+                <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
+                    Trading Monster <span className="text-amber-450">Blog</span>
+                </h1>
+                <p className="text-lg text-white/60 max-w-2xl mx-auto">
+                    Loading premium market insights...
+                </p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[50vh] flex flex-col justify-center items-center">
+                <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
+                    Trading Monster <span className="text-red-450">Blog</span>
+                </h1>
+                <p className="text-lg text-red-400 max-w-2xl mx-auto mb-4">
+                    Error loading blog: {error}
+                </p>
+            </div>
+        );
+    }
+
     if (posts.length === 0) {
         return (
             <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[50vh] flex flex-col justify-center items-center">
@@ -117,7 +153,7 @@ export default function Blog() {
                     Trading Monster <span className="text-amber-450">Blog</span>
                 </h1>
                 <p className="text-lg text-white/60 max-w-2xl mx-auto">
-                    Loading posts...
+                    No articles published yet. Check back soon!
                 </p>
             </div>
         );

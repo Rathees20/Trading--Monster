@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { initialBlogs } from "../data/initialBlogs.js";
+import { API_BASE_URL } from "../config.js";
 
 export default function BlogAdmin() {
     // Auth state
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [token, setToken] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState("");
@@ -56,50 +57,75 @@ export default function BlogAdmin() {
         { label: "Stock Market Board", url: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=1000&auto=format&fit=crop" }
     ];
 
-    // Check sessionStorage for active login session
-    useEffect(() => {
-        const loggedIn = sessionStorage.getItem("tm_admin_logged_in");
-        if (loggedIn === "true") {
-            setIsLoggedIn(true);
-        }
-        
-        // Load posts
-        let storedPosts = localStorage.getItem("tm_blog_posts");
-        if (!storedPosts) {
-            localStorage.setItem("tm_blog_posts", JSON.stringify(initialBlogs));
-            storedPosts = JSON.stringify(initialBlogs);
-        }
+    // Fetch all blogs (public or admin based on token presence)
+    const fetchBlogs = async (authToken) => {
         try {
-            setPosts(JSON.parse(storedPosts));
-        } catch (e) {
-            console.error("Error parsing posts:", e);
-            setPosts(initialBlogs);
+            const headers = {};
+            if (authToken) {
+                headers["Authorization"] = `Bearer ${authToken}`;
+            }
+
+            const response = await fetch(`${API_BASE_URL}/api/blogs`, { headers });
+            
+            if (response.status === 401 || response.status === 403) {
+                // Token invalid or expired
+                handleLogout();
+                return;
+            }
+
+            if (!response.ok) {
+                throw new Error("Failed to load blog posts.");
+            }
+            const data = await response.json();
+            setPosts(data);
+        } catch (error) {
+            console.error("Error fetching blogs:", error);
+        }
+    };
+
+    // Check sessionStorage for active login session on mount
+    useEffect(() => {
+        const storedToken = sessionStorage.getItem("tm_admin_token");
+        if (storedToken) {
+            setIsLoggedIn(true);
+            setToken(storedToken);
+            fetchBlogs(storedToken);
         }
     }, []);
 
     // Handle Login
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // Demo credentials: admin / monster123
-        if (username.trim() === "admin" && password === "monster123") {
-            sessionStorage.setItem("tm_admin_logged_in", "true");
-            setIsLoggedIn(true);
+        try {
             setLoginError("");
-        } else {
-            setLoginError("Invalid username or password. Try admin / monster123");
+            const response = await fetch(`${API_BASE_URL}/api/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Login failed");
+            }
+
+            sessionStorage.setItem("tm_admin_token", data.token);
+            sessionStorage.setItem("tm_admin_logged_in", "true");
+            setToken(data.token);
+            setIsLoggedIn(true);
+            fetchBlogs(data.token);
+        } catch (error) {
+            setLoginError(error.message || "Invalid username or password.");
         }
     };
 
     // Handle Logout
     const handleLogout = () => {
+        sessionStorage.removeItem("tm_admin_token");
         sessionStorage.removeItem("tm_admin_logged_in");
+        setToken("");
         setIsLoggedIn(false);
-    };
-
-    // Save posts back to localStorage
-    const savePostsToStorage = (updatedPosts) => {
-        localStorage.setItem("tm_blog_posts", JSON.stringify(updatedPosts));
-        setPosts(updatedPosts);
+        setPosts([]);
     };
 
     // Open Form Modal for Creating a New Post
@@ -150,22 +176,43 @@ export default function BlogAdmin() {
     };
 
     // Delete a Post
-    const handleDeletePost = (id) => {
+    const handleDeletePost = async (id) => {
         if (window.confirm("Are you sure you want to delete this blog post? This action cannot be undone.")) {
-            const updated = posts.filter(p => p.id !== id);
-            savePostsToStorage(updated);
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/blogs/${id}`, {
+                    method: "DELETE",
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                if (!response.ok) {
+                    const errData = await response.json();
+                    throw new Error(errData.error || "Failed to delete post.");
+                }
+                fetchBlogs(token);
+            } catch (error) {
+                alert(error.message);
+            }
         }
     };
 
-    // Set a post as featured (and make sure all other posts have isFeatured: false)
-    const handleSetFeatured = (id) => {
-        const updated = posts.map(p => {
-            if (p.id === id) {
-                return { ...p, isFeatured: true };
+    // Set a post as featured
+    const handleSetFeatured = async (id) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/blogs/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ isFeatured: true })
+            });
+            if (!response.ok) {
+                const errData = await response.json();
+                throw new Error(errData.error || "Failed to make post featured.");
             }
-            return { ...p, isFeatured: false };
-        });
-        savePostsToStorage(updated);
+            fetchBlogs(token);
+        } catch (error) {
+            alert(error.message);
+        }
     };
 
     // Handle Image Upload
@@ -181,7 +228,7 @@ export default function BlogAdmin() {
     };
 
     // Handle Form Submit
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
         
         if (!formTitle.trim()) {
@@ -189,15 +236,14 @@ export default function BlogAdmin() {
             return;
         }
 
-        const newPost = {
-            id: editingPost ? editingPost.id : Date.now(), // Generate a unique numeric ID for new posts
+        const postBody = {
             title: formTitle,
             excerpt: formExcerpt,
             category: formCategory,
             author: formAuthor,
             date: formDate,
             image: formImage,
-            heroImage: formImage, // Keep both fields populated for flexibility
+            heroImage: formImage,
             videoUrl: formVideoUrl,
             contentVideo: formVideoUrl,
             content: formContent,
@@ -206,27 +252,34 @@ export default function BlogAdmin() {
             isFeatured: formIsFeatured
         };
 
-        let updatedPosts = [];
-        if (editingPost) {
-            // Update existing post
-            updatedPosts = posts.map(p => p.id === editingPost.id ? newPost : p);
-        } else {
-            // Add new post
-            updatedPosts = [newPost, ...posts];
-        }
+        try {
+            let url = `${API_BASE_URL}/api/blogs`;
+            let method = "POST";
 
-        // If this post is marked as featured, make sure all other posts are not featured
-        if (formIsFeatured) {
-            updatedPosts = updatedPosts.map(p => {
-                if (p.id === newPost.id) {
-                    return { ...p, isFeatured: true };
-                }
-                return { ...p, isFeatured: false };
+            if (editingPost) {
+                url = `${API_BASE_URL}/api/blogs/${editingPost.id}`;
+                method = "PUT";
+            }
+
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(postBody)
             });
-        }
 
-        savePostsToStorage(updatedPosts);
-        setShowFormModal(false);
+            if (!response.ok) {
+                const errData = await response.json();
+                throw new Error(errData.error || "Failed to save blog post.");
+            }
+
+            fetchBlogs(token);
+            setShowFormModal(false);
+        } catch (error) {
+            alert(error.message);
+        }
     };
 
     // Statistics Calculation

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { initialBlogs } from "../data/initialBlogs.js";
+import { API_BASE_URL } from "../config.js";
 
 export default function BlogPost() {
     const { id } = useParams();
@@ -14,31 +14,47 @@ export default function BlogPost() {
     ];
 
     const [activeRelatedCategory, setActiveRelatedCategory] = useState("Recent");
+    const [post, setPost] = useState(null);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // Scroll to top on load
+    // Scroll to top and load data on load / id change
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        const fetchPostData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+
+                // Fetch single post
+                const postRes = await fetch(`${API_BASE_URL}/api/blogs/${id}`);
+                if (!postRes.ok) {
+                    if (postRes.status === 404) {
+                        throw new Error("Article not found.");
+                    }
+                    throw new Error("Failed to load article from server.");
+                }
+                const postData = await postRes.json();
+                setPost(postData);
+
+                // Fetch list of articles for related section
+                const listRes = await fetch(`${API_BASE_URL}/api/blogs`);
+                if (listRes.ok) {
+                    const listData = await listRes.json();
+                    setPosts(listData);
+                }
+            } catch (err) {
+                console.error("Error loading blog details:", err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPostData();
     }, [id]);
-
-    useEffect(() => {
-        let storedPosts = localStorage.getItem("tm_blog_posts");
-        if (!storedPosts) {
-            localStorage.setItem("tm_blog_posts", JSON.stringify(initialBlogs));
-            storedPosts = JSON.stringify(initialBlogs);
-        }
-        try {
-            setPosts(JSON.parse(storedPosts));
-        } catch (e) {
-            console.error("Error parsing blog posts:", e);
-            setPosts(initialBlogs);
-        }
-        setLoading(false);
-    }, []);
-
-    // Find the current post
-    const post = posts.find(p => String(p.id) === String(id));
 
     // Get all other published posts for related section
     const allPosts = posts.filter(p => p.status !== "draft");
@@ -87,6 +103,22 @@ export default function BlogPost() {
                 <p className="text-lg text-white/60 max-w-2xl mx-auto">
                     Loading article...
                 </p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[55vh] flex flex-col justify-center items-center">
+                <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
+                    Error <span className="text-red-450">Occurred</span>
+                </h1>
+                <p className="text-lg text-red-400 max-w-2xl mx-auto mb-8">
+                    {error}
+                </p>
+                <Link to="/blog" className="rounded-full bg-amber-450 px-6 py-2.5 text-sm font-semibold text-black shadow-lg hover:bg-amber-400 transition-all">
+                    Back to Blog
+                </Link>
             </div>
         );
     }

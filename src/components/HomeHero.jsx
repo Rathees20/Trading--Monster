@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./ui/Button.jsx";
-import scannerImg from "../assets/tmimages/GBPAUD_2026-05-12_14-36-45.png";
+import scannerImg from "../assets/tmimages/11.png";
 
 export default function HomeHero() {
   const navigate = useNavigate();
@@ -13,22 +13,23 @@ export default function HomeHero() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 pt-10 pb-12 sm:px-6 sm:pt-16 sm:pb-20 lg:pt-12 lg:pb-28 2xl:max-w-[1440px]">
-        <div className="grid items-center gap-10 lg:grid-cols-5 lg:gap-12 xl:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
 
           {/* Left Image (Swap to Left) */}
-          <div className="order-1 lg:order-1 perspective-[1000px] lg:col-span-3">
-            <div className="relative group rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-2 shadow-2xl backdrop-blur-sm sm:p-4 transition-transform duration-500 hover:-rotate-y-2 hover:rotate-x-2">
+          <div className="order-1 lg:order-1 lg:col-span-7 xl:col-span-8">
+            <div className="relative group rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-2 shadow-2xl sm:p-4 transition-all duration-300 hover:scale-[1.01] hover:border-amber-450/20">
               <div className="absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl bg-amber-450/10 opacity-50 blur-2xl transition-opacity duration-500 group-hover:opacity-100 group-hover:bg-amber-450/20" />
               <img
                 src={scannerImg}
                 alt="forex-momentum-scanner-xauusd-tradingmonster-ai"
-                className="w-full h-auto rounded-xl sm:rounded-2xl border border-white/10 shadow-inner object-cover"
+                className="w-full h-auto rounded-xl sm:rounded-2xl border border-white/10 shadow-inner"
+                style={{ imageRendering: "high-quality" }}
               />
             </div>
           </div>
 
           {/* Right Content (Swap to Right) */}
-          <div className="order-2 lg:order-2 flex flex-col justify-center lg:col-span-2">
+          <div className="order-2 lg:order-2 flex flex-col justify-center lg:col-span-5 xl:col-span-4">
             <h1 className="text-3xl font-bold leading-tight tracking-normal text-white sm:text-4xl lg:text-[44px]">
               Scan Breakouts. <br />
               <span className="mt-3 block text-amber-450">Trade With Structure.</span>

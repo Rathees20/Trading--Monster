@@ -22,10 +22,10 @@ export default function UnlockFullAccessSection() {
   const [activePlanType, setActivePlanType] = useState("basic");
 
   const basicPlans = [
-    { label: "Monthly", price: 55, term: "Month", features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/7sYbJ23QT5Hw9Iwc2p77O00" },
-    { label: "Quarterly", price: 149, term: "3 Months", popular: true, features: ["AI Indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/14A9AUbjl9XMdYM1nL77O01" },
-    { label: "Half-yearly", price: 289, term: "6 Months", features: ["Trend engine", "volatility engine", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/3cI4gA8797PE8EsfeB77O02" },
-    { label: "Yearly", price: 559, term: "Year", best: true, features: ["Trend engine", "Discord Community", "Support", "User Guides & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/8x28wQgDFfi64oceax77O03" },
+    { label: "Monthly", price: 55, term: "Month", features: ["Any one indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/7sYbJ23QT5Hw9Iwc2p77O00" },
+    { label: "Quarterly", price: 149, term: "3 Months", popular: true, features: ["Any one indicator", "Discord Community", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/14A9AUbjl9XMdYM1nL77O01" },
+    { label: "Half-yearly", price: 289, term: "6 Months", features: ["Any one indicator", "volatility engine", "Support", "User Guides & Tutorials"], stripeLink: "https://buy.stripe.com/3cI4gA8797PE8EsfeB77O02" },
+    { label: "Yearly", price: 559, term: "Year", best: true, features: ["Any one indicator", "Discord Community", "Support", "User Guides & Tutorials", "Update on New features"], stripeLink: "https://buy.stripe.com/8x28wQgDFfi64oceax77O03" },
   ];
 
   const proPlans = [
@@ -85,7 +85,7 @@ export default function UnlockFullAccessSection() {
                   activePlanType === "basic" ? "text-black" : "text-white/60 hover:text-white"
                 ].join(" ")}
               >
-                Basic
+                Single
               </button>
               <button
                 onClick={() => setActivePlanType("pro")}
@@ -94,7 +94,7 @@ export default function UnlockFullAccessSection() {
                   activePlanType === "pro" ? "text-black" : "text-white/60 hover:text-white"
                 ].join(" ")}
               >
-                Pro
+                Bundle
               </button>
               <div
                 className={[
@@ -151,7 +151,7 @@ export default function UnlockFullAccessSection() {
 
                     <ul className="mt-8 space-y-3 text-left">
                       {plan.features.map((feature, idx) => {
-                        const isHighlighted = feature === "Momentum Scanner" || feature === "Alert" || feature === "Dynamic Support and Resistance";
+                        const isHighlighted = feature === "Momentum Scanner" || feature === "Alert" || feature === "Dynamic Support and Resistance" || feature === "Trend Engine with Alert" || feature === "Any one indicator";
                         return (
                           <li key={idx} className={["flex items-start gap-2.5 text-[11px]", isHighlighted ? "font-bold text-sky-400 bg-sky-500/10 ring-1 ring-sky-500/30 px-2 py-1.5 rounded-lg -mx-2" : "text-white/70"].join(" ")}>
                             <svg className={["mt-0.5 h-3.5 w-3.5 shrink-0", isHighlighted ? "text-sky-400" : "text-amber-400"].join(" ")} fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor">

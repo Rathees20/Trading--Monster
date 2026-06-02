@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../config.js";
+import RichTextEditor from "../components/RichTextEditor.jsx";
 
 export default function BlogAdmin() {
     // Auth state
@@ -106,7 +107,7 @@ export default function BlogAdmin() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || "Login failed");
+                throw new Error("Invalid username or password.");
             }
 
             sessionStorage.setItem("tm_admin_token", data.token);
@@ -115,7 +116,7 @@ export default function BlogAdmin() {
             setIsLoggedIn(true);
             fetchBlogs(data.token);
         } catch (error) {
-            setLoginError(error.message || "Invalid username or password.");
+            setLoginError("Invalid username or password. Access denied.");
         }
     };
 
@@ -354,11 +355,6 @@ export default function BlogAdmin() {
                         >
                             Access Dashboard
                         </button>
-                        <div className="text-center mt-6 pt-4 border-t border-white/5">
-                            <span className="text-[11px] text-white/30">
-                                Demo credentials: <strong className="text-white/60">admin</strong> / <strong className="text-white/60">monster123</strong>
-                            </span>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -820,29 +816,28 @@ export default function BlogAdmin() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="flex-1 flex flex-col min-h-[200px]">
+                                        <div className="flex-1 flex flex-col min-h-[250px]">
                                             <label className="block text-xs font-bold text-white/70 uppercase tracking-wider mb-2 flex justify-between">
-                                                <span>HTML Content *</span>
-                                                <span className="text-[10px] text-white/40 normal-case">HTML tags like &lt;p&gt;, &lt;h3&gt;, &lt;ul&gt; supported</span>
+                                                <span>Article Content *</span>
+                                                <span className="text-[10px] text-white/40 normal-case">Gmail-style editor. Switch to HTML view to edit code directly.</span>
                                             </label>
-                                            <textarea
+                                            <RichTextEditor
                                                 value={formContent}
-                                                onChange={(e) => setFormContent(e.target.value)}
-                                                className="w-full flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:ring-1 focus:ring-amber-500 outline-none font-mono resize-y min-h-[150px]"
-                                                placeholder="Write post content using HTML tags..."
-                                                required
+                                                onChange={setFormContent}
+                                                placeholder="Write your amazing post paragraphs here..."
+                                                minHeight="180px"
                                             />
                                         </div>
                                         <div>
                                             <label className="block text-xs font-bold text-white/70 uppercase tracking-wider mb-2 flex justify-between">
-                                                <span>HTML Bottom Content (Optional)</span>
+                                                <span>Bottom Content (Optional)</span>
                                                 <span className="text-[10px] text-white/40 normal-case">Renders below the inline video</span>
                                             </label>
-                                            <textarea
+                                            <RichTextEditor
                                                 value={formBottomContent}
-                                                onChange={(e) => setFormBottomContent(e.target.value)}
-                                                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:ring-1 focus:ring-amber-500 outline-none font-mono h-24 resize-y"
-                                                placeholder="Any concluding HTML content..."
+                                                onChange={setFormBottomContent}
+                                                placeholder="Write concluding remarks..."
+                                                minHeight="100px"
                                             />
                                         </div>
                                     </div>

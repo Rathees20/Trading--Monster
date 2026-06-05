@@ -372,8 +372,8 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write s
           <textarea
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full flex-1 bg-transparent p-4 text-xs font-mono text-white/95 focus:outline-none resize-y"
-            style={{ minHeight }}
+            className="w-full bg-transparent p-4 text-xs font-mono text-white/95 focus:outline-none resize-y"
+            style={{ height: minHeight }}
             placeholder="Write content as raw HTML..."
           />
         ) : (
@@ -387,8 +387,8 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write s
             }}
             onKeyUp={saveSelection}
             onMouseUp={saveSelection}
-            className="w-full flex-1 p-4 text-xs text-white/95 outline-none overflow-y-auto prose prose-invert prose-p:text-white/80 prose-headings:text-white prose-a:text-amber-400 focus:outline-none custom-editor-content"
-            style={{ minHeight }}
+            className="w-full p-4 text-xs text-white/95 outline-none overflow-y-auto prose prose-invert prose-p:text-white/80 prose-headings:text-white prose-a:text-amber-400 focus:outline-none custom-editor-content"
+            style={{ height: minHeight }}
             placeholder={placeholder}
           />
         )}

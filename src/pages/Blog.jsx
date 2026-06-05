@@ -2,6 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../config.js";
 
+export const generateSlug = (title) => {
+    if (!title) return "";
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+        .trim()
+        .replace(/\s+/g, "-")        // Replace spaces with hyphens
+        .replace(/-+/g, "-");        // Replace multiple hyphens with single hyphen
+};
+
 export default function Blog() {
     const categories = [
         "Recent",
@@ -195,7 +205,7 @@ export default function Blog() {
                     {/* Grid Layout matching reference image for Recent */}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
                         {/* Featured Post (Left Column) */}
-                        <Link to={`/blog/${featuredPost.id}`} className="lg:col-span-7 group cursor-pointer flex flex-col">
+                        <Link to={`/blog/${generateSlug(featuredPost.title)}`} className="lg:col-span-7 group cursor-pointer flex flex-col">
                             <div className="w-full aspect-[16/10] overflow-hidden rounded-2xl mb-6 tm-card p-1">
                                 {renderMedia(featuredPost)}
                             </div>
@@ -215,7 +225,7 @@ export default function Blog() {
                         {/* Right Column Grid (4 smaller posts) */}
                         <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
                             {sidePosts.map(post => (
-                                <Link to={`/blog/${post.id}`} key={post.id} className="group cursor-pointer flex flex-col">
+                                <Link to={`/blog/${generateSlug(post.title)}`} key={post.id} className="group cursor-pointer flex flex-col">
                                     <div className="w-full aspect-[4/3] overflow-hidden rounded-xl mb-4 tm-card p-1">
                                         {renderMedia(post)}
                                     </div>
@@ -253,7 +263,7 @@ export default function Blog() {
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                     {section.posts.map(post => (
-                                        <Link to={`/blog/${post.id}`} key={post.id} className="group cursor-pointer flex flex-col">
+                                        <Link to={`/blog/${generateSlug(post.title)}`} key={post.id} className="group cursor-pointer flex flex-col">
                                             <div className="w-full aspect-[16/10] overflow-hidden rounded-xl mb-4 tm-card p-1">
                                                 <img
                                                     src={post.image}
@@ -295,7 +305,7 @@ export default function Blog() {
                         {allPosts
                             .filter(p => activeCategory === "Recent" || p.category === activeCategory)
                             .map(post => (
-                                <Link to={`/blog/${post.id}`} key={post.id} className="group cursor-pointer flex flex-col">
+                                <Link to={`/blog/${generateSlug(post.title)}`} key={post.id} className="group cursor-pointer flex flex-col">
                                     <div className="w-full aspect-[16/10] overflow-hidden rounded-xl mb-4 tm-card p-1">
                                         <img
                                             src={post.image}

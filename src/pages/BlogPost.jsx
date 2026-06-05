@@ -2,8 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { API_BASE_URL } from "../config.js";
 
+const generateSlug = (title) => {
+    if (!title) return "";
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+        .trim()
+        .replace(/\s+/g, "-")        // Replace spaces with hyphens
+        .replace(/-+/g, "-");        // Replace multiple hyphens with single hyphen
+};
+
 export default function BlogPost() {
-    const { id } = useParams();
+    const { id } = useParams(); // id represents the slug from the URL
 
     const categories = [
         "Recent",
@@ -28,23 +38,24 @@ export default function BlogPost() {
                 setLoading(true);
                 setError(null);
 
-                // Fetch single post
-                const postRes = await fetch(`${API_BASE_URL}/api/blogs/${id}`);
-                if (!postRes.ok) {
-                    if (postRes.status === 404) {
-                        throw new Error("Article not found.");
-                    }
-                    throw new Error("Failed to load article from server.");
-                }
-                const postData = await postRes.json();
-                setPost(postData);
-
-                // Fetch list of articles for related section
+                // Fetch list of articles (we will search the matching slug/id here)
                 const listRes = await fetch(`${API_BASE_URL}/api/blogs`);
-                if (listRes.ok) {
-                    const listData = await listRes.json();
-                    setPosts(listData);
+                if (!listRes.ok) {
+                    throw new Error("Failed to load article feed.");
                 }
+                const listData = await listRes.json();
+                setPosts(listData);
+
+                // Find the specific post by slug or ID
+                const matchedPost = listData.find(
+                    p => generateSlug(p.title) === id || String(p.id) === String(id)
+                );
+
+                if (!matchedPost) {
+                    throw new Error("Article not found.");
+                }
+
+                setPost(matchedPost);
             } catch (err) {
                 console.error("Error loading blog details:", err);
                 setError(err.message);
@@ -266,7 +277,7 @@ export default function BlogPost() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {filteredRelated.map(article => (
-                            <Link to={`/blog/${article.id}`} key={article.id} className="group cursor-pointer flex flex-col">
+                            <Link to={`/blog/${generateSlug(article.title)}`} key={article.id} className="group cursor-pointer flex flex-col">
                                 <div className="w-full aspect-[16/10] overflow-hidden rounded-xl mb-4 tm-card p-1">
                                     <img
                                         src={article.image}

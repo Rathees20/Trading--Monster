@@ -7,20 +7,23 @@ export default function BlogAdmin() {
     // Auth state
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [token, setToken] = useState("");
+    const [role, setRole] = useState("admin");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState("");
 
     // Blog states
     const [posts, setPosts] = useState([]);
+    const [dailyResults, setDailyResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("All");
     
     // Form / Editor states
-    const [editingPost, setEditingPost] = useState(null); // null if creating, post object if editing
+    const [editingPost, setEditingPost] = useState(null); // null if creating, post object if editing/result editing
     const [showFormModal, setShowFormModal] = useState(false);
     const [activeTab, setActiveTab] = useState("write"); // "write" or "preview"
-    const [adminViewTab, setAdminViewTab] = useState("blog"); // "blog" or "dashboards"
+    const [adminViewTab, setAdminViewTab] = useState("blog"); // "blog", "results", or "dashboards"
+    const [formMode, setFormMode] = useState("blog"); // "blog" or "result"
     
     // Form fields
     const [formId, setFormId] = useState("");
@@ -85,13 +88,35 @@ export default function BlogAdmin() {
         }
     };
 
+    // Fetch all daily results
+    const fetchDailyResults = async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/daily-results`);
+            if (!response.ok) {
+                throw new Error("Failed to load daily results.");
+            }
+            const data = await response.json();
+            setDailyResults(data);
+        } catch (error) {
+            console.error("Error fetching daily results:", error);
+        }
+    };
+
     // Check sessionStorage for active login session on mount
     useEffect(() => {
         const storedToken = sessionStorage.getItem("tm_admin_token");
+        const storedRole = sessionStorage.getItem("tm_admin_role") || "admin";
         if (storedToken) {
             setIsLoggedIn(true);
             setToken(storedToken);
+            setRole(storedRole);
+            if (storedRole === "eadmin") {
+                setAdminViewTab("results");
+            } else {
+                setAdminViewTab("blog");
+            }
             fetchBlogs(storedToken);
+            fetchDailyResults();
         }
     }, []);
 
@@ -112,10 +137,19 @@ export default function BlogAdmin() {
             }
 
             sessionStorage.setItem("tm_admin_token", data.token);
+            sessionStorage.setItem("tm_admin_role", data.role || "admin");
             sessionStorage.setItem("tm_admin_logged_in", "true");
             setToken(data.token);
+            const userRole = data.role || "admin";
+            setRole(userRole);
             setIsLoggedIn(true);
+            if (userRole === "eadmin") {
+                setAdminViewTab("results");
+            } else {
+                setAdminViewTab("blog");
+            }
             fetchBlogs(data.token);
+            fetchDailyResults();
         } catch (error) {
             setLoginError("Invalid username or password. Access denied.");
         }
@@ -125,13 +159,17 @@ export default function BlogAdmin() {
     const handleLogout = () => {
         sessionStorage.removeItem("tm_admin_token");
         sessionStorage.removeItem("tm_admin_logged_in");
+        sessionStorage.removeItem("tm_admin_role");
         setToken("");
+        setRole("admin");
         setIsLoggedIn(false);
         setPosts([]);
+        setDailyResults([]);
     };
 
     // Open Form Modal for Creating a New Post
     const openCreateModal = () => {
+        setFormMode("blog");
         setEditingPost(null);
         setFormId("");
         setFormTitle("");
@@ -160,6 +198,7 @@ export default function BlogAdmin() {
 
     // Open Form Modal for Editing a Post
     const openEditModal = (post) => {
+        setFormMode("blog");
         setEditingPost(post);
         setFormId(post.id);
         setFormTitle(post.title);
@@ -177,6 +216,49 @@ export default function BlogAdmin() {
         setShowFormModal(true);
     };
 
+    // Open Form Modal for Creating a Daily Result
+    const openCreateResultModal = () => {
+        setFormMode("result");
+        setEditingPost(null);
+        setFormId("");
+        setFormTitle("");
+        setFormExcerpt("");
+        setFormCategory("");
+        setFormAuthor("");
+        
+        const options = { year: 'numeric', month: 'short', day: '2-digit' };
+        setFormDate(new Date().toLocaleDateString('en-US', options));
+        
+        setFormImage("");
+        setFormVideoUrl("");
+        setFormContent(`<p>Enter daily result description, profit/loss, and details...</p>`);
+        setFormBottomContent("");
+        setFormStatus("published");
+        setFormIsFeatured(false);
+        setActiveTab("write");
+        setShowFormModal(true);
+    };
+
+    // Open Form Modal for Editing a Daily Result
+    const openEditResultModal = (res) => {
+        setFormMode("result");
+        setEditingPost(res);
+        setFormId(res.id);
+        setFormTitle(res.title);
+        setFormExcerpt("");
+        setFormCategory("");
+        setFormAuthor("");
+        setFormDate(res.date || "");
+        setFormImage(res.image || "");
+        setFormVideoUrl(res.videoUrl || "");
+        setFormContent(res.content || "");
+        setFormBottomContent("");
+        setFormStatus("published");
+        setFormIsFeatured(false);
+        setActiveTab("write");
+        setShowFormModal(true);
+    };
+
     // Delete a Post
     const handleDeletePost = async (id) => {
         if (window.confirm("Are you sure you want to delete this blog post? This action cannot be undone.")) {
@@ -190,6 +272,25 @@ export default function BlogAdmin() {
                     throw new Error(errData.error || "Failed to delete post.");
                 }
                 fetchBlogs(token);
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+    };
+
+    // Delete a Daily Result
+    const handleDeleteResult = async (id) => {
+        if (window.confirm("Are you sure you want to delete this daily result? This action cannot be undone.")) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/daily-results/${id}`, {
+                    method: "DELETE",
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                if (!response.ok) {
+                    const errData = await response.json();
+                    throw new Error(errData.error || "Failed to delete daily result.");
+                }
+                fetchDailyResults();
             } catch (error) {
                 alert(error.message);
             }
@@ -238,7 +339,13 @@ export default function BlogAdmin() {
             return;
         }
 
-        const postBody = {
+        const payload = formMode === "result" ? {
+            title: formTitle,
+            date: formDate,
+            image: formImage,
+            videoUrl: formVideoUrl,
+            content: formContent
+        } : {
             title: formTitle,
             excerpt: formExcerpt,
             category: formCategory,
@@ -255,11 +362,15 @@ export default function BlogAdmin() {
         };
 
         try {
-            let url = `${API_BASE_URL}/api/blogs`;
+            let url = formMode === "result" 
+                ? `${API_BASE_URL}/api/daily-results`
+                : `${API_BASE_URL}/api/blogs`;
             let method = "POST";
 
             if (editingPost) {
-                url = `${API_BASE_URL}/api/blogs/${editingPost.id}`;
+                url = formMode === "result"
+                    ? `${API_BASE_URL}/api/daily-results/${editingPost.id}`
+                    : `${API_BASE_URL}/api/blogs/${editingPost.id}`;
                 method = "PUT";
             }
 
@@ -269,15 +380,19 @@ export default function BlogAdmin() {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: JSON.stringify(postBody)
+                body: JSON.stringify(payload)
             });
 
             if (!response.ok) {
                 const errData = await response.json();
-                throw new Error(errData.error || "Failed to save blog post.");
+                throw new Error(errData.error || `Failed to save ${formMode === "result" ? "daily result" : "blog post"}.`);
             }
 
-            fetchBlogs(token);
+            if (formMode === "result") {
+                fetchDailyResults();
+            } else {
+                fetchBlogs(token);
+            }
             setShowFormModal(false);
         } catch (error) {
             alert(error.message);
@@ -370,10 +485,10 @@ export default function BlogAdmin() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-white/10 pb-6 mb-8 gap-4">
                     <div>
                         <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                            {editingPost ? "Edit" : "Create"} <span className="text-amber-450">Blog Article</span>
+                            {editingPost ? "Edit" : "Create"} <span className="text-amber-450">{formMode === "result" ? "Daily Result" : "Blog Article"}</span>
                         </h1>
                         <p className="text-sm text-white/50 mt-1">
-                            {editingPost ? `Editing Article ID: ${formId}` : "Adding a new publication to the Trading Monster blog feed."}
+                            {editingPost ? `Editing ID: ${formId}` : `Adding a new ${formMode === "result" ? "daily result entry" : "publication"} to the Trading Monster feed.`}
                         </p>
                     </div>
                     
@@ -402,69 +517,75 @@ export default function BlogAdmin() {
                             <div className="space-y-4">
                                 <div>
                                     <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">
-                                        Article Title *
+                                        {formMode === "result" ? "Result Title *" : "Article Title *"}
                                     </label>
                                     <input
                                         type="text"
                                         value={formTitle}
                                         onChange={(e) => setFormTitle(e.target.value)}
                                         className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-sm text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/80 outline-none transition-all placeholder-white/30"
-                                        placeholder="Enter article title..."
+                                        placeholder={formMode === "result" ? "e.g. Gold Strategy +150 pips profit..." : "Enter article title..."}
                                         required
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">
-                                        Short Excerpt / Summary *
-                                    </label>
-                                    <textarea
-                                        value={formExcerpt}
-                                        onChange={(e) => setFormExcerpt(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-xs text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/80 outline-none h-20 resize-none transition-all placeholder-white/30"
-                                        placeholder="A brief 1-2 sentence overview for the index page card."
-                                        required
-                                    />
-                                </div>
+                                {formMode === "blog" && (
+                                    <div>
+                                        <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">
+                                            Short Excerpt / Summary *
+                                        </label>
+                                        <textarea
+                                            value={formExcerpt}
+                                            onChange={(e) => setFormExcerpt(e.target.value)}
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-xs text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/80 outline-none h-20 resize-none transition-all placeholder-white/30"
+                                            placeholder="A brief 1-2 sentence overview for the index page card."
+                                            required
+                                        />
+                                    </div>
+                                )}
                             </div>
 
                             {/* Metadata Grid */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                                <div>
-                                    <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">
-                                        Category
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={formCategory}
-                                        onChange={(e) => setFormCategory(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/80 outline-none transition-all placeholder-white/30"
-                                        placeholder="e.g. Trend Engine"
-                                        list="blog-categories"
-                                    />
-                                    <datalist id="blog-categories">
-                                        {categories.map(cat => (
-                                            <option key={cat} value={cat} />
-                                        ))}
-                                    </datalist>
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">
-                                        Author
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={formAuthor}
-                                        onChange={(e) => setFormAuthor(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/80 outline-none transition-all placeholder-white/30"
-                                        placeholder="Author Name"
-                                        list="authors"
-                                    />
-                                    <datalist id="authors">
-                                        {authorSuggestions.map(author => (
-                                            <option key={author} value={author} />
-                                        ))}
-                                    </datalist>
-                                </div>
+                                {formMode === "blog" && (
+                                    <>
+                                        <div>
+                                            <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">
+                                                Category
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={formCategory}
+                                                onChange={(e) => setFormCategory(e.target.value)}
+                                                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/80 outline-none transition-all placeholder-white/30"
+                                                placeholder="e.g. Trend Engine"
+                                                list="blog-categories"
+                                            />
+                                            <datalist id="blog-categories">
+                                                {categories.map(cat => (
+                                                    <option key={cat} value={cat} />
+                                                ))}
+                                            </datalist>
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">
+                                                Author
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={formAuthor}
+                                                onChange={(e) => setFormAuthor(e.target.value)}
+                                                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/80 outline-none transition-all placeholder-white/30"
+                                                placeholder="Author Name"
+                                                list="authors"
+                                            />
+                                            <datalist id="authors">
+                                                {authorSuggestions.map(author => (
+                                                    <option key={author} value={author} />
+                                                ))}
+                                            </datalist>
+                                        </div>
+                                    </>
+                                )}
                                 <div>
                                     <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-2">
                                         Date
@@ -495,7 +616,7 @@ export default function BlogAdmin() {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-white/5 pt-6">
                                 <div className="md:col-span-2 space-y-4">
                                     <label className="block text-xs font-bold text-white/50 uppercase tracking-wider mb-1">
-                                        Hero Image Selection *
+                                        {formMode === "result" ? "Upload Image (Optional)" : "Hero Image Selection *"}
                                     </label>
                                     <div className="flex flex-col sm:flex-row gap-4 items-start">
                                         <div className="w-full sm:w-auto">
@@ -513,94 +634,100 @@ export default function BlogAdmin() {
                                             </div>
                                         )}
                                     </div>
-                                    {/* Quick Pick Stock Images */}
-                                    <div>
-                                        <span className="text-[10px] font-semibold text-white/40 block mb-2">Or choose a premium stock photo:</span>
-                                        <div className="grid grid-cols-4 gap-2">
-                                            {stockImages.map((img, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    type="button"
-                                                    onClick={() => setFormImage(img.url)}
-                                                    className={`relative rounded-lg overflow-hidden border aspect-video transition ${formImage === img.url ? 'border-amber-450 scale-[1.03] shadow-[0_0_10px_rgba(245,158,11,0.3)]' : 'border-white/10 opacity-70 hover:opacity-100'}`}
-                                                    title={img.label}
-                                                >
-                                                    <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
-                                                </button>
-                                            ))}
+                                    {/* Quick Pick Stock Images - Only for blog */}
+                                    {formMode === "blog" && (
+                                        <div>
+                                            <span className="text-[10px] font-semibold text-white/40 block mb-2">Or choose a premium stock photo:</span>
+                                            <div className="grid grid-cols-4 gap-2">
+                                                {stockImages.map((img, idx) => (
+                                                    <button
+                                                        key={idx}
+                                                        type="button"
+                                                        onClick={() => setFormImage(img.url)}
+                                                        className={`relative rounded-lg overflow-hidden border aspect-video transition ${formImage === img.url ? 'border-amber-450 scale-[1.03] shadow-[0_0_10px_rgba(245,158,11,0.3)]' : 'border-white/10 opacity-70 hover:opacity-100'}`}
+                                                        title={img.label}
+                                                    >
+                                                        <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
+                                                    </button>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                 </div>
-                                <div className="space-y-3">
-                                    <label className="block text-xs font-bold text-white/50 uppercase tracking-wider">
-                                        Publication Settings
-                                    </label>
-                                    <div className="flex flex-col gap-3 border border-white/5 bg-white/5 p-4 rounded-xl">
-                                        <label className="flex items-center gap-2 text-xs text-white/80 cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                checked={formIsFeatured}
-                                                onChange={(e) => setFormIsFeatured(e.target.checked)}
-                                                className="rounded text-amber-500 focus:ring-amber-500/50 bg-neutral-900 border-white/20 h-4 w-4"
-                                            />
-                                            Set as Featured
+                                {formMode === "blog" && (
+                                    <div className="space-y-3">
+                                        <label className="block text-xs font-bold text-white/50 uppercase tracking-wider">
+                                            Publication Settings
                                         </label>
-                                        <div className="w-full border-t border-white/5 my-0.5" />
-                                        <div className="flex flex-col gap-2">
-                                            <label className="flex items-center gap-1.5 text-xs text-white/80 cursor-pointer">
+                                        <div className="flex flex-col gap-3 border border-white/5 bg-white/5 p-4 rounded-xl">
+                                            <label className="flex items-center gap-2 text-xs text-white/80 cursor-pointer">
                                                 <input
-                                                    type="radio"
-                                                    name="status"
-                                                    value="published"
-                                                    checked={formStatus === "published"}
-                                                    onChange={() => setFormStatus("published")}
-                                                    className="text-amber-500 focus:ring-amber-500/50 bg-neutral-900 border-white/20"
+                                                    type="checkbox"
+                                                    checked={formIsFeatured}
+                                                    onChange={(e) => setFormIsFeatured(e.target.checked)}
+                                                    className="rounded text-amber-500 focus:ring-amber-500/50 bg-neutral-900 border-white/20 h-4 w-4"
                                                 />
-                                                Publish immediately
+                                                Set as Featured
                                             </label>
-                                            <label className="flex items-center gap-1.5 text-xs text-white/80 cursor-pointer">
-                                                <input
-                                                    type="radio"
-                                                    name="status"
-                                                    value="draft"
-                                                    checked={formStatus === "draft"}
-                                                    onChange={() => setFormStatus("draft")}
-                                                    className="text-amber-500 focus:ring-amber-500/50 bg-neutral-900 border-white/20"
-                                                />
-                                                Save as Draft
-                                            </label>
+                                            <div className="w-full border-t border-white/5 my-0.5" />
+                                            <div className="flex flex-col gap-2">
+                                                <label className="flex items-center gap-1.5 text-xs text-white/80 cursor-pointer">
+                                                    <input
+                                                        type="radio"
+                                                        name="status"
+                                                        value="published"
+                                                        checked={formStatus === "published"}
+                                                        onChange={() => setFormStatus("published")}
+                                                        className="text-amber-500 focus:ring-amber-500/50 bg-neutral-900 border-white/20"
+                                                    />
+                                                    Publish immediately
+                                                </label>
+                                                <label className="flex items-center gap-1.5 text-xs text-white/80 cursor-pointer">
+                                                    <input
+                                                        type="radio"
+                                                        name="status"
+                                                        value="draft"
+                                                        checked={formStatus === "draft"}
+                                                        onChange={() => setFormStatus("draft")}
+                                                        className="text-amber-500 focus:ring-amber-500/50 bg-neutral-900 border-white/20"
+                                                    />
+                                                    Save as Draft
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
 
                             {/* Main Centered Content Editor */}
                             <div className="space-y-3 border-t border-white/5 pt-6 flex flex-col">
                                 <label className="block text-xs font-bold text-white/50 uppercase tracking-wider flex justify-between">
-                                    <span>Article Content *</span>
+                                    <span>{formMode === "result" ? "Result Details *" : "Article Content *"}</span>
                                     <span className="text-[10px] text-white/40 normal-case">Gmail-style editor. Switch to HTML view to edit code directly.</span>
                                 </label>
                                 <RichTextEditor
                                     value={formContent}
                                     onChange={setFormContent}
-                                    placeholder="Write your amazing post paragraphs here..."
+                                    placeholder={formMode === "result" ? "Explain daily trades, results, or profit breakdowns..." : "Write your amazing post paragraphs here..."}
                                     minHeight="350px"
                                 />
                             </div>
 
-                            {/* Bottom Content Editor */}
-                            <div className="space-y-3">
-                                <label className="block text-xs font-bold text-white/50 uppercase tracking-wider flex justify-between">
-                                    <span>Bottom Content (Optional)</span>
-                                    <span className="text-[10px] text-white/40 normal-case font-medium">Renders below the inline video</span>
-                                </label>
-                                <RichTextEditor
-                                    value={formBottomContent}
-                                    onChange={setFormBottomContent}
-                                    placeholder="Write concluding remarks..."
-                                    minHeight="180px"
-                                />
-                            </div>
+                            {/* Bottom Content Editor - Only for blog */}
+                            {formMode === "blog" && (
+                                <div className="space-y-3">
+                                    <label className="block text-xs font-bold text-white/50 uppercase tracking-wider flex justify-between">
+                                        <span>Bottom Content (Optional)</span>
+                                        <span className="text-[10px] text-white/40 normal-case font-medium">Renders below the inline video</span>
+                                    </label>
+                                    <RichTextEditor
+                                        value={formBottomContent}
+                                        onChange={setFormBottomContent}
+                                        placeholder="Write concluding remarks..."
+                                        minHeight="180px"
+                                    />
+                                </div>
+                            )}
                         </form>
                     ) : (
                         /* Live Preview Tab */
@@ -610,20 +737,33 @@ export default function BlogAdmin() {
                                 <div className="mb-6 border-b border-white/10 pb-6">
                                     <div className="flex items-center gap-3 mb-3 text-xs font-semibold text-amber-450 uppercase tracking-wider">
                                         <span>Preview Mode</span>
-                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                                        <span>{formCategory}</span>
+                                        {formMode === "blog" && (
+                                            <>
+                                                <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                                                <span>{formCategory}</span>
+                                            </>
+                                        )}
                                     </div>
                                     <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
-                                        {formTitle || "Untitled Article"}
+                                        {formTitle || "Untitled"}
                                     </h1>
                                     <div className="flex items-center gap-2.5 text-xs text-white/50">
-                                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-black font-bold text-sm">
-                                            {(formAuthor || "T").charAt(0)}
-                                        </div>
-                                        <div>
-                                            <span className="text-white/80 font-bold block">{formAuthor}</span>
-                                            <span>{formDate || "Draft"}</span>
-                                        </div>
+                                        {formMode === "blog" ? (
+                                            <>
+                                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-black font-bold text-sm">
+                                                    {(formAuthor || "T").charAt(0)}
+                                                </div>
+                                                <div>
+                                                    <span className="text-white/80 font-bold block">{formAuthor}</span>
+                                                    <span>{formDate || "Draft"}</span>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <div>
+                                                <span className="text-white/80 font-bold block">Daily Result Entry</span>
+                                                <span>{formDate || "Draft"}</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
 
@@ -634,7 +774,7 @@ export default function BlogAdmin() {
                                             src={formImage}
                                             alt="Preview Hero"
                                             className="w-full h-full object-cover"
-                                            onError={(e) => { e.target.src = stockImages[0].url }}
+                                            onError={(e) => { if (formMode === "blog") e.target.src = stockImages[0].url }}
                                         />
                                     </div>
                                 )}
@@ -707,10 +847,10 @@ export default function BlogAdmin() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-white/10 pb-6 mb-8 gap-4">
                 <div>
                     <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                        Blog <span className="text-amber-450">Admin Panel</span>
+                        Blog & Results <span className="text-amber-450">Admin Panel</span>
                     </h1>
                     <p className="text-sm text-white/60 mt-1">
-                        Publish articles, configure layouts, and manage external system sheets in one place.
+                        Logged in as <span className="text-amber-450 font-bold capitalize">{role}</span>. Publish articles, configure layouts, and manage external system sheets in one place.
                     </p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -720,12 +860,27 @@ export default function BlogAdmin() {
                     >
                         View Blog
                     </Link>
-                    <button
-                        onClick={openCreateModal}
-                        className="rounded-xl bg-amber-450 hover:bg-amber-400 text-black font-bold px-4 py-2.5 text-xs transition duration-300 shadow-[0_0_10px_rgba(245,158,11,0.2)] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                    <Link
+                        to="/daily-results"
+                        className="rounded-xl border border-white/10 px-4 py-2.5 text-xs font-bold text-white/80 hover:bg-white/5 hover:text-white transition"
                     >
-                        + Create Article
-                    </button>
+                        View Results Page
+                    </Link>
+                    {role === "admin" && adminViewTab === "blog" ? (
+                        <button
+                            onClick={openCreateModal}
+                            className="rounded-xl bg-amber-450 hover:bg-amber-400 text-black font-bold px-4 py-2.5 text-xs transition duration-300 shadow-[0_0_10px_rgba(245,158,11,0.2)] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                        >
+                            + Create Article
+                        </button>
+                    ) : adminViewTab === "results" ? (
+                        <button
+                            onClick={openCreateResultModal}
+                            className="rounded-xl bg-amber-450 hover:bg-amber-400 text-black font-bold px-4 py-2.5 text-xs transition duration-300 shadow-[0_0_10px_rgba(245,158,11,0.2)] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                        >
+                            + Create Daily Result
+                        </button>
+                    ) : null}
                     <button
                         onClick={handleLogout}
                         className="rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-2.5 text-xs font-bold text-red-400 hover:bg-red-500/10 transition"
@@ -737,31 +892,46 @@ export default function BlogAdmin() {
 
             {/* Navigation Tabs */}
             <div className="flex border-b border-white/10 mb-8 gap-6">
+                {role === "admin" && (
+                    <button
+                        onClick={() => setAdminViewTab("blog")}
+                        className={`pb-4 text-sm font-bold tracking-wider uppercase transition-all relative ${
+                            adminViewTab === "blog" ? "text-amber-450 font-extrabold" : "text-white/40 hover:text-white"
+                        }`}
+                    >
+                        Blog Manager
+                        {role === "admin" && adminViewTab === "blog" && (
+                            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-450 shadow-[0_0_8px_rgba(245,158,11,0.4)]" />
+                        )}
+                    </button>
+                )}
                 <button
-                    onClick={() => setAdminViewTab("blog")}
+                    onClick={() => setAdminViewTab("results")}
                     className={`pb-4 text-sm font-bold tracking-wider uppercase transition-all relative ${
-                        adminViewTab === "blog" ? "text-amber-450 font-extrabold" : "text-white/40 hover:text-white"
+                        adminViewTab === "results" ? "text-amber-450 font-extrabold" : "text-white/40 hover:text-white"
                     }`}
                 >
-                    Blog Manager
-                    {adminViewTab === "blog" && (
+                    Daily Results Manager
+                    {adminViewTab === "results" && (
                         <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-450 shadow-[0_0_8px_rgba(245,158,11,0.4)]" />
                     )}
                 </button>
-                <button
-                    onClick={() => setAdminViewTab("dashboards")}
-                    className={`pb-4 text-sm font-bold tracking-wider uppercase transition-all relative ${
-                        adminViewTab === "dashboards" ? "text-amber-450 font-extrabold" : "text-white/40 hover:text-white"
-                    }`}
-                >
-                    System Dashboards
-                    {adminViewTab === "dashboards" && (
-                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-450 shadow-[0_0_8px_rgba(245,158,11,0.4)]" />
-                    )}
-                </button>
+                {role === "admin" && (
+                    <button
+                        onClick={() => setAdminViewTab("dashboards")}
+                        className={`pb-4 text-sm font-bold tracking-wider uppercase transition-all relative ${
+                            adminViewTab === "dashboards" ? "text-amber-450 font-extrabold" : "text-white/40 hover:text-white"
+                        }`}
+                    >
+                        System Dashboards
+                        {adminViewTab === "dashboards" && (
+                            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-450 shadow-[0_0_8px_rgba(245,158,11,0.4)]" />
+                        )}
+                    </button>
+                )}
             </div>
 
-            {adminViewTab === "dashboards" && (
+            {role === "admin" && adminViewTab === "dashboards" && (
                 /* Premium External Dashboards */
                 <div className="mb-10 relative">
                     {/* Decorative background glow */}
@@ -830,7 +1000,7 @@ export default function BlogAdmin() {
                 </div>
             )}
 
-            {adminViewTab === "blog" && (
+            {role === "admin" && adminViewTab === "blog" && (
                 <>
                     {/* Metrics Dashboard */}
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-10">
@@ -975,6 +1145,76 @@ export default function BlogAdmin() {
                                         <tr>
                                             <td colSpan="6" className="text-center py-12 text-white/40">
                                                 No articles found. Create one to get started!
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </>
+            )}
+
+            {adminViewTab === "results" && (
+                <>
+                    {/* Daily Results Dashboard Grid/List */}
+                    <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/20 shadow-2xl">
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full divide-y divide-white/5 text-left text-xs text-white/70">
+                                <thead className="bg-neutral-900/60 font-semibold text-white/50 uppercase tracking-wider text-[10px]">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-4">Result Entry</th>
+                                        <th scope="col" className="px-6 py-4">Date</th>
+                                        <th scope="col" className="px-6 py-4 text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-white/5 bg-transparent">
+                                    {dailyResults.map((res) => (
+                                        <tr key={res.id} className="hover:bg-white/5 transition duration-150">
+                                            <td className="px-6 py-4">
+                                                <div className="flex items-center gap-3">
+                                                    {res.image && (
+                                                        <div className="h-10 w-16 overflow-hidden rounded-lg bg-neutral-800 flex-shrink-0 border border-white/10">
+                                                            <img
+                                                                src={res.image}
+                                                                alt={res.title}
+                                                                className="h-full w-full object-cover"
+                                                            />
+                                                        </div>
+                                                    )}
+                                                    <div>
+                                                        <div className="font-bold text-white text-sm line-clamp-1">{res.title}</div>
+                                                        {res.videoUrl && (
+                                                            <div className="text-[10px] text-amber-450/70 flex items-center gap-0.5 mt-0.5">
+                                                                <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Video Connected
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 align-middle whitespace-nowrap">
+                                                {res.date}
+                                            </td>
+                                            <td className="px-6 py-4 align-middle text-right space-x-2 whitespace-nowrap">
+                                                <button
+                                                    onClick={() => openEditResultModal(res)}
+                                                    className="text-[10px] font-bold text-sky-400 hover:text-sky-300 bg-sky-500/5 hover:bg-sky-500/10 px-2.5 py-1 rounded-lg border border-sky-500/10 transition"
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteResult(res.id)}
+                                                    className="text-[10px] font-bold text-red-400 hover:text-red-300 bg-red-500/5 hover:bg-red-500/10 px-2.5 py-1 rounded-lg border border-red-500/10 transition"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    {dailyResults.length === 0 && (
+                                        <tr>
+                                            <td colSpan="3" className="text-center py-12 text-white/40">
+                                                No daily results found. Create one to get started!
                                             </td>
                                         </tr>
                                     )}

@@ -30,6 +30,7 @@ export default function Navbar() {
   }, []);
 
   const menuItems = [
+    { label: "Daily Results", to: "/daily-results" },
     { label: "FAQ", to: "/faq" },
     { label: "Pricing", href: "#unlock-full-access" },
     { label: "Blog", to: "/blog" },

@@ -49,6 +49,16 @@ export default function ThankYouPage() {
                     <p>
                         Your trial pack will be activated in a few minutes.
                     </p>
+                    
+                    <div className="my-8 aspect-video rounded-2xl border border-white/10 bg-black/60 overflow-hidden shadow-xl max-w-lg mx-auto">
+                        <iframe
+                            src="https://www.youtube.com/embed/xYpUIA-L68Q?rel=0"
+                            title="Trading Monster AI Guide"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full border-0"
+                        ></iframe>
+                    </div>
                     <p>
                         For more details reach us via chat or mail to{" "}
                         <a

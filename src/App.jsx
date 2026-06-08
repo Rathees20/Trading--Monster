@@ -32,6 +32,8 @@ import CancellationPolicy from "./pages/legal/CancellationPolicy.jsx";
 import ThankYouPage from "./pages/ThankYouPage.jsx";
 import SocialMediaSubmission from "./pages/SocialMediaSubmission.jsx";
 import BlockedCountry from "./pages/BlockedCountry.jsx";
+import DailyResults from "./pages/DailyResults.jsx";
+import DailyResultsAdmin from "./pages/DailyResultsAdmin.jsx";
 import logoImg from "./assets/logo.jpeg";
 
 function ScrollToTop() {
@@ -102,7 +104,7 @@ export default function App() {
 
   return (
     <div className="tm-bg min-h-dvh text-white flex flex-col">
-      {location.pathname !== "/" && location.pathname !== "/trend-engine-pro" && location.pathname !== "/scanner-pro" && location.pathname !== "/dynamic-support-resistance-pro" && (
+      {location.pathname !== "/" && location.pathname !== "/trend-engine-pro" && location.pathname !== "/scanner-pro" && location.pathname !== "/dynamic-support-resistance-pro" && location.pathname !== "/daily-results" && location.pathname !== "/daily-results-admin" && location.pathname !== "/results-admin" && (
         <header className="border-b border-white/10 bg-black/80 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-8 lg:px-10">
             <Link to="/" className="flex items-center gap-3">
@@ -146,6 +148,9 @@ export default function App() {
           <Route path="/trend-engine-pro" element={<TrendEnginePro />} />
           <Route path="/scanner-pro" element={<ScannerPro />} />
           <Route path="/dynamic-support-resistance-pro" element={<DynamicSupportResistancePro />} />
+          <Route path="/daily-results" element={<DailyResults />} />
+          <Route path="/daily-results-admin" element={<DailyResultsAdmin />} />
+          <Route path="/results-admin" element={<DailyResultsAdmin />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />

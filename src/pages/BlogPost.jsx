@@ -24,9 +24,43 @@ export default function BlogPost() {
     ];
 
     const [activeRelatedCategory, setActiveRelatedCategory] = useState("Recent");
-    const [post, setPost] = useState(null);
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState(() => {
+        try {
+            const cached = localStorage.getItem("tm_blog_posts");
+            return cached ? JSON.parse(cached) : [];
+        } catch {
+            return [];
+        }
+    });
+    const [post, setPost] = useState(() => {
+        try {
+            const cached = localStorage.getItem("tm_blog_posts");
+            if (cached) {
+                const listData = JSON.parse(cached);
+                return listData.find(
+                    p => generateSlug(p.title) === id || String(p.id) === String(id)
+                ) || null;
+            }
+            return null;
+        } catch {
+            return null;
+        }
+    });
+    const [loading, setLoading] = useState(() => {
+        try {
+            const cached = localStorage.getItem("tm_blog_posts");
+            if (cached) {
+                const listData = JSON.parse(cached);
+                const matched = listData.find(
+                    p => generateSlug(p.title) === id || String(p.id) === String(id)
+                );
+                return matched ? false : true;
+            }
+            return true;
+        } catch {
+            return true;
+        }
+    });
     const [error, setError] = useState(null);
 
     // Scroll to top and load data on load / id change
@@ -35,7 +69,14 @@ export default function BlogPost() {
 
         const fetchPostData = async () => {
             try {
-                setLoading(true);
+                const localMatch = posts.find(
+                    p => generateSlug(p.title) === id || String(p.id) === String(id)
+                );
+                if (localMatch) {
+                    setPost(localMatch);
+                } else {
+                    setLoading(true);
+                }
                 setError(null);
 
                 // Fetch list of articles (we will search the matching slug/id here)
@@ -45,6 +86,7 @@ export default function BlogPost() {
                 }
                 const listData = await listRes.json();
                 setPosts(listData);
+                localStorage.setItem("tm_blog_posts", JSON.stringify(listData));
 
                 // Find the specific post by slug or ID
                 const matchedPost = listData.find(
@@ -58,7 +100,9 @@ export default function BlogPost() {
                 setPost(matchedPost);
             } catch (err) {
                 console.error("Error loading blog details:", err);
-                setError(err.message);
+                if (!post && !localMatch) {
+                    setError(err.message);
+                }
             } finally {
                 setLoading(false);
             }
@@ -105,20 +149,39 @@ export default function BlogPost() {
         );
     };
 
-    if (loading) {
+    if (loading && !post) {
         return (
-            <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[50vh] flex flex-col justify-center items-center">
-                <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
-                    Trading Monster <span className="text-amber-450">Blog</span>
-                </h1>
-                <p className="text-lg text-white/60 max-w-2xl mx-auto">
-                    Loading article...
-                </p>
+            <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 min-h-[80vh] animate-pulse">
+                {/* Back link & Category */}
+                <div className="flex gap-4 items-center mb-6">
+                    <div className="h-4 bg-white/10 rounded w-24"></div>
+                    <div className="h-4 bg-white/5 rounded w-16"></div>
+                </div>
+                {/* Title */}
+                <div className="h-12 bg-white/10 rounded-xl w-3/4 mb-6"></div>
+                {/* Author Info */}
+                <div className="flex gap-3 items-center mb-8">
+                    <div className="h-10 w-10 bg-white/10 rounded-full"></div>
+                    <div className="space-y-2">
+                        <div className="h-4 bg-white/10 rounded w-32"></div>
+                        <div className="h-3 bg-white/5 rounded w-20"></div>
+                    </div>
+                </div>
+                {/* Hero Image */}
+                <div className="w-full aspect-[21/9] max-h-[450px] bg-white/5 rounded-2xl mb-12"></div>
+                {/* Content paragraphs */}
+                <div className="space-y-4 max-w-3xl">
+                    <div className="h-4 bg-white/5 rounded w-full"></div>
+                    <div className="h-4 bg-white/5 rounded w-full"></div>
+                    <div className="h-4 bg-white/5 rounded w-5/6"></div>
+                    <div className="h-4 bg-white/5 rounded w-full"></div>
+                    <div className="h-4 bg-white/5 rounded w-2/3"></div>
+                </div>
             </div>
         );
     }
 
-    if (error) {
+    if (error && !post) {
         return (
             <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[55vh] flex flex-col justify-center items-center">
                 <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
@@ -222,8 +285,12 @@ export default function BlogPost() {
                     letter-spacing: -0.025em;
                 }
                 .custom-prose p {
+                    font-size: 1.125rem !important;
                     line-height: 1.8;
                     margin-bottom: 1.5em;
+                }
+                .custom-prose span {
+                    font-size: inherit !important;
                 }
                 .custom-prose a {
                     text-decoration: underline;
@@ -235,6 +302,7 @@ export default function BlogPost() {
                     margin-bottom: 1.5em;
                 }
                 .custom-prose li {
+                    font-size: 1.125rem !important;
                     margin-bottom: 0.5em;
                 }
             `}} />

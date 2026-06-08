@@ -29,24 +29,43 @@ export default function Blog() {
     };
 
     const [activeCategory, setActiveCategory] = useState("Recent");
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState(() => {
+        try {
+            const cached = localStorage.getItem("tm_blog_posts");
+            return cached ? JSON.parse(cached) : [];
+        } catch {
+            return [];
+        }
+    });
+    const [loading, setLoading] = useState(() => {
+        try {
+            const cached = localStorage.getItem("tm_blog_posts");
+            return cached ? false : true;
+        } catch {
+            return true;
+        }
+    });
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                setLoading(true);
+                if (posts.length === 0) {
+                    setLoading(true);
+                }
                 const response = await fetch(`${API_BASE_URL}/api/blogs`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch blog posts from server.");
                 }
                 const data = await response.json();
                 setPosts(data);
+                localStorage.setItem("tm_blog_posts", JSON.stringify(data));
                 setError(null);
             } catch (err) {
                 console.error("Error loading blog posts:", err);
-                setError(err.message);
+                if (posts.length === 0) {
+                    setError(err.message);
+                }
             } finally {
                 setLoading(false);
             }
@@ -69,7 +88,7 @@ export default function Blog() {
                 return (
                     <div className="relative w-full h-full pb-[56.25%]">
                         <iframe
-							src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`}
+                            src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`}
                             title={post.title}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
@@ -130,20 +149,53 @@ export default function Blog() {
 
     const allPosts = sortedPosts;
 
-    if (loading) {
+    if (loading && posts.length === 0) {
         return (
-            <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[50vh] flex flex-col justify-center items-center">
-                <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">
-                    Trading Monster <span className="text-amber-450">Blog</span>
-                </h1>
-                <p className="text-lg text-white/60 max-w-2xl mx-auto">
-                    Loading premium market insights...
-                </p>
+            <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 min-h-[80vh]">
+                {/* Header Skeleton */}
+                <div className="mb-10 lg:mb-16 text-center animate-pulse">
+                    <div className="h-10 bg-white/10 rounded-xl w-64 mx-auto mb-4"></div>
+                    <div className="h-4 bg-white/5 rounded-lg w-96 mx-auto"></div>
+                </div>
+
+                {/* Category Skeleton */}
+                <div className="mb-12 border-b border-white/10 pb-4">
+                    <div className="flex gap-8 overflow-x-auto hide-scrollbar">
+                        {[1, 2, 3, 4, 5].map((i) => (
+                            <div key={i} className="h-6 bg-white/5 rounded-lg w-20 animate-pulse"></div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Grid Layout Skeleton */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                    {/* Featured Post Skeleton (Left) */}
+                    <div className="lg:col-span-7 space-y-6 animate-pulse">
+                        <div className="w-full aspect-[16/10] bg-white/5 rounded-2xl"></div>
+                        <div className="h-6 bg-amber-500/10 rounded-full w-24"></div>
+                        <div className="space-y-3">
+                            <div className="h-8 bg-white/10 rounded-lg w-3/4"></div>
+                            <div className="h-4 bg-white/5 rounded-lg w-full"></div>
+                            <div className="h-4 bg-white/5 rounded-lg w-5/6"></div>
+                        </div>
+                    </div>
+
+                    {/* Right Column Skeletons */}
+                    <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
+                        {[1, 2, 3, 4].map((i) => (
+                            <div key={i} className="space-y-4 animate-pulse">
+                                <div className="w-full aspect-[4/3] bg-white/5 rounded-xl"></div>
+                                <div className="h-4 bg-amber-500/10 rounded-full w-16"></div>
+                                <div className="h-5 bg-white/10 rounded-lg w-5/6"></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         );
     }
 
-    if (error) {
+    if (error && posts.length === 0) {
         return (
             <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 text-center min-h-[50vh] flex flex-col justify-center items-center">
                 <h1 className="text-4xl font-bold tracking-tight text-white mb-4 sm:text-5xl">

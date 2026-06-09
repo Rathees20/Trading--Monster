@@ -93,26 +93,26 @@ export default function DynamicSupportResistancePro() {
                                 Dynamic Support & Resistance <span className="text-amber-450">Tutorial</span>
                             </h2>
                         </div>
-                        
+
                         <div className="relative group">
                             {/* Ambient Glow */}
                             <div className="absolute -inset-1 rounded-[24px] bg-gradient-to-b from-amber-500/20 to-transparent blur-md opacity-75 transition-opacity group-hover:opacity-100"></div>
-                            
+
                             <div className="relative aspect-video rounded-[20px] border border-white/10 bg-black/80 overflow-hidden shadow-2xl">
                                 {!playVideo ? (
-                                    <div 
+                                    <div
                                         className="absolute inset-0 w-full h-full cursor-pointer flex items-center justify-center group/play"
                                         onClick={() => setPlayVideo(true)}
                                     >
                                         {/* Poster Image */}
-                                        <img 
-                                            src={xauusdImg} 
-                                            alt="Tutorial Poster" 
+                                        <img
+                                            src={xauusdImg}
+                                            alt="Tutorial Poster"
                                             className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover/play:scale-105"
                                         />
                                         {/* Dark overlay */}
                                         <div className="absolute inset-0 bg-black/45 transition-colors group-hover/play:bg-black/35"></div>
-                                        
+
                                         {/* Play Button */}
                                         <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border border-amber-500/30 bg-black/60 text-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.2)] transition-all duration-300 group-hover/play:scale-110 group-hover/play:bg-amber-500 group-hover/play:text-black group-hover/play:shadow-[0_0_50px_rgba(245,158,11,0.6)]">
                                             <svg className="w-8 h-8 fill-current translate-x-0.5" viewBox="0 0 24 24">
@@ -122,7 +122,7 @@ export default function DynamicSupportResistancePro() {
                                     </div>
                                 ) : (
                                     <iframe
-                                        src="https://www.youtube.com/embed/xYpUIA-L68Q?autoplay=1&rel=0"
+                                        src="https://www.youtube.com/embed/_wwV24SPpws?autoplay=1"
                                         title="Dynamic Support and Resistance Tutorial"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen

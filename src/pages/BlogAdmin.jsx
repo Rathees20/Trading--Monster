@@ -231,7 +231,7 @@ export default function BlogAdmin() {
         
         setFormImage("");
         setFormVideoUrl("");
-        setFormContent(`<p>Enter daily result description, profit/loss, and details...</p>`);
+        setFormContent("");
         setFormBottomContent("");
         setFormStatus("published");
         setFormIsFeatured(false);
@@ -344,7 +344,7 @@ export default function BlogAdmin() {
             date: formDate,
             image: formImage,
             videoUrl: formVideoUrl,
-            content: formContent
+            content: formContent || " "
         } : {
             title: formTitle,
             excerpt: formExcerpt,
@@ -700,18 +700,20 @@ export default function BlogAdmin() {
                             </div>
 
                             {/* Main Centered Content Editor */}
-                            <div className="space-y-3 border-t border-white/5 pt-6 flex flex-col">
-                                <label className="block text-xs font-bold text-white/50 uppercase tracking-wider flex justify-between">
-                                    <span>{formMode === "result" ? "Result Details *" : "Article Content *"}</span>
-                                    <span className="text-[10px] text-white/40 normal-case">Gmail-style editor. Switch to HTML view to edit code directly.</span>
-                                </label>
-                                <RichTextEditor
-                                    value={formContent}
-                                    onChange={setFormContent}
-                                    placeholder={formMode === "result" ? "Explain daily trades, results, or profit breakdowns..." : "Write your amazing post paragraphs here..."}
-                                    minHeight="350px"
-                                />
-                            </div>
+                            {formMode === "blog" && (
+                                <div className="space-y-3 border-t border-white/5 pt-6 flex flex-col">
+                                    <label className="block text-xs font-bold text-white/50 uppercase tracking-wider flex justify-between">
+                                        <span>Article Content *</span>
+                                        <span className="text-[10px] text-white/40 normal-case">Gmail-style editor. Switch to HTML view to edit code directly.</span>
+                                    </label>
+                                    <RichTextEditor
+                                        value={formContent}
+                                        onChange={setFormContent}
+                                        placeholder="Write your amazing post paragraphs here..."
+                                        minHeight="350px"
+                                    />
+                                </div>
+                            )}
 
                             {/* Bottom Content Editor - Only for blog */}
                             {formMode === "blog" && (

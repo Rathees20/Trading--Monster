@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../config.js";
-import RichTextEditor from "../components/RichTextEditor.jsx";
 
 export default function DailyResultsAdmin() {
     // Auth state
@@ -109,7 +108,7 @@ export default function DailyResultsAdmin() {
         
         setFormImage("");
         setFormVideoUrl("");
-        setFormContent(`<p>Enter daily result description, profit/loss, and details...</p>`);
+        setFormContent("");
         setActiveTab("write");
         setShowFormModal(true);
     };
@@ -172,7 +171,7 @@ export default function DailyResultsAdmin() {
             date: formDate,
             image: formImage,
             videoUrl: formVideoUrl,
-            content: formContent
+            content: formContent || " "
         };
 
         try {
@@ -368,20 +367,6 @@ export default function DailyResultsAdmin() {
                                         </div>
                                     )}
                                 </div>
-                            </div>
-
-                            {/* Main Content Editor */}
-                            <div className="space-y-3 border-t border-white/5 pt-6 flex flex-col">
-                                <label className="block text-xs font-bold text-white/50 uppercase tracking-wider flex justify-between">
-                                    <span>Result Details *</span>
-                                    <span className="text-[10px] text-white/40 normal-case font-medium">Explain trade context, indicators, or setup breakdown</span>
-                                </label>
-                                <RichTextEditor
-                                    value={formContent}
-                                    onChange={setFormContent}
-                                    placeholder="Explain daily trades, results, or profit breakdowns..."
-                                    minHeight="350px"
-                                />
                             </div>
                         </form>
                     ) : (

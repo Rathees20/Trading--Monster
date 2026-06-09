@@ -33,7 +33,8 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write s
   // Sync external value updates to editor innerHTML ONLY when not in focus or if value is empty/different
   useEffect(() => {
     if (editorRef.current && !isHtmlMode) {
-      if (editorRef.current.innerHTML !== value) {
+      const isFocused = document.activeElement === editorRef.current;
+      if (!isFocused && editorRef.current.innerHTML !== value) {
         editorRef.current.innerHTML = value || "";
       }
     }
